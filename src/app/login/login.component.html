@@ -1,0 +1,66 @@
+<body>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card-body p-md-5 mx-md-4">    
+                    <div class="text-center">
+                        <div *ngIf="loginResp == false" class="bg-danger mb-2">
+                            <h4 class="mt-3 text-white">Credenciales incorrectas</h4>     
+                        </div>                     
+                        <form action="/login" method="POST">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="text-center">Bienvenid@ a MadSet Sports</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                        width="200" height="200" viewBox="0 0 579.000000 549.000000"
+                                        preserveAspectRatio="xMidYMid meet">
+                                            <g transform="translate(0.000000,549.000000) scale(0.100000,-0.100000)"
+                                            fill="#f75757" stroke="none">
+                                                <path d="M120 5373 c0 -54 -23 -1229 -51 -2611 -28 -1383 -48 -2516 -46 -2518
+                                                2 -3 170 91 373 209 l369 213 8 790 c4 434 10 1131 15 1550 l7 761 510 -485
+                                                510 -484 21 -87 c28 -114 73 -219 132 -311 121 -188 281 -316 642 -513 357
+                                                -195 424 -239 514 -339 100 -110 153 -239 162 -393 19 -308 -128 -518 -403
+                                                -579 -347 -77 -703 30 -1014 305 -37 33 -70 59 -73 59 -3 0 -5 -159 -4 -352
+                                                l3 -353 50 -33 c111 -73 266 -137 425 -174 110 -25 410 -36 531 -19 410 58
+                                                711 270 874 614 87 183 122 380 112 632 -15 361 -128 604 -387 830 l-44 39
+                                                256 250 c141 138 517 509 836 823 l579 573 8 -1088 c4 -598 11 -1296 14 -1552
+                                                l6 -465 354 -213 c194 -117 356 -211 358 -208 7 6 -96 5218 -103 5225 -3 3 -8
+                                                0 -12 -6 -37 -58 -2377 -3273 -2383 -3273 -4 0 -45 23 -90 51 -45 28 -177 103
+                                                -293 166 -272 149 -337 191 -416 272 -110 112 -157 226 -167 401 -12 247 86
+                                                440 275 538 92 48 131 59 237 72 234 29 532 -60 748 -223 l87 -66 -2 337 -3
+                                                337 -70 37 c-158 83 -343 128 -566 135 -364 13 -645 -90 -881 -323 -164 -163
+                                                -263 -358 -315 -623 l-8 -43 -834 1106 c-459 608 -838 1106 -842 1106 -5 0 -9
+                                                -44 -9 -97z"/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="form-outline mb-4 text-left">
+                                        <input name="email" type="email" [(ngModel)] ="email" class="form-control" placeholder="Email"/>      
+                                    </div>
+
+                                    <div class="form-outline mb-4 text-left">
+                                        <input name="password" type="password" [(ngModel)] ="password" class="form-control" placeholder="Contraseña"/>
+                                        <a class="text" href="#!">¿Has olvidado la contraseña?</a>
+                                    </div>			
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row ">
+                                        <div class="col-sm-6 text-left">
+                                            <button class="btn btn-main btn-round-full text-left" type="submit" (click)="login()">Acceder</button>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <a href="registro.html" class="btn btn-dark btn-round-full text-right" >Registro</a>
+                                        </div>    
+                                    </div>            				
+                                </div>
+                            </div>
+                        </form >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

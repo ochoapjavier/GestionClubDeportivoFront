@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
+
+<div class="main-wrapper">
+    <section class="page-title about-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="block text-center">
+              <span class="text-white">Conoce a nuestro equipo</span>
+              <h1 class="text-capitalize mb-4 text-lg">¿Quiénes somos?</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!--  Section Services Start -->
+    <section class="section team">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                    <div class="section-title">
+                        <span class="h6 text-color">Nuestro equipo</span>
+                        <h2 class="mt-3 content-title">El mejor equipo para el mejor servicio</h2>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row justify-content-center">         
+                <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let p of equipo">
+                    <div class="team-item-wrap mb-5 ">
+                        <div class="team-item position-relative">
+                            <img src={{p.imagen}} alt="" class="bd-placeholder-img rounded-circle w-100">
+                            <div class="team-img-hover">
+                                <ul class="team-social list-inline">
+                                    <li class="list-inline-item">
+                                        <a href={{p.linkedin}}><img src="../../assets/icons/linkedin-circle.png" alt=""></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="team-item-content text-center">
+                            <h4 class="mt-3 mb-0 text-color">{{p.nombre}}</h4>
+                            <h6 class="h6 text-dark">{{p.puesto}}</h6>
+                            <p class="mb-5">{{p.desc}}</p>
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+    </section>
+    <!--  Section Services End -->
+    
+    <!-- Section About Start -->
+    <section class="section about-2 position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="about-item pr-3 mb-5 mb-lg-0">
+                        <span class="h6 text-color">What we are</span>
+                        <h2 class="mt-3 mb-4 position-relative content-title">We are dynamic team of creative people</h2>
+                        <p class="mb-5">We provide consulting services in the area of IFRS and management reporting, helping companies to reach their highest level. We optimize business processes, making them easier.</p>
+    
+                        <a href="#" class="btn btn-main btn-round-full">Get started</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="about-item-img">
+                        <!-- <img src="images/about/home-7.jpg" alt="" class="img-fluid"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Section About End -->
+     
+    <section class="about-info section pt-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="about-info-item mb-4 mb-lg-0">
+                        <h3 class="mb-3"><span class="text-color mr-2 text-md ">01.</span>Our Mission</h3>
+                        <p>llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti voluptas distinctio .</p>
+                    </div>		
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="about-info-item mb-4 mb-lg-0">
+                        <h3 class="mb-3"><span class="text-color mr-2 text-md">02.</span>Vission</h3>
+                        <p>llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti voluptas distinctio .</p>
+                    </div>		
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="about-info-item mb-4 mb-lg-0">
+                        <h3 class="mb-3"><span class="text-color mr-2 text-md">03.</span>Our Approach</h3>
+                        <p>llum similique ducimus accusamus laudantium praesentium, impedit quaerat, itaque maxime sunt deleniti voluptas distinctio .</p>
+                    </div>		
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- section Counter Start -->
+    <section class="section counter bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-6 col-sm-6">
+                    <div class="counter-item text-center mb-5 mb-lg-0">
+                        <i class="material-icons">
+                            hourglass_full
+                        </i>
+                        <h3 class="mt-2 mb-0 text-white"><span class="counter-stat font-weight-bold">9</span> +</h3>
+                        <p class="text-white-50">Años de experiencia</p>
+                    </div>
+                </div>
+                <div class="col col-md-6 col-sm-6">
+                    <div class="counter-item text-center mb-5 mb-lg-0">
+                        <i class="material-icons">
+                            groups
+                        </i>
+                        <h3 class="mt-2 mb-0 text-white"><span class="counter-stat font-weight-bold">500 </span></h3>
+                        <p class="text-white-50">Alumnos satisfechos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section Counter End  -->
+    
+    <!-- Section Testimonial Start -->
+    <section class="section testimonial bg-gray">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 text-center">
+                    <div class="section-title">
+                        <span class="h6 text-color">Opiniones</span>
+                        <h2 class="mt-3 content-title">Lee algunas de las opiniones de nuestros alumnos</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div class="testimonial-wrap">
+                <div class="testimonial-item position-relative">
+                    <i class="ti-quote-left text-color"></i>
+    
+                    <div class="testimonial-item-content">
+                        <p class="testimonial-text">Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque consequuntur natus iusto recusandae numquam corrupti facilis blanditiis.</p>
+    
+                        <div class="testimonial-author">
+                            <h5 class="mb-0 text-capitalize">Thomas Johnson</h5>
+                            <p>Excutive Director,themefisher</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item position-relative">
+                    <i class="ti-quote-left text-color"></i>
+    
+                    <div class="testimonial-item-content">
+                        <p class="testimonial-text">Consectetur adipisicing elit. Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque consequuntur natus iusto recusandae .</p>
+    
+                        <div class="testimonial-author">
+                            <h5 class="mb-0 text-capitalize">Mickel hussy</h5>
+                            <p>Excutive Director,themefisher</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item position-relative">
+                    <i class="ti-quote-left text-color"></i>
+    
+                    <div class="testimonial-item-content">
+                        <p class="testimonial-text">Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque consequuntur natus iusto recusandae numquam corrupti.</p>
+    
+                        <div class="testimonial-author">
+                            <h5 class="mb-0 text-capitalize">James Watson</h5>
+                            <p>Excutive Director,themefisher</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item position-relative">
+                    <i class="ti-quote-left text-color"></i>
+    
+                    <div class="testimonial-item-content">
+                        <p class="testimonial-text">Consectetur adipisicing elit. Quam maiores perspiciatis temporibus odio reiciendis error alias debitis atque consequuntur natus iusto recusandae .</p>
+    
+                        <div class="testimonial-author">
+                            <h5 class="mb-0 text-capitalize">Mickel hussy</h5>
+                            <p>Excutive Director,themefisher</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
