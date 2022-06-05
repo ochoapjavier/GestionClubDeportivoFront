@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card">
+        <h5 class="card-header bg-danger text-white">{{titulo}}</h5>
+        <div class="card-body">
+            <form>
+                <div class="form-group row card-text p-2">
+                    <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="nombre" [(ngModel)]="usuario.nombre">
+                    </div>
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="apellido1" class="col-form-label col-sm-2">Primer apellido</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="apellido1" [(ngModel)]="usuario.apellido1">
+                    </div>
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="apellido2" class="col-form-label col-sm-2">Segundo apellido</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="apellido2" [(ngModel)]="usuario.apellido2">
+                    </div>
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="email" class="col-form-label col-sm-2">Email</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="email" [(ngModel)]="usuario.email">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start p-2">
+                    <button class="btn btn-success rounded-pill" role="button" (click)="create()" *ngIf="!usuario.id else elseBlock">Registrar</button>
+                </div>
+                <ng-template #elseBlock class="d-flex justify-content-start p-2">
+                    <button class="btn btn-success rounded-pill" role="button" (click)="update()">Actualizar</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>
