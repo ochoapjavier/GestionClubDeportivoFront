@@ -1,10 +1,10 @@
 export class PistaTenis {
-    id:string;
+    id_pista:string;
     nombre:string;
     superficie:string;
 
     constructor(){
-        this.id="";
+        this.id_pista="";
         this.nombre="";
         this.superficie="";
     }

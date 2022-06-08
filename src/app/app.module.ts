@@ -18,7 +18,9 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { FormUsuarioComponent } from './usuario/form-usuario.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PistaComponent } from './pista/pista.component';
+import { PistaTenisComponent } from './pista/pista-tenis.component';
+import { FormPistaTenisComponent } from './pista/form-pista-tenis.component';
+import { SuperficieComponent } from './superficie/superficie.component';
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -33,8 +35,9 @@ const routes:Routes=[
   {path:'contacto', component:ContactoComponent},
   {path:'dashboard', component:DashboardComponent},
   {path:'dashboard/:id', component:DashboardComponent},
-  {path:'pistas', component:PistaComponent}
-
+  {path:'pistas-tenis', component:PistaTenisComponent},
+  {path:'pistas-tenis-form', component:FormPistaTenisComponent},
+  {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent}
 ]
 
 @NgModule({
@@ -51,7 +54,9 @@ const routes:Routes=[
       UsuarioComponent,
       FormUsuarioComponent,
       DashboardComponent,
-      PistaComponent,
+      PistaTenisComponent,
+      FormPistaTenisComponent,
+      SuperficieComponent,
    ],
   imports: [
     BrowserModule,

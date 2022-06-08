@@ -13,12 +13,12 @@ export class ServicioPistasService {
   constructor(private http: HttpClient) { }
     
   //Obtener pistas
-    getAll():Observable<PistaTenis[]>{
+    getAllTenis():Observable<PistaTenis[]>{
       return this.http.get<PistaTenis[]>(this.url+'/tenis');
     }
   
     //Obtener un torneo
-    get(id:number):Observable<PistaTenis>{
+    get(id:string):Observable<PistaTenis>{
       return this.http.get<PistaTenis>(this.url + '/tenis' + '/' +id);
     }
   
@@ -33,7 +33,7 @@ export class ServicioPistasService {
     }
   
     //Eliminar un torneo
-    delete(id:number):Observable<PistaTenis>{
+    delete(id:string):Observable<PistaTenis>{
       return this.http.delete<PistaTenis>(this.url +'/tenis' + '/' +id);
     }
 }

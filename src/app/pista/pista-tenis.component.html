@@ -11,13 +11,13 @@
                 <tr *ngFor="let pista of pistasTenis">
                 <td>{{pista.nombre}}</td>
                 <td>{{pista.superficie}}</td>
-                <!-- <td><button type="button" name="button" class="btn btn-primary rounded-pill" [routerLink]="['/usuarios-form', usuario.id]">Editar</button></td>
-                <td><button type="button" name="button" class="btn btn-danger rounded-pill" (click)="delete(usuario)">Eliminar</button></td> -->
+                <td><button type="button" name="button" class="btn btn-primary rounded-pill" [routerLink]="['/pistas-tenis-form', pista.id_pista]">Editar</button></td>
+                <td><button type="button" name="button" class="btn btn-danger rounded-pill" (click)="delete(pista)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="d-flex justify-content-end p-2">
-        <!-- <button class="btn btn-warning rounded-pill ml-auto" type="button" [routerLink]="['/usuarios-form']">Nuevo usuario</button> -->
+        <button class="btn btn-warning rounded-pill ml-auto" type="button" [routerLink]="['/pistas-tenis-form']">Nueva pista</button>
     </div>
 </div>
