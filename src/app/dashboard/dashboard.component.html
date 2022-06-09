@@ -1,29 +1,87 @@
+<mat-toolbar class="mat-elevation-z8">
+    <div>
+        <button
+        mat-icon-button
+        *ngIf="sidenav.mode === 'over'"
+        (click)="sidenav.toggle()"
+        >
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+        </button>
+    </div>
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <img
+        class="avatar mat-elevation-z8"
+        src="https://avatars.githubusercontent.com/u/80176086?s=400&u=a70f8996b1f9377fa62a06ebc6e7efc13bfb7ffd&v=4"
+      />
+  
+      <h4 class="name text-white">{{usuario.nombre}} {{usuario.apellido1}}</h4>
+      <h5 class="name text-white">{{usuario.rol}}</h5>
+  
+      <mat-divider></mat-divider>
 
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <!-- Navbar Brand-->         
-    <a class="navbar-brand ps-3">Hola {{usuario.nombre}}</a>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
-    <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Mis datos</a></li>
-                <li><a class="dropdown-item" href="#!">Ajustes de cuenta</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-<div id="layoutSidenav">
-    <div id="layoutSidenav_content">
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión de personas</button>
+      <mat-menu #personas="matMenu">
+        <button mat-menu-item [routerLink]="['/usuarios-form']">Crear monitor</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']">Crear usuario</button>
+      </mat-menu>
+      
+      
+      <mat-menu #usuarios="matMenu">
+        <button mat-menu-item>Insects</button>
+        <button mat-menu-item>Molluscs</button>
+        <button mat-menu-item>Crustaceans</button>
+        <button mat-menu-item>Corals</button>
+        <button mat-menu-item>Arachnids</button>
+        <button mat-menu-item>Velvet worms</button>
+        <button mat-menu-item>Horseshoe crabs</button>
+      </mat-menu>
+      
+      <mat-menu #fish="matMenu">
+        <button mat-menu-item>Baikal oilfish</button>
+        <button mat-menu-item>Bala shark</button>
+        <button mat-menu-item>Ballan wrasse</button>
+        <button mat-menu-item>Bamboo shark</button>
+        <button mat-menu-item>Banded killifish</button>
+      </mat-menu>
+      
+      <mat-menu #amphibians="matMenu">
+        <button mat-menu-item>Sonoran desert toad</button>
+        <button mat-menu-item>Western toad</button>
+        <button mat-menu-item>Arroyo toad</button>
+        <button mat-menu-item>Yosemite toad</button>
+      </mat-menu>
+      
+      <mat-menu #reptiles="matMenu">
+        <button mat-menu-item>Banded Day Gecko</button>
+        <button mat-menu-item>Banded Gila Monster</button>
+        <button mat-menu-item>Black Tree Monitor</button>
+        <button mat-menu-item>Blue Spiny Lizard</button>
+        <button mat-menu-item disabled>Velociraptor</button>
+      </mat-menu>
+      
+  
+      <button mat-button class="menu-button" routerLink="/home">
+        <span>Home</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="/profile">
+        <span>Profile</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="/about">
+        <span>About</span>
+      </button>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLink="/help">
+        <span>Help</span>
+      </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
         <div class="container-fluid px-4">
             <h1 class="mt-4" >Panel de {{usuario.rol}}</h1>
 
@@ -39,7 +97,7 @@
 
             <div *ngIf="usuario.rol == 'Coordinador'" class="card mb-4">
                 <div class="card-header bg-dark text-white">
-                    <img src="../../assets/icons/event-2.png" alt="">
+                    <img src="../../assets/icons/calendar1.png" alt="">
                     Situación ocupación pistas
                 </div>
                 <div class="card-body">
@@ -180,5 +238,6 @@
                 </div>
             </div>                
         </div>
-    </div>
-</div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
