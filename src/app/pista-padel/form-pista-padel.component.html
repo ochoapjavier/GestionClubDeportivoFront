@@ -10,10 +10,30 @@
                     </div>
                 </div>
                 <div class="form-group row card-text p-2">
-                    <label for="categoria" class="col-form-label col-sm-2">Superficie</label>
+                    <label for="superficie" class="col-form-label col-sm-2">Superficie</label>
                     <div class="col-sm-6">
                         <select name="superficie" [(ngModel)]="pista.superficie">
                             <option [value]="sup.nombre" *ngFor="let sup of superficiesPista">{{sup.nombre}}</option>
+                        </select>
+                    </div>                   
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="tipoPared" class="col-form-label col-sm-2">Tipo de pared</label>
+                    <div class="col-sm-6">
+                        <select name="tipoPared" [(ngModel)]="pista.tipoPared">
+                            <option value="Panorámica">Panorámica</option>
+                            <option value="Cristal">Cristal</option>
+                            <option value="Muro">Muro</option>                     
+                        </select>
+                    </div>                  
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="cobertura" class="col-form-label col-sm-2">Cobertura</label>
+                    <div class="col-sm-6">
+                        <select name="cobertura" [(ngModel)]="pista.cobertura">
+                            <option value="Indoor">Indoor</option>
+                            <option value="Cubierta">Cubierta</option>
+                            <option value="Exterior">Exterior</option>                     
                         </select>
                     </div>                  
                 </div>

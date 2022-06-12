@@ -31,7 +31,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule } from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatSelectModule} from '@angular/material/select'; 
-import {MatCheckboxModule} from '@angular/material/checkbox'; 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { PistaPadelComponent } from './pista-padel/pista-padel.component';
+import { FormPistaPadelComponent } from './pista-padel/form-pista-padel.component'; 
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -49,6 +51,9 @@ const routes:Routes=[
   {path:'pistas-tenis', component:PistaTenisComponent},
   {path:'pistas-tenis-form', component:FormPistaTenisComponent},
   {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent},
+  {path:'pistas-padel', component:PistaPadelComponent},
+  {path:'pistas-padel-form', component:FormPistaPadelComponent},
+  {path:'pistas-padel-form/:id', component:FormPistaPadelComponent}
   
 ]
 
@@ -68,7 +73,9 @@ const routes:Routes=[
       DashboardComponent,
       PistaTenisComponent,
       FormPistaTenisComponent,
-      SuperficieComponent
+      SuperficieComponent,
+      PistaPadelComponent,
+      FormPistaPadelComponent
       
    ],
   imports: [

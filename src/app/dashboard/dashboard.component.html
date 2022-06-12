@@ -49,8 +49,8 @@
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
       <mat-menu #espacios="matMenu">
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Crear pista de Tenis</button>
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Crear pista de Pádel</button>
+        <button mat-menu-item [routerLink]="['/pistas-tenis']">Tenis</button>
+        <button mat-menu-item [routerLink]="['/pistas-padel']">Pádel</button>
       </mat-menu>
 
       <mat-divider></mat-divider>

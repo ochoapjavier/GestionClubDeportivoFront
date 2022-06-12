@@ -5,19 +5,23 @@
                 <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Superficie</th>
+                <th scope="col">Tipo pared</th>
+                <th scope="col">Cobertura</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let pista of pistasTenis">
+                <tr *ngFor="let pista of pistasPadel">
                 <td>{{pista.nombre}}</td>
                 <td>{{pista.superficie}}</td>
-                <td><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-tenis-form', pista.id_pista]">Editar</button></td>
+                <td>{{pista.tipoPared}}</td>
+                <td>{{pista.cobertura}}</td>
+                <td><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-padel-form', pista.id_pista]">Editar</button></td>
                 <td><button mat-flat-button color="primary" style="color: white;" (click)="delete(pista)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="d-flex justify-content-end p-2">
-        <button mat-raised-button color="accent" [routerLink]="['/pistas-tenis-form']">Nueva pista</button>
+        <button mat-raised-button color="accent" [routerLink]="['/pistas-padel-form']">Nueva pista</button>
     </div>
 </div>
