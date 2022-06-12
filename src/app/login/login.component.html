@@ -49,10 +49,10 @@
                                 <div class="card-footer">
                                     <div class="row ">
                                         <div class="col-sm-6 text-left">
-                                            <button class="btn btn-main btn-round-full text-left" type="submit" (click)="login()">Acceder</button>
+                                            <button button button mat-flat-button color="primary" style="color: white;" (click)="login()">Acceder</button>
                                         </div>
                                         <div class="col-sm-6 text-right">
-                                            <a href="registro.html" class="btn btn-dark btn-round-full text-right" >Registro</a>
+                                            <button button button mat-flat-button color="accent" style="color: white;" [routerLink]="['/usuarios-form']"  [queryParams]="{rol: 'Usuario'}">Registro</button>
                                         </div>    
                                     </div>            				
                                 </div>

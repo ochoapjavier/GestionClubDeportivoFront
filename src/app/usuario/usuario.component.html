@@ -17,13 +17,10 @@
                 <td>{{usuario.apellido1 +' '}} {{usuario.apellido2}}</td>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.rol}}</td>
-                <td><button type="button" name="button" class="btn btn-primary rounded-pill" [routerLink]="['/usuarios-form', usuario.id]">Editar</button></td>
-                <td><button type="button" name="button" class="btn btn-danger rounded-pill" (click)="delete(usuario)">Eliminar</button></td>
+                <td><button mat-stroked-button color="accent" style="color: #ef5350;"  [routerLink]="['/usuarios-form', usuario.id]">Editar</button></td>
+                <td><button mat-flat-button color="primary" style="color: white;" (click)="delete(usuario)">Eliminar</button></td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="d-flex justify-content-end p-2">
-        <button class="btn btn-warning rounded-pill ml-auto" type="button" [routerLink]="['/usuarios-form']">Nuevo usuario</button>
     </div>
 </div>

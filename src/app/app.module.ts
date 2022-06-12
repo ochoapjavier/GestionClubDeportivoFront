@@ -28,7 +28,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
+import {MatMenuModule } from '@angular/material/menu';
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatCheckboxModule} from '@angular/material/checkbox'; 
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -45,7 +48,8 @@ const routes:Routes=[
   {path:'dashboard/:id', component:DashboardComponent},
   {path:'pistas-tenis', component:PistaTenisComponent},
   {path:'pistas-tenis-form', component:FormPistaTenisComponent},
-  {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent}
+  {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent},
+  
 ]
 
 @NgModule({
@@ -79,7 +83,10 @@ const routes:Routes=[
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

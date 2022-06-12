@@ -11,12 +11,17 @@ import { Usuario } from './usuario';
 export class FormUsuarioComponent implements OnInit {
   
   usuario:Usuario = new Usuario;
-  titulo:string = "Usuario"
+  titulo:string = "Usuario";
+  terminos:boolean = false;
+  privacidad:boolean = false;
+  comercial:boolean = false;
+  rol:string = '';
 
   constructor(private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargar();
+    this.rol = this.activatedRoute.snapshot.queryParams['rol'];
   }
 
   cargar():void{
@@ -32,14 +37,19 @@ export class FormUsuarioComponent implements OnInit {
     );
   }
   create():void{
+    console.log(this.usuario)
+    this.usuario.terminos = Number(this.terminos);
+    this.usuario.privacidad = Number(this.privacidad);
+    this.usuario.comercial = Number(this.comercial);
+    this.usuario.rol = this.rol;
     this.usuarioService.create(this.usuario).subscribe(
-      res=>this.router.navigate(['/usuarios'])
+      res=>this.router.navigate(['/dashboard'])
     );
   }
 
   update():void{
     this.usuarioService.update(this.usuario).subscribe(
-      res=>this.router.navigate(['/usuarios'])
+      res=>this.router.navigate(['/dashboard'])
     );
   }
 

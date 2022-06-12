@@ -23,56 +23,43 @@
   
       <mat-divider></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión de personas</button>
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión Personas</button>
       <mat-menu #personas="matMenu">
-        <button mat-menu-item [routerLink]="['/usuarios-form']">Crear monitor</button>
-        <button mat-menu-item [routerLink]="['/usuarios-form']">Crear usuario</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Coordinador'}">Crear coordinador</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Monitor'}">Crear monitor</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario'}">Crear usuario</button>
       </mat-menu>
-      
-      
-      <mat-menu #usuarios="matMenu">
-        <button mat-menu-item>Insects</button>
-        <button mat-menu-item>Molluscs</button>
-        <button mat-menu-item>Crustaceans</button>
-        <button mat-menu-item>Corals</button>
-        <button mat-menu-item>Arachnids</button>
-        <button mat-menu-item>Velvet worms</button>
-        <button mat-menu-item>Horseshoe crabs</button>
+
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="grupos">Gestión Grupos</button>
+      <mat-menu #grupos="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="grupo" [routerLink]="['/usuarios-form']">Crear grupo</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']">Modificar grupo</button>
       </mat-menu>
-      
-      <mat-menu #fish="matMenu">
-        <button mat-menu-item>Baikal oilfish</button>
-        <button mat-menu-item>Bala shark</button>
-        <button mat-menu-item>Ballan wrasse</button>
-        <button mat-menu-item>Bamboo shark</button>
-        <button mat-menu-item>Banded killifish</button>
+
+      <mat-menu #grupo="matMenu">
+        <button mat-menu-item>Grupo de Tenis</button>
+        <button mat-menu-item>Grupo de Pádel</button>
       </mat-menu>
-      
-      <mat-menu #amphibians="matMenu">
-        <button mat-menu-item>Sonoran desert toad</button>
-        <button mat-menu-item>Western toad</button>
-        <button mat-menu-item>Arroyo toad</button>
-        <button mat-menu-item>Yosemite toad</button>
+
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="competiciones">Gestión Competiciones</button>
+      <mat-menu #competiciones="matMenu">
+        <button mat-menu-item [routerLink]="['/torneos-form']">Crear Torneo</button>
+        <button mat-menu-item [routerLink]="['/torneos-form']">Crear Ranking</button>
       </mat-menu>
-      
-      <mat-menu #reptiles="matMenu">
-        <button mat-menu-item>Banded Day Gecko</button>
-        <button mat-menu-item>Banded Gila Monster</button>
-        <button mat-menu-item>Black Tree Monitor</button>
-        <button mat-menu-item>Blue Spiny Lizard</button>
-        <button mat-menu-item disabled>Velociraptor</button>
+
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
+      <mat-menu #espacios="matMenu">
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Crear pista de Tenis</button>
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Crear pista de Pádel</button>
       </mat-menu>
-      
-  
-      <button mat-button class="menu-button" routerLink="/home">
-        <span>Home</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="/profile">
-        <span>Profile</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="/about">
-        <span>About</span>
-      </button>
+
+      <mat-divider></mat-divider>
+
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="reservas">Reserva de pistas</button>
+      <mat-menu #reservas="matMenu">
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Tenis</button>
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Pádel</button>
+      </mat-menu>
   
       <mat-divider></mat-divider>
   

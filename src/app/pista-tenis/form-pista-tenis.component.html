@@ -1,6 +1,6 @@
 <div class="container">
     <div class="card">
-        <h5 class="card-header bg-danger text-white">{{titulo}}</h5>
+        <h5 class="card-header bg-dark text-white">{{titulo}}</h5>
         <div class="card-body">
             <form>
                 <div class="form-group row card-text p-2">
@@ -19,10 +19,10 @@
                     
                 </div>
                 <div class="d-flex justify-content-start p-2">
-                    <button class="btn btn-success rounded-pill" role="button" (click)="create()" *ngIf="!pista.id_pista else elseBlock">Registrar</button>
+                    <button button button mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!pista.id_pista else elseBlock">Registrar</button>
                 </div>
                 <ng-template #elseBlock class="d-flex justify-content-start p-2">
-                    <button class="btn btn-success rounded-pill ml-auto" role="button" (click)="update()">Actualizar</button>
+                    <button button button mat-flat-button color="primary" style="color: white;" (click)="update()">Actualizar</button>
                 </ng-template>
             </form>
         </div>

@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   }
 
   login():void{
-    console.log("Entro en el login");
     this.usuario.email = this.email;
     this.usuario.password = this.password;
     this.loginService.login(this.usuario).subscribe(

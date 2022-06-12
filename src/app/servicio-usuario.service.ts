@@ -23,13 +23,13 @@ export class ServicioUsuarioService {
   }
 
   //Crear un torneo
-  create(torneo:Usuario):Observable<Usuario>{
-    return this.http.post<Usuario>(this.url, torneo);
+  create(usuario:Usuario):Observable<Usuario>{
+    return this.http.post<Usuario>(this.url, usuario);
   }
 
   //Actualizar un torneo
-  update(torneo:Usuario):Observable<Usuario>{
-    return this.http.put<Usuario>(this.url, torneo);
+  update(usuario:Usuario):Observable<Usuario>{
+    return this.http.put<Usuario>(this.url, usuario);
   }
 
   //Eliminar un torneo
