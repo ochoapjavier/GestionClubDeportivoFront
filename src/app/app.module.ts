@@ -32,8 +32,11 @@ import {MatMenuModule } from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTableModule} from '@angular/material/table';
 import { PistaPadelComponent } from './pista-padel/pista-padel.component';
-import { FormPistaPadelComponent } from './pista-padel/form-pista-padel.component'; 
+import { FormPistaPadelComponent } from './pista-padel/form-pista-padel.component';
+import { ReservaComponent } from './reserva/reserva.component';
+import { FormReservaComponent } from './reserva/form-reserva.component'; 
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -53,7 +56,10 @@ const routes:Routes=[
   {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent},
   {path:'pistas-padel', component:PistaPadelComponent},
   {path:'pistas-padel-form', component:FormPistaPadelComponent},
-  {path:'pistas-padel-form/:id', component:FormPistaPadelComponent}
+  {path:'pistas-padel-form/:id', component:FormPistaPadelComponent},
+  {path:'reservas', component:ReservaComponent},
+  {path:'reservas-form', component:FormReservaComponent},
+  {path:'reservas-form/:id', component:FormReservaComponent}
   
 ]
 
@@ -75,7 +81,9 @@ const routes:Routes=[
       FormPistaTenisComponent,
       SuperficieComponent,
       PistaPadelComponent,
-      FormPistaPadelComponent
+      FormPistaPadelComponent,
+      ReservaComponent,
+      FormReservaComponent
       
    ],
   imports: [
@@ -93,7 +101,8 @@ const routes:Routes=[
     MatMenuModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

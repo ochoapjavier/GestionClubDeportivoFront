@@ -12,27 +12,27 @@ export class ServicioUsuarioService {
 
   constructor(private http: HttpClient) { }
     
-  //Obtener torneos
+  //Obtener usuarios
   getAll():Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url);
   }
 
-  //Obtener un torneo
+  //Obtener un usuario
   get(id:number):Observable<Usuario>{
     return this.http.get<Usuario>(this.url + '/' +id);
   }
 
-  //Crear un torneo
+  //Crear un usuario
   create(usuario:Usuario):Observable<Usuario>{
     return this.http.post<Usuario>(this.url, usuario);
   }
 
-  //Actualizar un torneo
+  //Actualizar un usuario
   update(usuario:Usuario):Observable<Usuario>{
     return this.http.put<Usuario>(this.url, usuario);
   }
 
-  //Eliminar un torneo
+  //Eliminar un usuario
   delete(id:number):Observable<Usuario>{
     return this.http.delete<Usuario>(this.url + '/' +id);
   }
