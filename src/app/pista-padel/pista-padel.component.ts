@@ -22,7 +22,7 @@ export class PistaPadelComponent implements OnInit {
   }
 
   delete(pista:PistaPadel):void{
-    this.pistaService.deleteTenis(pista.id_pista).subscribe(
+    this.pistaService.deletePadel(pista.id_pista).subscribe(
       res=>this.pistaService.getAllPadel().subscribe(
         response=>this.pistasPadel=response
       )

@@ -19,7 +19,7 @@ export class ServicioReservasService {
 
   //Obtener una reserva
   get(id:number):Observable<Reserva>{
-    return this.http.get<Reserva>(this.url + '/' + id);
+    return this.http.get<Reserva>(this.url + '/id/' + id);
   }
 
   //Obtener reservas por pista y fecha

@@ -12,27 +12,32 @@ export class ServicioHorariosService {
 
   constructor(private http: HttpClient) { }
     
-  //Obtener usuarios
+  //Obtener horarios
   getAll():Observable<Horario[]>{
     return this.http.get<Horario[]>(this.url);
   }
 
-  //Obtener un usuario
+  //Obtener horarios disponibles para una fecha y pista
+  getAllDispo(fecha:string, pista:string):Observable<Horario[]>{
+    return this.http.get<Horario[]>(this.url + '/' + fecha + '/' + pista);
+  }
+
+  //Obtener un horario
   get(id:number):Observable<Horario>{
     return this.http.get<Horario>(this.url + '/' +id);
   }
 
-  //Crear un usuario
+  //Crear un horario
   create(horario:Horario):Observable<Horario>{
     return this.http.post<Horario>(this.url, horario);
   }
 
-  //Actualizar un usuario
+  //Actualizar un horario
   update(horario:Horario):Observable<Horario>{
     return this.http.put<Horario>(this.url, horario);
   }
 
-  //Eliminar un usuario
+  //Eliminar un horario
   delete(id:number):Observable<Horario>{
     return this.http.delete<Horario>(this.url + '/' +id);
   }

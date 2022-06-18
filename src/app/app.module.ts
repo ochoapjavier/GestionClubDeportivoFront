@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { TorneoComponent } from './torneo/torneo.component';
 import { FormTorneoComponent } from './torneo/form-torneo.component';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuienesSomosComponent } from './quienes-somos/quienes-somos.component';
 import { FooterComponent } from './footer/footer.component';
 import { IndexComponent } from './index/index.component';
@@ -102,7 +102,8 @@ const routes:Routes=[
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

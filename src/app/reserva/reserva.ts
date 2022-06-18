@@ -1,13 +1,15 @@
+import { Horario } from "../horario";
+
 export class Reserva {
     id:number;
     id_pista:string;
     fecha:string;
-    id_horario:number;
+    horario:Horario;
 
     constructor(){
         this.id=0;
         this.id_pista="";
         this.fecha="";
-        this.id_horario=0;
+        this.horario = new Horario();
     }
 }

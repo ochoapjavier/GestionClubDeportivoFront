@@ -1,1 +1,40 @@
-<p>form-reserva works!</p>
+<div class="container">
+    <div class="card">
+        <h5 class="card-header bg-dark text-white">Nueva reserva</h5>
+        <div class="card-body">
+            <form [formGroup]="resForm">
+                <div class="form-group row card-text p-2">
+                    <label class="col-form-label col-sm-2">Pista</label>
+                    <div class="col-sm-6">
+                        <select name="pistasTenis" formControlName="pista" [class.is-invalid] = "resForm.get('pista')?.invalid && resForm.get('pista')?.touched" (change)="refreshHorariosDisp()">
+                            <option [value]="pista.id_pista" *ngFor="let pista of pistasTenis">{{pista.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row card-text p-2">
+                    <label class="col-form-label col-sm-2">Fecha de reserva</label>
+                    <div class="col-sm-6">
+                        <input [class.is-invalid] = "resForm.get('fechaReserva')?.invalid && resForm.get('fechaReserva')?.touched" class="text-danger" type="date" min='1899-01-01' max='2000-13-13' class="form-control" formControlName="fechaReserva" (change)="refreshHorariosDisp()">
+                    </div>    
+                </div>
+
+                <div class="form-group row card-text p-2">
+                    <label class="col-form-label col-sm-2">Horario</label>
+                    <div class="col-sm-6">
+                        <select name="horario" formControlName="horario" [class.is-invalid] = "resForm.get('horario')?.invalid && resForm.get('horario')?.touched">
+                            <option value="" *ngFor="let horario of horariosDisp">{{horario.hora_inicio}} - {{horario.hora_fin}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-start p-2">
+                    <button [disabled]="resForm.invalid" mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!reserva.id else elseBlock">Registrar</button>
+                </div>
+                <ng-template #elseBlock class="d-flex justify-content-start p-2">
+                    <button mat-flat-button color="primary" style="color: white;" (click)="update()">Actualizar</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

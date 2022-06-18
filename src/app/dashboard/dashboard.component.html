@@ -30,6 +30,18 @@
         <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario'}">Crear usuario</button>
       </mat-menu>
 
+      <button *ngIf="usuario.rol == 'Monitor'" mat-button [matMenuTriggerFor]="sesiones">Mis sesiones</button>
+      <mat-menu #sesiones="matMenu">
+        <button mat-menu-item [routerLink]="['']">Ver mis sesiones</button>
+        <button mat-menu-item [routerLink]="['']">Programar una sesión</button>
+      </mat-menu>
+
+      <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="pagos">Gestión de pagos</button>
+      <mat-menu #pagos="matMenu">
+        <button mat-menu-item [routerLink]="['']">Ver mis pagos</button>
+        <button mat-menu-item [routerLink]="['']">Realizar un pago</button>
+      </mat-menu>
+
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="grupos">Gestión Grupos</button>
       <mat-menu #grupos="matMenu">
         <button mat-menu-item [matMenuTriggerFor]="grupo" [routerLink]="['/usuarios-form']">Crear grupo</button>
@@ -60,9 +72,25 @@
         <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Tenis</button>
         <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Pádel</button>
       </mat-menu>
+
+      <button *ngIf="usuario.rol == 'Monitor'" mat-button [matMenuTriggerFor]="horas">Gestión de horas</button>
+      <mat-menu #horas="matMenu">
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis horas trabajadas</button>
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Imputar nueva hora</button>
+      </mat-menu>
+
+      <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="competicionesUsuario">Mis competiciones</button>
+      <mat-menu #competicionesUsuario="matMenu">
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis torneos</button>
+        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis rankings</button>
+      </mat-menu>
   
       <mat-divider></mat-divider>
-  
+      
+      <button *ngIf="usuario.rol == 'Usuario'" mat-button [routerLink]="['/pistas-tenis-form']">Alquileres</button>
+
+      <mat-divider  *ngIf="usuario.rol == 'Usuario'"></mat-divider>
+
       <button mat-button class="menu-button" routerLink="/help">
         <span>Help</span>
       </button>
@@ -88,28 +116,7 @@
                     Situación ocupación pistas
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                            <tr>
-                                <th>Horario</th>
-                                <th>Deporte</th>
-                                <th>Pista</th>
-                                <th>Monitor</th>
-                                <th>Alquiler/Clase</th>
-                                <th>Pagada</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>A</td>
-                                <td>B</td>
-                                <td>C</td>
-                                <td>D</td>
-                                <td>E</td>
-                                <td>F</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <app-reserva></app-reserva>
                 </div>
             </div>
             <div *ngIf="usuario.rol == 'Coordinador'" class="row">
