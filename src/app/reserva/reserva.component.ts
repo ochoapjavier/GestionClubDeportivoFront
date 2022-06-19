@@ -37,11 +37,7 @@ export class ReservaComponent implements OnInit {
     ]).subscribe(([r, h]) => {
       this.reservas = r;
       this.horarios = h;
-      /*this.reservasConHorario = this.reservas.map(val => {
-        return Object.assign({}, val, this.horarios.filter(v => v.id === val.horario.id)[0]); 
-      });*/
     }); 
-    console.log('Reservas '+this.reservas)
   }
 
   delete(reserva:Reserva):void{

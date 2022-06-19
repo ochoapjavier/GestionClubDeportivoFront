@@ -69,8 +69,8 @@
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="reservas">Reserva de pistas</button>
       <mat-menu #reservas="matMenu">
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Tenis</button>
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Nueva reserva de Pádel</button>
+        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis'}">Nueva reserva de Tenis</button>
+        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel'}">Nueva reserva de Pádel</button>
       </mat-menu>
 
       <button *ngIf="usuario.rol == 'Monitor'" mat-button [matMenuTriggerFor]="horas">Gestión de horas</button>
@@ -87,7 +87,11 @@
   
       <mat-divider></mat-divider>
       
-      <button *ngIf="usuario.rol == 'Usuario'" mat-button [routerLink]="['/pistas-tenis-form']">Alquileres</button>
+      <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="alquileres">Alquileres</button>
+      <mat-menu #alquileres="matMenu">
+        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis'}">Nueva reserva de Tenis</button>
+        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel'}">Nueva reserva de Pádel</button>
+      </mat-menu>
 
       <mat-divider  *ngIf="usuario.rol == 'Usuario'"></mat-divider>
 

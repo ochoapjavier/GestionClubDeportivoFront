@@ -17,7 +17,8 @@ import { Horario } from '../horario';
 })
 export class FormReservaComponent implements OnInit {
 
-  reserva:Reserva = new Reserva;
+  reserva:Reserva = new Reserva();
+  deporteReserva: string;
   horariosDisp:Horario[];
   pistasTenis:PistaTenis[];
   pistasPadel:PistaPadel[];
@@ -32,10 +33,12 @@ export class FormReservaComponent implements OnInit {
     this.pistasTenis = [];
     this.pistasPadel = [];
     this.horariosDisp = [];
+    this.deporteReserva = "";
    }
 
   ngOnInit(): void {
     this.cargar();
+    this.deporteReserva = this.activatedRoute.snapshot.queryParams['deporte'];
 
     forkJoin([
       this.pistaService.getAllTenis(),
@@ -69,6 +72,8 @@ export class FormReservaComponent implements OnInit {
     );
   }
   create():void{
+    this.reserva.id_pista = this.resForm.get('pista')?.value;
+    this.reserva.fecha = this.resForm.get('fechaReserva')?.value;
     this.reservaService.create(this.reserva).subscribe(
       res=>this.router.navigate(['/reservas'])
     );
