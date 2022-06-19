@@ -3,7 +3,7 @@ import { ServicioPistasService } from '../servicio-pistas.service';
 import { PistaTenis } from './pista-tenis';
 
 @Component({
-  selector: 'app-pista',
+  selector: 'app-pista-tenis',
   templateUrl: './pista-tenis.component.html',
   styleUrls: ['./pista-tenis.component.css']
 })
@@ -22,7 +22,7 @@ export class PistaTenisComponent implements OnInit {
   }
 
   delete(pista:PistaTenis):void{
-    this.pistaService.delete(pista.id_pista).subscribe(
+    this.pistaService.deleteTenis(pista.id_pista).subscribe(
       res=>this.pistaService.getAllTenis().subscribe(
         response=>this.pistasTenis=response
       )

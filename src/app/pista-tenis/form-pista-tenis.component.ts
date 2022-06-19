@@ -32,7 +32,7 @@ export class FormPistaTenisComponent implements OnInit {
       p=>{
         let id = p['id'];
         if(id){
-          this.pistaService.get(id).subscribe(
+          this.pistaService.getTenis(id).subscribe(
             pist=>this.pista=pist
           );
         }
@@ -41,13 +41,13 @@ export class FormPistaTenisComponent implements OnInit {
   }
 
   create():void{
-    this.pistaService.create(this.pista).subscribe(
+    this.pistaService.createTenis(this.pista).subscribe(
       res=>this.router.navigate(['/pistas-tenis'])
     );
   }
 
   update():void{
-    this.pistaService.update(this.pista).subscribe(
+    this.pistaService.updateTenis(this.pista).subscribe(
       res=>this.router.navigate(['/pistas-tenis'])
     );
   }

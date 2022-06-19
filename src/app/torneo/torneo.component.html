@@ -16,14 +16,14 @@
                     <td>{{torneo.nombre_torneo}}</td>
                     <td>{{torneo.categoria}}</td>
                     <td>{{torneo.max_jugadores}}</td>
-                    <td><button type="button" name="button" class="btn btn-primary rounded-pill" [routerLink]="['/torneos-form', torneo.id]">Editar</button></td>
-                    <td><button type="button" name="button" class="btn btn-danger rounded-pill" (click)="delete(torneo)">Eliminar</button></td>
+                    <td><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/torneos-form', torneo.id]">Editar</button></td>
+                    <td><button mat-flat-button color="primary" style="color: white;" (click)="delete(torneo)">Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="d-flex justify-content-end p-2">
-            <button class="btn btn-warning rounded-pill ml-auto" type="button" [routerLink]="['/torneos-form']">Nuevo torneo</button>
+            <button mat-raised-button color="accent" [routerLink]="['/torneos-form']">Nuevo torneo</button>
         </div>
     </div>
 </body>

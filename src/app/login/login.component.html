@@ -7,7 +7,7 @@
                         <div *ngIf="loginResp == false" class="bg-danger mb-2">
                             <h4 class="mt-3 text-white">Credenciales incorrectas</h4>     
                         </div>                     
-                        <form action="/login" method="POST">
+                        <form [formGroup]="loginForm">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="text-center">Bienvenid@ a MadSet Sports</h3>
@@ -38,21 +38,21 @@
                                         </svg>
                                     </div>
                                     <div class="form-outline mb-4 text-left">
-                                        <input name="email" type="email" [(ngModel)] ="email" class="form-control" placeholder="Email"/>      
+                                        <input formControlName="email" type="email" class="form-control" placeholder="Email"/>      
                                     </div>
 
                                     <div class="form-outline mb-4 text-left">
-                                        <input name="password" type="password" [(ngModel)] ="password" class="form-control" placeholder="Contraseña"/>
+                                        <input formControlName="password" type="password" class="form-control" placeholder="Contraseña"/>
                                         <a class="text" href="#!">¿Has olvidado la contraseña?</a>
                                     </div>			
                                 </div>
                                 <div class="card-footer">
                                     <div class="row ">
                                         <div class="col-sm-6 text-left">
-                                            <button class="btn btn-main btn-round-full text-left" type="submit" (click)="login()">Acceder</button>
+                                            <button mat-flat-button color="primary" style="color: white;" (click)="login()">Acceder</button>
                                         </div>
                                         <div class="col-sm-6 text-right">
-                                            <a href="registro.html" class="btn btn-dark btn-round-full text-right" >Registro</a>
+                                            <button mat-flat-button color="accent" style="color: white;" [routerLink]="['/usuarios-form']"  [queryParams]="{rol: 'Usuario'}">Registro</button>
                                         </div>    
                                     </div>            				
                                 </div>
