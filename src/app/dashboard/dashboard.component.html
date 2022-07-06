@@ -55,8 +55,8 @@
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="competiciones">Gestión Competiciones</button>
       <mat-menu #competiciones="matMenu">
-        <button mat-menu-item [routerLink]="['/torneos-form']">Crear Torneo</button>
-        <button mat-menu-item [routerLink]="['/torneos-form']">Crear Ranking</button>
+        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Torneo'}">Crear Torneo</button>
+        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Ranking'}">Crear Ranking</button>
       </mat-menu>
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
@@ -110,17 +110,17 @@
                     Gestión de usuarios
                 </div>
                 <div class="card-body">
-                    <app-usuario></app-usuario>
+                    <app-usuario [usuarios]= "usuarios"></app-usuario>
                 </div>
             </div>
 
             <div *ngIf="usuario.rol == 'Coordinador'" class="card mb-4">
                 <div class="card-header bg-dark text-white">
                     <img src="../../assets/icons/calendar1.png" alt="">
-                    Situación ocupación pistas
+                    Situación ocupación pistas hoy
                 </div>
                 <div class="card-body">
-                    <app-reserva></app-reserva>
+                    <app-reserva [reservas] = "resToday"></app-reserva>
                 </div>
             </div>
             <div *ngIf="usuario.rol == 'Coordinador'" class="row">
@@ -131,7 +131,7 @@
                             Gestión torneos
                         </div>
                         <div class="card-body">
-                            <app-torneo></app-torneo>
+                            <app-torneo [competiciones] = "torneos"></app-torneo>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                             Gestión de rankings
                         </div>
                         <div class="card-body">
-                            <app-torneo></app-torneo>
+                            <app-torneo [competiciones] = "rankings"></app-torneo>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                 <div class="col-xl-6">
                     <div class="card mb-4">
                         <div class="card-header bg-dark text-white">
-                            <i class="fas fa-users me-1"></i>
+                            <img src="../../assets/icons/medal.png" alt="">
                             Visor de grupos de la escuela
                         </div>
                         <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
@@ -160,10 +160,12 @@
                 <div class="col-xl-6">
                     <div class="card mb-4">
                         <div class="card-header bg-dark text-white">
-                            <i class="fas fa-id-card me-1"></i>
+                            <img src="../../assets/icons/medal.png" alt="">
                             Visor de monitores de la escuela
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-usuario [usuarios]= "monitores"></app-usuario>
+                        </div>
                     </div>
                 </div>
             </div>   
@@ -220,18 +222,22 @@
                     <div class="card mb-4">
                         <div class="card-header bg-dark text-white">
                             <i class="fas fa-users me-1"></i>
-                            Torneos
+                            Mis Torneos
                         </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-torneo [competiciones]= "userTorneos"></app-torneo>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
                         <div class="card-header bg-dark text-white">
                             <i class="fas fa-id-card me-1"></i>
-                            Rankings
+                            Mis Rankings
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-torneo [competiciones]= "userRankings"></app-torneo>
+                        </div>
                     </div>
                 </div>
             </div>                

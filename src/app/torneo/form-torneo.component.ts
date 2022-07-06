@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioTorneosService } from '../servicio-torneos.service';
-import { Torneo } from './torneo';
+import { Competicion } from 'src/models/competicion';
+import { Deporte } from 'src/models/deporte';
+import { EstadoCompeticiones } from 'src/models/estado-competiciones';
+import { TipoCompeticion } from 'src/models/tipo-competicion';
+import { ServicioDeportesService } from '../services/servicio-deportes.service';
+import { ServicioEstadosService } from '../services/servicio-estados.service';
+import { ServicioTipoCompeticionesService } from '../services/servicio-tipo-competiciones.service';
+import { ServicioTorneosService } from '../services/servicio-torneos.service';
 
 @Component({
   selector: 'app-form-torneo',
@@ -10,22 +17,53 @@ import { Torneo } from './torneo';
 })
 export class FormTorneoComponent implements OnInit {
 
-  torneo:Torneo = new Torneo;
-  titulo:string = "Torneo"
+  torneo:Competicion = new Competicion;
+  id:number;
+  deportes:Deporte[];
+  estados:EstadoCompeticiones[];
+  tipoCompeticiones:TipoCompeticion[];
+  tipo:string = '';
 
-  constructor(private torneoService:ServicioTorneosService, private router:Router, private activatedRoute:ActivatedRoute) { }
+  competicionForm = new FormGroup({
+    id:new FormControl(''),
+    nombre_torneo:new FormControl('', Validators.required),
+    categoria: new FormControl('', Validators.required),
+    deporte_id: new FormControl('', Validators.required),
+    estado_id: new FormControl('', Validators.required),
+    tipo_competicion_id: new FormControl(''),
+    max_jugadores: new FormControl('', [Validators.required, Validators.min(2)]),
+  })
+
+  constructor(private torneoService:ServicioTorneosService, private tipoCompeticionService:ServicioTipoCompeticionesService, private estadoService:ServicioEstadosService, private deporteService:ServicioDeportesService,  private router:Router, private activatedRoute:ActivatedRoute) { 
+     this.deportes = [];
+     this.estados = [];
+     this.tipoCompeticiones = [];
+     this.id = 0;
+     this.tipo = this.activatedRoute.snapshot.queryParams['tipo'];
+  }
 
   ngOnInit(): void {
     this.cargar();
+    this.deporteService.getAll().subscribe(
+      res=> this.deportes = res
+    );
+    this.estadoService.getAll().subscribe(
+      res=> this.estados = res
+    );
+    this.tipoCompeticionService.getAll().subscribe(
+      res=> this.tipoCompeticiones = res
+    );
   }
 
   cargar():void{
     this.activatedRoute.params.subscribe(
       t=>{
-        let id = t['id'];
-        if(id){
-          this.torneoService.get(id).subscribe(
-            torn=>this.torneo=torn
+        this.id = t['id'];
+        if(this.id){
+          this.torneoService.get(this.id).subscribe(
+            torn=> {
+              this.competicionForm.setValue(torn);     
+            }
           );
         }
       }
@@ -33,13 +71,20 @@ export class FormTorneoComponent implements OnInit {
   }
   
   create():void{
-    this.torneoService.create(this.torneo).subscribe(
+
+    var result = this.tipoCompeticiones.find(obj => {
+      return obj.tipo === this.tipo;
+    })
+
+    this.competicionForm.get('tipo_competicion_id')?.setValue(result);
+
+    this.torneoService.create(this.competicionForm.value).subscribe(
       res=>this.router.navigate(['/torneos'])
     );
   }
 
   update():void{
-    this.torneoService.update(this.torneo).subscribe(
+    this.torneoService.update(this.competicionForm.value).subscribe(
       res=>this.router.navigate(['/torneos'])
     );
   }

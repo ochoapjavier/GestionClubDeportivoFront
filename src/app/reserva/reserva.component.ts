@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { Horario } from '../horario';
-import { ServicioHorariosService } from '../servicio-horarios.service';
-import { ServicioReservasService } from '../servicio-reservas.service';
-import { Reserva } from './reserva';
+import { Reserva } from '../../models/reserva';
 import { ReservaHorario } from './reserva-horario';
+import { ServicioReservasService } from '../services/servicio-reservas.service';
+import { ServicioHorariosService } from '../services/servicio-horarios.service';
 
 
 @Component({
@@ -14,30 +14,30 @@ import { ReservaHorario } from './reserva-horario';
 })
 export class ReservaComponent implements OnInit {
 
-  reservas:Reserva[];
-  horarios:Horario[];
+  @Input() reservas:Reserva[];
+ /* horarios:Horario[];
   reservasConHorario:ReservaHorario[];
   reserv$: Observable<Reserva[]>;
-  horar$: Observable<Horario[]>;
+  horar$: Observable<Horario[]>;*/
   
 
   constructor(private reservaService:ServicioReservasService, private horarioService: ServicioHorariosService) { 
     this.reservas = [];
-    this.horarios = [];
+    /*this.horarios = [];
     this.reservasConHorario = [];
 
     this.reserv$ = this.reservaService.getAll();
-    this.horar$ = this.horarioService.getAll();
+    this.horar$ = this.horarioService.getAll();*/
   }
 
   ngOnInit(): void {  
-    forkJoin([
+   /* forkJoin([
       this.reserv$,
       this.horar$
     ]).subscribe(([r, h]) => {
       this.reservas = r;
       this.horarios = h;
-    }); 
+    }); */
   }
 
   delete(reserva:Reserva):void{

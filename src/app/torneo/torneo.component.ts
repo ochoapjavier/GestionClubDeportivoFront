@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ServicioTorneosService } from '../servicio-torneos.service';
-import { Torneo } from './torneo';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Competicion } from 'src/models/competicion';
+import { ServicioTorneosService } from '../services/servicio-torneos.service';
 
 @Component({
   selector: 'app-torneo',
@@ -9,23 +10,32 @@ import { Torneo } from './torneo';
 })
 export class TorneoComponent implements OnInit {
 
-  torneos:Torneo[];
+  @Input() competiciones:Competicion[];
+  
 
-  constructor(private torneoService:ServicioTorneosService) {
-    this.torneos=[];
+  constructor(private torneoService:ServicioTorneosService,  private activatedRoute:ActivatedRoute) {
+    this.competiciones=[];
    }
 
   ngOnInit(): void {
-    this.torneoService.getAll().subscribe(
-      t => this.torneos=t
-    )
+   
   }
 
-  delete(torneo:Torneo):void{
+  delete(torneo:Competicion):void{
     this.torneoService.delete(torneo.id).subscribe(
-      res=>this.torneoService.getAll().subscribe(
-        response=>this.torneos=response
-      )
+
+      res=> {
+          if (res.tipo_competicion_id.tipo === "Torneo") {
+          this.torneoService.getTorneos().subscribe(
+            response=>this.competiciones=response
+          )
+          }
+          if (res.tipo_competicion_id.tipo === "Ranking") {
+            this.torneoService.getRankings().subscribe(
+              response=>this.competiciones=response
+            )
+          }
+      }
     );
   }
 

@@ -6,12 +6,12 @@
                 <div class="form-group row card-text p-2">
                     <label class="col-form-label col-sm-2">Pista</label>
                     <div *ngIf="deporteReserva == 'Tenis'" class="col-sm-6">
-                        <select name="pistasTenis" formControlName="pista" [class.is-invalid] = "resForm.get('pista')?.invalid && resForm.get('pista')?.touched" (change)="refreshHorariosDisp()">
+                        <select name="pistasTenis" formControlName="id_pista" [class.is-invalid] = "resForm.get('id_pista')?.invalid && resForm.get('id_pista')?.touched" (change)="refreshHorariosDisp()">
                             <option [value]="pista.id_pista" *ngFor="let pista of pistasTenis">{{pista.nombre}}</option>
                         </select>
                     </div>
                     <div *ngIf="deporteReserva == 'Padel'" class="col-sm-6">
-                        <select name="pistasPadel" formControlName="pista" [class.is-invalid] = "resForm.get('pista')?.invalid && resForm.get('pista')?.touched" (change)="refreshHorariosDisp()">
+                        <select name="pistasPadel" formControlName="id_pista" [class.is-invalid] = "resForm.get('id_pista')?.invalid && resForm.get('id_pista')?.touched" (change)="refreshHorariosDisp()">
                             <option [value]="pista.id_pista" *ngFor="let pista of pistasPadel">{{pista.nombre}}</option>
                         </select>
                     </div>
@@ -20,14 +20,14 @@
                 <div class="form-group row card-text p-2">
                     <label class="col-form-label col-sm-2">Fecha de reserva</label>
                     <div class="col-sm-6">
-                        <input [class.is-invalid] = "resForm.get('fechaReserva')?.invalid && resForm.get('fechaReserva')?.touched" class="text-danger" type="date" min='1899-01-01' max='2000-13-13' class="form-control" formControlName="fechaReserva" (change)="refreshHorariosDisp()">
+                        <input [class.is-invalid] = "resForm.get('fecha')?.invalid && resForm.get('fecha')?.touched" type="date" min='1899-01-01' max='2000-13-13' class="form-control" formControlName="fecha" (change)="refreshHorariosDisp()">
                     </div>    
                 </div>
 
                 <div class="form-group row card-text p-2">
                     <label class="col-form-label col-sm-2">Horario</label>
                     <div class="col-sm-6">
-                        <select [(ngModel)]="reserva.horario" name="horario" formControlName="horario" [class.is-invalid] = "resForm.get('horario')?.invalid && resForm.get('horario')?.touched">
+                        <select formControlName="horario" [class.is-invalid] = "resForm.get('horario')?.invalid">
                             <option [ngValue]="horario" *ngFor="let horario of horariosDisp">{{horario.hora_inicio}} - {{horario.hora_fin}}</option>
                         </select>
                     </div>

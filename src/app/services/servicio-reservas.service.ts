@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Reserva } from './reserva/reserva';
+import { Reserva } from 'src/models/reserva';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,14 @@ export class ServicioReservasService {
     return this.http.get<Reserva[]>(this.url);
   }
 
-  //Obtener una reserva
-  get(id:number):Observable<Reserva>{
+  //Obtener una reserva por id
+  getById(id:number):Observable<Reserva>{
     return this.http.get<Reserva>(this.url + '/id/' + id);
+  }
+
+  //Obtener una reserva
+  getByFecha(fecha:string):Observable<Reserva[]>{
+    return this.http.get<Reserva[]>(this.url + '/fecha/' + fecha);
   }
 
   //Obtener reservas por pista y fecha

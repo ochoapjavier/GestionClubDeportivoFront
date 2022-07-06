@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from './usuario/usuario';
+import { Usuario } from 'src/models/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,14 @@ export class ServicioUsuarioService {
     return this.http.get<Usuario[]>(this.url);
   }
 
-  //Obtener un usuario
-  get(id:number):Observable<Usuario>{
+  //Obtener un usuario por id
+  getById(id:number):Observable<Usuario>{
     return this.http.get<Usuario>(this.url + '/' +id);
+  }
+
+  //Obtener un usuario por rol
+  getByRol(rol:string):Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(this.url + '/rol/' +rol);
   }
 
   //Crear un usuario

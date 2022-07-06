@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PistaPadel } from '../pista-padel/pista-padel';
-import { PistaTenis } from '../pista-tenis/pista-tenis';
-import { ServicioPistasService } from '../servicio-pistas.service';
-import { ServicioReservasService } from '../servicio-reservas.service';
-import { Reserva } from './reserva';
+import { PistaPadel } from '../../models/pista-padel';
+import { PistaTenis } from '../../models/pista-tenis';
+import { Reserva } from '../../models/reserva';
 import { forkJoin } from 'rxjs';
-import { ServicioHorariosService } from '../servicio-horarios.service';
 import { Horario } from '../horario';
+import { ServicioReservasService } from '../services/servicio-reservas.service';
+import { ServicioHorariosService } from '../services/servicio-horarios.service';
+import { ServicioPistasService } from '../services/servicio-pistas.service';
 
 @Component({
   selector: 'app-form-reserva',
@@ -24,8 +24,8 @@ export class FormReservaComponent implements OnInit {
   pistasPadel:PistaPadel[];
 
   resForm = new FormGroup({
-    pista:new FormControl('', Validators.required),
-    fechaReserva: new FormControl('', Validators.required),
+    id_pista:new FormControl('', Validators.required),
+    fecha: new FormControl('', Validators.required),
     horario: new FormControl('', Validators.required),
   })
 
@@ -50,8 +50,8 @@ export class FormReservaComponent implements OnInit {
   }
 
   refreshHorariosDisp() {
-    let pista = this.resForm.get('pista')?.value;
-    let fecha = this.resForm.get('fechaReserva')?.value;
+    let pista = this.resForm.get('id_pista')?.value;
+    let fecha = this.resForm.get('fecha')?.value;
     if (pista != '' && fecha != '' ) {
       this.horarioService.getAllDispo(fecha, pista).subscribe(
         hs => this.horariosDisp = hs
@@ -64,7 +64,7 @@ export class FormReservaComponent implements OnInit {
       u=>{
         let id = u['id'];
         if(id){
-          this.reservaService.get(id).subscribe(
+          this.reservaService.getById(id).subscribe(
             res=>this.reserva=res
           );
         }
@@ -72,9 +72,8 @@ export class FormReservaComponent implements OnInit {
     );
   }
   create():void{
-    this.reserva.id_pista = this.resForm.get('pista')?.value;
-    this.reserva.fecha = this.resForm.get('fechaReserva')?.value;
-    this.reservaService.create(this.reserva).subscribe(
+   
+    this.reservaService.create(this.resForm.value).subscribe(
       res=>this.router.navigate(['/reservas'])
     );
   }
