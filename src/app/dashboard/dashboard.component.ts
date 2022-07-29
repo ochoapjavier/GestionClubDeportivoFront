@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Competicion } from 'src/models/competicion';
+import { Grupo } from 'src/models/grupo';
 import { Reserva } from 'src/models/reserva';
 import { Usuario } from '../../models/usuario';
+import { ServicioGruposService } from '../services/servicio-grupos.service';
 import { ServicioReservasService } from '../services/servicio-reservas.service';
 import { ServicioTorneosService } from '../services/servicio-torneos.service';
 import { ServicioUsuarioService } from '../services/servicio-usuario.service';
@@ -24,8 +26,12 @@ export class DashboardComponent implements OnInit {
   usuarios:Usuario[];
   userTorneos:Competicion[];
   userRankings:Competicion[];
+  grupos:Grupo[];
+  gruposMonitor:Grupo[];
+  gruposUsuario:Grupo[];
+  torneosInscripcion:Competicion[];
 
-  constructor(private usuarioService:ServicioUsuarioService, private activatedRoute:ActivatedRoute, private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService) { 
+  constructor(private usuarioService:ServicioUsuarioService, private grupoService:ServicioGruposService, private activatedRoute:ActivatedRoute, private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService) { 
     this.torneos=[];
     this.rankings=[];
     this.resToday=[];
@@ -33,6 +39,10 @@ export class DashboardComponent implements OnInit {
     this.usuarios=[];
     this.userTorneos=[];
     this.userRankings=[];
+    this.grupos=[];
+    this.gruposMonitor=[];
+    this.gruposUsuario=[];
+    this.torneosInscripcion=[];
   }
 
   ngOnInit(): void {
@@ -54,10 +64,22 @@ export class DashboardComponent implements OnInit {
       u => this.usuarios=u
     )
     this.torneoService.getTorneosByUsuarioId(this.id).subscribe(
-      u => this.userTorneos=u
+      t => this.userTorneos=t
     )
     this.torneoService.getRankingsByUsuarioId(this.id).subscribe(
-      u => this.userRankings=u
+      r => this.userRankings=r
+    )
+    this.grupoService.getAll().subscribe(
+      g => this.grupos=g
+    )
+    this.grupoService.getByMonitorId(this.id).subscribe(
+      g => this.gruposMonitor=g
+    )
+    this.grupoService.getByUsuarioId(this.id).subscribe(
+      g => this.gruposUsuario=g
+    )
+    this.torneoService.getAllInscripcion(this.id).subscribe(
+      g => this.torneosInscripcion=g
     )
   }
 

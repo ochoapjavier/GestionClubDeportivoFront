@@ -26,4 +26,9 @@ export class ServicioRelCompeticionesUsuarioService {
   getRankingsByUsuarioId(id:number):Observable<RelCompeticionUsuario[]>{
     return this.http.get<RelCompeticionUsuario[]>(this.url + '/rankings-usuario' + '/' +id);
   }
+
+  //Crear un grupo
+  create(grupo:RelCompeticionUsuario):Observable<RelCompeticionUsuario>{
+    return this.http.post<RelCompeticionUsuario>(this.url, grupo);
+  }
 }

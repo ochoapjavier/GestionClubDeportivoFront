@@ -36,7 +36,9 @@ import {MatTableModule} from '@angular/material/table';
 import { PistaPadelComponent } from './pista-padel/pista-padel.component';
 import { FormPistaPadelComponent } from './pista-padel/form-pista-padel.component';
 import { ReservaComponent } from './reserva/reserva.component';
-import { FormReservaComponent } from './reserva/form-reserva.component'; 
+import { FormReservaComponent } from './reserva/form-reserva.component';
+import { GrupoComponent } from './grupo/grupo.component';
+import { FormGrupoComponent } from './grupo/form-grupo.component';
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -59,8 +61,10 @@ const routes:Routes=[
   {path:'pistas-padel-form/:id', component:FormPistaPadelComponent},
   {path:'reservas', component:ReservaComponent},
   {path:'reservas-form', component:FormReservaComponent},
-  {path:'reservas-form/:id', component:FormReservaComponent}
-  
+  {path:'reservas-form/:id', component:FormReservaComponent}, 
+  {path:'grupos', component:GrupoComponent},
+  {path:'grupos-form', component:FormGrupoComponent},
+  {path:'grupos-form/:id', component:FormGrupoComponent}, 
 ]
 
 @NgModule({
@@ -83,7 +87,10 @@ const routes:Routes=[
       PistaPadelComponent,
       FormPistaPadelComponent,
       ReservaComponent,
-      FormReservaComponent
+      FormReservaComponent,
+      GrupoComponent,
+      FormGrupoComponent
+    
       
    ],
   imports: [

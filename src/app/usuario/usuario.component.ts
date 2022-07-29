@@ -34,7 +34,7 @@ export class UsuarioComponent implements OnInit {
           this.usuarioService.getByRol('Monitor').subscribe(
             response=>this.usuarios=response
           )
-          }
+        }
       }
     );
   }

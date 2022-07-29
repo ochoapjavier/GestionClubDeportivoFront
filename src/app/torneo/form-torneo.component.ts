@@ -18,7 +18,8 @@ import { ServicioTorneosService } from '../services/servicio-torneos.service';
 export class FormTorneoComponent implements OnInit {
 
   torneo:Competicion = new Competicion;
-  id:number;
+  id_competicion:number;
+  id_usuario:number;
   deportes:Deporte[];
   estados:EstadoCompeticiones[];
   tipoCompeticiones:TipoCompeticion[];
@@ -38,8 +39,9 @@ export class FormTorneoComponent implements OnInit {
      this.deportes = [];
      this.estados = [];
      this.tipoCompeticiones = [];
-     this.id = 0;
+     this.id_competicion = 0;
      this.tipo = this.activatedRoute.snapshot.queryParams['tipo'];
+     this.id_usuario = this.activatedRoute.snapshot.queryParams['userID'];
   }
 
   ngOnInit(): void {
@@ -58,9 +60,9 @@ export class FormTorneoComponent implements OnInit {
   cargar():void{
     this.activatedRoute.params.subscribe(
       t=>{
-        this.id = t['id'];
-        if(this.id){
-          this.torneoService.get(this.id).subscribe(
+        this.id_competicion = t['id'];
+        if(this.id_competicion){
+          this.torneoService.get(this.id_competicion).subscribe(
             torn=> {
               this.competicionForm.setValue(torn);     
             }
@@ -79,13 +81,14 @@ export class FormTorneoComponent implements OnInit {
     this.competicionForm.get('tipo_competicion_id')?.setValue(result);
 
     this.torneoService.create(this.competicionForm.value).subscribe(
-      res=>this.router.navigate(['/torneos'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])
+     
     );
   }
 
   update():void{
     this.torneoService.update(this.competicionForm.value).subscribe(
-      res=>this.router.navigate(['/torneos'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])
     );
   }
 

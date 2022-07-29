@@ -37,6 +37,11 @@ export class ServicioTorneosService {
     return this.http.get<Competicion[]>(this.url + '/rankings-usuario' + '/' +id);
   }
 
+  //Obtener las competiciones en inscripción
+  getAllInscripcion(id:number):Observable<Competicion[]>{
+    return this.http.get<Competicion[]>(this.url + '/inscripcion' + '/' +id);
+  }
+
   //Obtener un torneo
   get(id:number):Observable<Competicion>{
     return this.http.get<Competicion>(this.url + '/' +id);

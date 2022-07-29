@@ -1,31 +1,29 @@
-<body>
-    <div class="container">  
-        <div class="table-responsive table-height">     
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Deporte</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Máximo jugadores</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let torneo of competiciones">
-                    <td>{{torneo.nombre_torneo}}</td>
-                    <td>{{torneo.categoria}}</td>
-                    <td>{{torneo.deporte_id.nombre}}</td>
-                    <td>{{torneo.estado_id.estado}}</td>
-                    <td>{{torneo.max_jugadores}}</td>
-                    <td>{{torneo.tipo_competicion_id.tipo}}</td>
-                    <td><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/torneos-form', torneo.id]">Editar</button></td>
-                    <td><button mat-flat-button color="primary" style="color: white;" (click)="delete(torneo)">Eliminar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<div class="container">  
+    <div class="table-responsive table-height">     
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Deporte</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Máx jugadores</th>
+                <th *ngIf = "usuario.rol === 'Coordinador'" scope="col">Editar</th>
+                <th *ngIf = "usuario.rol === 'Coordinador'" scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let torneo of competiciones">
+                <td>{{torneo.nombre_torneo}}</td>
+                <td>{{torneo.categoria}}</td>
+                <td>{{torneo.deporte_id.nombre}}</td>
+                <td>{{torneo.estado_id.estado}}</td>
+                <td>{{torneo.max_jugadores}}</td>
+                <td *ngIf = "usuario.rol === 'Coordinador'"><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/torneos-form', torneo.id]" [queryParams]="{userID: usuario.id}">Editar</button></td>
+                <td *ngIf = "usuario.rol === 'Coordinador'"><button mat-flat-button color="primary" style="color: white;" (click)="delete(torneo)">Eliminar</button></td>
+                <td *ngIf = "inscripcionEnabled === true"><button mat-flat-button color="primary" style="color: white;" (click)="inscribir(torneo)">Inscribirme</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</body>
+</div>

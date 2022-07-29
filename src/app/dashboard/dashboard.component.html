@@ -42,21 +42,17 @@
         <button mat-menu-item [routerLink]="['']">Realizar un pago</button>
       </mat-menu>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="grupos">Gestión Grupos</button>
-      <mat-menu #grupos="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="grupo" [routerLink]="['/usuarios-form']">Crear grupo</button>
+      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="group">Gestión Grupos</button>
+      <mat-menu #group="matMenu">
+        <button mat-menu-item [routerLink]="['/grupos-form']">Crear grupo</button>
         <button mat-menu-item [routerLink]="['/usuarios-form']">Modificar grupo</button>
       </mat-menu>
 
-      <mat-menu #grupo="matMenu">
-        <button mat-menu-item>Grupo de Tenis</button>
-        <button mat-menu-item>Grupo de Pádel</button>
-      </mat-menu>
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="competiciones">Gestión Competiciones</button>
       <mat-menu #competiciones="matMenu">
-        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Torneo'}">Crear Torneo</button>
-        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Ranking'}">Crear Ranking</button>
+        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Torneo', userID: id}">Crear Torneo</button>
+        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Ranking', userID: id}">Crear Ranking</button>
       </mat-menu>
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
@@ -78,14 +74,6 @@
         <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis horas trabajadas</button>
         <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Imputar nueva hora</button>
       </mat-menu>
-
-      <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="competicionesUsuario">Mis competiciones</button>
-      <mat-menu #competicionesUsuario="matMenu">
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis torneos</button>
-        <button mat-menu-item [routerLink]="['/pistas-tenis-form']">Mis rankings</button>
-      </mat-menu>
-  
-      <mat-divider></mat-divider>
       
       <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="alquileres">Alquileres</button>
       <mat-menu #alquileres="matMenu">
@@ -95,9 +83,6 @@
 
       <mat-divider  *ngIf="usuario.rol == 'Usuario'"></mat-divider>
 
-      <button mat-button class="menu-button" routerLink="/help">
-        <span>Help</span>
-      </button>
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content mat-elevation-z8">
@@ -105,8 +90,8 @@
             <h1 class="mt-4" >Panel de {{usuario.rol}}</h1>
 
             <div *ngIf="usuario.rol == 'Coordinador'" class="card mb-4">
-                <div class="card-header bg-dark text-white">
-                    <i class="fas fa-trophy me-1"></i>
+                <div class="card-header bg-madset text-white">
+                    <img src="../../assets/icons/users.png" alt="">
                     Gestión de usuarios
                 </div>
                 <div class="card-body">
@@ -115,7 +100,7 @@
             </div>
 
             <div *ngIf="usuario.rol == 'Coordinador'" class="card mb-4">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header bg-madset text-white">
                     <img src="../../assets/icons/calendar1.png" alt="">
                     Situación ocupación pistas hoy
                 </div>
@@ -126,23 +111,23 @@
             <div *ngIf="usuario.rol == 'Coordinador'" class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <img src="../../assets/icons/trophy-light.png" alt="">
                             Gestión torneos
                         </div>
                         <div class="card-body">
-                            <app-torneo [competiciones] = "torneos"></app-torneo>
+                            <app-torneo [competiciones] = "torneos" [usuario] = "usuario"></app-torneo>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <img src="../../assets/icons/medal.png" alt="">
                             Gestión de rankings
                         </div>
                         <div class="card-body">
-                            <app-torneo [competiciones] = "rankings"></app-torneo>
+                            <app-torneo [competiciones] = "rankings" [usuario] = "usuario"></app-torneo>
                         </div>
                     </div>
                 </div>
@@ -150,17 +135,19 @@
             <div *ngIf="usuario.rol == 'Coordinador'" class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <img src="../../assets/icons/medal.png" alt="">
                             Visor de grupos de la escuela
                         </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-grupo [grupos]= "grupos" [usuario] = "usuario"></app-grupo>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
-                            <img src="../../assets/icons/medal.png" alt="">
+                        <div class="card-header bg-madset text-white">
+                            <img src="../../assets/icons/team.png" alt="">
                             Visor de monitores de la escuela
                         </div>
                         <div class="card-body">
@@ -170,7 +157,7 @@
                 </div>
             </div>   
             <div *ngIf="usuario.rol == 'Monitor'" class="card mb-4">
-                <div class="card-header bg-dark text-white">
+                <div class="card-header bg-madset text-white">
                     Mi agenda semanal
                 </div>
                 <div class="card-body">
@@ -180,16 +167,18 @@
             <div *ngIf="usuario.rol == 'Monitor'" class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
-                            <i class="fas fa-users me-1"></i>
+                        <div class="card-header bg-madset text-white">
+                            <img src="../../assets/icons/users.png" alt="">
                             Mis grupos
                         </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-grupo [grupos]= "gruposMonitor" [usuario] = "usuario"></app-grupo>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <i class="fas fa-id-card me-1"></i>
                             Control de asistencia
                         </div>
@@ -200,7 +189,7 @@
             <div *ngIf="usuario.rol == 'Usuario'" class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <i class="fas fa-users me-1"></i>
                             Visor de estado de cuotas
                         </div>
@@ -209,29 +198,31 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
-                            <i class="fas fa-id-card me-1"></i>
+                        <div class="card-header bg-madset text-white">
+                            <img src="../../assets/icons/users.png" alt="">
                             Visor de mis grupos
                         </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        <div class="card-body">
+                            <app-grupo [grupos]= "gruposUsuario" [usuario] = "usuario"></app-grupo>
+                        </div>
                     </div>
                 </div>
             </div> 
             <div *ngIf="usuario.rol == 'Usuario'" class="row">
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <i class="fas fa-users me-1"></i>
                             Mis Torneos
                         </div>
                         <div class="card-body">
-                            <app-torneo [competiciones]= "userTorneos"></app-torneo>
+                            <app-torneo [competiciones]= "userTorneos" [usuario] = "usuario"></app-torneo>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card mb-4">
-                        <div class="card-header bg-dark text-white">
+                        <div class="card-header bg-madset text-white">
                             <i class="fas fa-id-card me-1"></i>
                             Mis Rankings
                         </div>
@@ -240,7 +231,20 @@
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
+            <div *ngIf="usuario.rol == 'Usuario'" class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header bg-madset text-white">
+                            <i class="fas fa-id-card me-1"></i>
+                            Inscripción a competiciones
+                        </div>
+                        <div class="card-body">
+                            <app-torneo [competiciones]= "torneosInscripcion" [usuario] = "usuario" [inscripcionEnabled]="true"></app-torneo>
+                        </div>
+                    </div>
+                </div>
+            </div>    
         </div>
       </div>
     </mat-sidenav-content>

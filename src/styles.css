@@ -1957,6 +1957,8 @@ progress {
     --bs-gutter-y: 3rem;
   }
 }
+
+
 .table, .dataTable-table {
   --bs-table-bg: transparent;
   --bs-table-accent-bg: transparent;
@@ -13187,3 +13189,7 @@ h3.quote::before {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-madset{
+  background-color: #f75757;
+}
