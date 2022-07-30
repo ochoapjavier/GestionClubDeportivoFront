@@ -39,6 +39,7 @@ import { ReservaComponent } from './reserva/reserva.component';
 import { FormReservaComponent } from './reserva/form-reserva.component';
 import { GrupoComponent } from './grupo/grupo.component';
 import { FormGrupoComponent } from './grupo/form-grupo.component';
+import { GrupoDetalleComponent } from './grupo/grupo-detalle.component';
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -65,6 +66,8 @@ const routes:Routes=[
   {path:'grupos', component:GrupoComponent},
   {path:'grupos-form', component:FormGrupoComponent},
   {path:'grupos-form/:id', component:FormGrupoComponent}, 
+  {path:'grupo-detalle', component:GrupoDetalleComponent},
+  {path:'grupo-detalle/:id', component:GrupoDetalleComponent}, 
 ]
 
 @NgModule({
@@ -89,7 +92,8 @@ const routes:Routes=[
       ReservaComponent,
       FormReservaComponent,
       GrupoComponent,
-      FormGrupoComponent
+      FormGrupoComponent,
+      GrupoDetalleComponent
     
       
    ],

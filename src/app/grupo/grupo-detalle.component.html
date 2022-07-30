@@ -1,1 +1,32 @@
-<p>grupo-detalle works!</p>
+<div class="container">  
+    <div class="table-responsive table-height">     
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Primer Apellido</th>
+                <th scope="col">Segundo Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grupo of grupoDetalle">
+                <td>{{grupo.id_alumno.nombre}}</td>
+                <td>{{grupo.id_alumno.apellido1}}</td>
+                <td>{{grupo.id_alumno.apellido2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form [formGroup]="inscripcionForm">
+        <div *ngIf="grupoDetalle.length < grupo.capacidad" class="form-group row card-text p-2">
+            <label for="superficie" class="col-form-label col-sm-2">Alumno</label>
+            <div class="col-sm-6">
+                <select formControlName="alumno">
+                    <option [ngValue]="alumno" *ngFor="let alumno of alumnosParaInscribir">{{alumno.nombre}} {{alumno.apellido1}} {{alumno.apellido2}}</option>
+                </select>
+            </div> 
+            <button class="col-sm-2" mat-flat-button color="primary" style="color: white;" (click)="inscribir()">Añadir alumno</button>                  
+        </div>
+    </form>
+</div>
+
