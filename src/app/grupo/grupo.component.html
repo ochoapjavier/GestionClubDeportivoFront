@@ -21,9 +21,8 @@
                 <td>{{grupo.id_dias_grupo.dia}}</td>
                 <td>{{grupo.id_horario.hora_inicio}} - {{grupo.id_horario.hora_fin}}</td>
                 <td *ngIf = "usuario.rol !== 'Monitor'" >{{grupo.id_monitor.nombre}} {{grupo.id_monitor.apellido1}}</td>
-                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-flat-button color="primary" style="color: white;">Ir a grupo</button></td>
-                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-flat-button color="primary" style="color: white;" (click)="delete(grupo)">Eliminar</button></td>
-                
+                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/grupo-detalle', grupo.id]">Ir a grupo</button></td>
+                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-flat-button color="primary" style="color: white;" (click)="delete(grupo)">Eliminar</button></td>               
                 </tr>
             </tbody>
         </table>
