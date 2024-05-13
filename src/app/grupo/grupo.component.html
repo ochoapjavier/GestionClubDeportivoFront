@@ -1,30 +1,29 @@
-<div class="container">  
-    <div class="table-responsive table-height">     
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Deporte</th>
-                <th scope="col">Capacidad</th>
-                <th scope="col">Dias grupo</th>
-                <th scope="col">Horario</th>
-                <th *ngIf = "usuario.rol !== 'Monitor'" scope="col">Profesor</th>
-                <th *ngIf = "usuario.rol === 'Coordinador'" scope="col"></th>
-                <th *ngIf = "usuario.rol === 'Coordinador'" scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let grupo of grupos">
-                <td>{{grupo.nombre}}</td>
-                <td>{{grupo.id_deporte.nombre}}</td>
-                <td>{{grupo.capacidad}}</td>
-                <td>{{grupo.id_dias_grupo.dia}}</td>
-                <td>{{grupo.id_horario.hora_inicio}} - {{grupo.id_horario.hora_fin}}</td>
-                <td *ngIf = "usuario.rol !== 'Monitor'" >{{grupo.id_monitor.nombre}} {{grupo.id_monitor.apellido1}}</td>
-                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/grupo-detalle', grupo.id]">Ir a grupo</button></td>
-                <td *ngIf = "usuario.rol === 'Coordinador'" ><button mat-flat-button color="primary" style="color: white;" (click)="delete(grupo)">Eliminar</button></td>               
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre, deporte o día del grupo" [(ngModel)]="busquedaNombre">
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+        <div class="col" *ngFor="let grupo of gruposFiltrados">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ grupo.nombre }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Deporte: {{ grupo.id_deporte.nombre }}</p>
+                    <p class="card-text">Capacidad: {{ grupo.capacidad }}</p>
+                    <p class="card-text">Días grupo: {{ grupo.id_dias_grupo.dia }}</p>
+                    <p class="card-text">Horario: {{ grupo.id_horario.hora_inicio }} - {{ grupo.id_horario.hora_fin }}</p>
+                    <p *ngIf = "usuario.rol !== 'Monitor'" class="card-text">Monitor: {{ grupo.id_monitor.nombre }} {{ grupo.id_monitor.apellido1 }}</p>
+                    <div class="d-flex justify-content-end">
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/grupo-detalle', grupo.id]" [queryParams]="{userID: usuario.id}">Ir a grupo</button>
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-flat-button color="primary" style="color: white;" (click)="delete(grupo)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -11,6 +11,7 @@ export class Competicion {
     estado_id:EstadoCompeticiones;
     tipo_competicion_id:TipoCompeticion;
     max_jugadores:number;
+    id_fichero:number;
 
     constructor(){
         this.id=0;
@@ -20,5 +21,6 @@ export class Competicion {
         this.estado_id = new EstadoCompeticiones();
         this.tipo_competicion_id = new TipoCompeticion();
         this.max_jugadores = 0;
+        this.id_fichero = 0;
     }
 }

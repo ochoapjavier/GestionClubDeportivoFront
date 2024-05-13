@@ -1,0 +1,17 @@
+<form action="" enctype="multipart/form-data" >
+    <div class="form-group">
+        <input type="file" class="form-control" (change)="uploadFile($event)">
+    </div>
+
+</form>
+
+<div class="form-group">
+    <label for="" class="form-control">Nombre fichero BBDD</label>
+    El id es: {{id}}
+    <br>
+    <input [(ngModel)]="id">
+    <br>
+    <button button button mat-flat-button color="primary" style="color: white;" (click)="getFile()">Obtener fichero</button>
+</div>
+
+

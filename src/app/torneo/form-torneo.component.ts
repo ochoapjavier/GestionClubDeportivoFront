@@ -35,7 +35,9 @@ export class FormTorneoComponent implements OnInit {
     max_jugadores: new FormControl('', [Validators.required, Validators.min(2)]),
   })
 
-  constructor(private torneoService:ServicioTorneosService, private tipoCompeticionService:ServicioTipoCompeticionesService, private estadoService:ServicioEstadosService, private deporteService:ServicioDeportesService,  private router:Router, private activatedRoute:ActivatedRoute) { 
+  constructor(private torneoService:ServicioTorneosService, private tipoCompeticionService:ServicioTipoCompeticionesService, 
+              private estadoService:ServicioEstadosService, private deporteService:ServicioDeportesService,  
+              private router:Router, private activatedRoute:ActivatedRoute) { 
      this.deportes = [];
      this.estados = [];
      this.tipoCompeticiones = [];
@@ -64,7 +66,7 @@ export class FormTorneoComponent implements OnInit {
         if(this.id_competicion){
           this.torneoService.get(this.id_competicion).subscribe(
             torn=> {
-              this.competicionForm.setValue(torn);     
+              this.competicionForm.setValue(torn);  
             }
           );
         }

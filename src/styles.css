@@ -7852,6 +7852,66 @@ textarea.form-control-lg {
   background-color: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.bg-green {
+  --bs-bg-opacity: 1;
+  background-color:#72bf6a ;
+}
+
+.mat-inscripcion-button {
+  background-color: #72bf6a !important;
+  color: black !important;
+}
+
+.bg-red {
+  --bs-bg-opacity: 1;
+  background-color:#ef9a9a ;
+}
+
+.mat-finalizado-button {
+  background-color: #ef9a9a !important;
+  color: black !important;
+}
+
+.bg-green-border {
+  border: 2px solid #4caf50; /* verde */
+}
+
+.bg-yellow-border {
+  border: 2px solid #ffd700; /* amarillo */
+}
+
+.bg-red-border {
+  border: 2px solid #ef5350; /* rojo */
+}
+
+.btn-border-inscripcion {
+  border: 2px solid #4caf50; /* verde */
+  background-color: white;
+  color: #4caf50;
+}
+
+.btn-border-curso {
+  border: 2px solid #ffd700; /* amarillo */
+  background-color: white;
+  color: #fff59d;
+}
+
+.btn-border-finalizado {
+  border: 2px solid #ef5350; /* rojo */
+  background-color: white;
+  color: #ef5350;
+}
+
+.border-yellow {
+  --bs-bg-opacity: 1;
+  background-color:#fff59d ;
+}
+
+.mat-curso-button {
+  background-color: #fff59d !important;
+  color: black !important;
+}
+
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
@@ -13193,3 +13253,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-madset{
   background-color: #f75757;
 }
+

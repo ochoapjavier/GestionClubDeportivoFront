@@ -22,6 +22,11 @@ export class ServicioUsuarioService {
     return this.http.get<Usuario>(this.url + '/' +id);
   }
 
+  //Obtener un usuario por id
+  getParaInscribir(id:number):Observable<Usuario[]>{
+    return this.http.get<Usuario[]>(this.url + '/inscribir/' +id);
+  }
+
   //Obtener un usuario por rol
   getByRol(rol:string):Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url + '/rol/' +rol);

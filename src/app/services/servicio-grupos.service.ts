@@ -33,12 +33,12 @@ export class ServicioGruposService {
     return this.http.post<Grupo>(this.url, grupo);
   }
 
-  //Crear un grupo
+  //Eliminar un grupo
   delete(id:number):Observable<Grupo>{
     return this.http.delete<Grupo>(this.url + '/' +id);
   }
 
-
+  //Modificar un grupo
   update(grupo:Grupo):Observable<Grupo>{
     return this.http.put<Grupo>(this.url, grupo);
   }

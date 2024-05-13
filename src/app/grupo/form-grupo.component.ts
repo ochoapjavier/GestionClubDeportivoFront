@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Deporte } from 'src/models/deporte';
@@ -24,6 +24,7 @@ export class FormGrupoComponent implements OnInit {
   deportes:Deporte[];
   diasGrupo:DiasGrupo[];
   horarios:Horario[];
+  id_usuario:number;
 
   grupoForm = new FormGroup({
     nombre:new FormControl('', Validators.required),
@@ -34,11 +35,14 @@ export class FormGrupoComponent implements OnInit {
     id_horario: new FormControl('', Validators.required),
   })
   
-  constructor(private grupoService:ServicioGruposService, private diasGrupoService:ServicioDiasGruposService, private horarioService:ServicioHorariosService, private deporteService:ServicioDeportesService, private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
+  constructor(private grupoService:ServicioGruposService, private diasGrupoService:ServicioDiasGruposService, 
+              private horarioService:ServicioHorariosService, private deporteService:ServicioDeportesService, 
+              private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
     this.monitores = [];
     this.deportes = [];
     this.diasGrupo = [];
     this.horarios = [];
+    this.id_usuario = this.activatedRoute.snapshot.queryParams['userID'];
   }
 
   ngOnInit(): void {
@@ -72,14 +76,15 @@ export class FormGrupoComponent implements OnInit {
 
   create():void{  
     this.grupoService.create(this.grupoForm.value).subscribe(
-      res=>this.router.navigate(['/grupos'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])
     );
   }
 
   update():void{
     this.grupoService.update(this.grupo).subscribe(
-      res=>this.router.navigate(['/grupos'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])
     );
   }
 
 }
+

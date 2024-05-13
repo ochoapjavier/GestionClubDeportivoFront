@@ -54,16 +54,6 @@ export class FormUsuarioComponent implements OnInit {
     );
   }
   create():void{
-    /*this.usuario.terminos = Number(this.regForm.get('terminos')?.value);
-    this.usuario.privacidad = Number(this.regForm.get('privacidad')?.value);
-    this.usuario.comercial = Number(this.regForm.get('comercial')?.value);
-    this.usuario.rol = this.rol;
-    this.usuario.nombre = this.regForm.get('nombre')?.value;
-    this.usuario.apellido1 = this.regForm.get('apellido1')?.value;
-    this.usuario.apellido2 = this.regForm.get('apellido2')?.value;
-    this.usuario.email = this.regForm.get('email')?.value;
-    this.usuario.password = this.regForm.get('password')?.value;*/
-
     this.regForm.get('rol')?.setValue(this.rol);
     this.regForm.get('terminos')?.setValue(Number(this.regForm.get('terminos')?.value));
     this.regForm.get('privacidad')?.setValue(Number(this.regForm.get('privacidad')?.value));
@@ -79,7 +69,7 @@ export class FormUsuarioComponent implements OnInit {
     this.regForm.get('privacidad')?.setValue(Number(this.regForm.get('privacidad')?.value));
     this.regForm.get('comercial')?.setValue(Number(this.regForm.get('comercial')?.value));
     this.usuarioService.update(this.regForm.value).subscribe(
-      res=>this.router.navigate(['/dashboard'])
+      res=>this.router.navigate(['/dashboard', res.id])
     );
   }
 

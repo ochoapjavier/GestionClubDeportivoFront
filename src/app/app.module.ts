@@ -33,6 +33,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 import { PistaPadelComponent } from './pista-padel/pista-padel.component';
 import { FormPistaPadelComponent } from './pista-padel/form-pista-padel.component';
 import { ReservaComponent } from './reserva/reserva.component';
@@ -40,6 +44,12 @@ import { FormReservaComponent } from './reserva/form-reserva.component';
 import { GrupoComponent } from './grupo/grupo.component';
 import { FormGrupoComponent } from './grupo/form-grupo.component';
 import { GrupoDetalleComponent } from './grupo/grupo-detalle.component';
+import { SubidaFicheroComponent } from './subida-fichero/subida-fichero.component';
+import { SesionComponent } from './sesion/sesion.component';
+import { FormSesionComponent } from './sesion/form-sesion.component';
+import { PrivacidadComponent } from './privacidad/privacidad/privacidad.component';
+import { TerminosComponent } from './terminos/terminos/terminos.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes:Routes=[
   {path:'', component:IndexComponent},
@@ -67,7 +77,12 @@ const routes:Routes=[
   {path:'grupos-form', component:FormGrupoComponent},
   {path:'grupos-form/:id', component:FormGrupoComponent}, 
   {path:'grupo-detalle', component:GrupoDetalleComponent},
-  {path:'grupo-detalle/:id', component:GrupoDetalleComponent}, 
+  {path:'grupo-detalle/:id', component:GrupoDetalleComponent},  
+  {path:'subida', component:SubidaFicheroComponent}, 
+  {path:'sesion-form', component:FormSesionComponent},
+  {path:'sesion-form/:id', component:FormSesionComponent},
+  {path:'privacidad', component:PrivacidadComponent},
+  {path:'terminos', component:TerminosComponent}
 ]
 
 @NgModule({
@@ -93,7 +108,10 @@ const routes:Routes=[
       FormReservaComponent,
       GrupoComponent,
       FormGrupoComponent,
-      GrupoDetalleComponent
+      GrupoDetalleComponent,
+      SubidaFicheroComponent, 
+      SesionComponent,
+      FormSesionComponent
     
       
    ],
@@ -114,7 +132,12 @@ const routes:Routes=[
     MatSelectModule,
     MatCheckboxModule,
     MatTableModule,
-    ReactiveFormsModule
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

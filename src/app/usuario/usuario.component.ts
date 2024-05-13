@@ -10,15 +10,15 @@ import { ServicioUsuarioService } from '../services/servicio-usuario.service';
 export class UsuarioComponent implements OnInit {
 
   @Input() usuarios:Usuario[];
+  busquedaNombre: string = '';
 
   constructor(private usuarioService:ServicioUsuarioService) { 
     this.usuarios =[];
+    
   }
 
   ngOnInit(): void {
-    /*this.usuarioService.getAll().subscribe(
-      u => this.usuarios=u
-    )*/
+
   }
 
   delete(usuario:Usuario):void{
@@ -38,5 +38,13 @@ export class UsuarioComponent implements OnInit {
       }
     );
   }
+
+  get usuariosFiltrados() {
+    return this.usuarios.filter(usuario => {
+        const nombreCompleto = `${usuario.nombre} ${usuario.apellido1} ${usuario.apellido2}`.toLowerCase();
+        const busqueda = this.busquedaNombre.toLowerCase();
+        return nombreCompleto.includes(busqueda);
+    });
+  } 
 
 }

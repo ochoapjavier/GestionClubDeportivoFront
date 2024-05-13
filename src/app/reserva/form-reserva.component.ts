@@ -9,6 +9,8 @@ import { Horario } from '../horario';
 import { ServicioReservasService } from '../services/servicio-reservas.service';
 import { ServicioHorariosService } from '../services/servicio-horarios.service';
 import { ServicioPistasService } from '../services/servicio-pistas.service';
+import { ServicioUsuarioService } from '../services/servicio-usuario.service';
+import { Usuario } from 'src/models/usuario';
 
 @Component({
   selector: 'app-form-reserva',
@@ -22,23 +24,30 @@ export class FormReservaComponent implements OnInit {
   horariosDisp:Horario[];
   pistasTenis:PistaTenis[];
   pistasPadel:PistaPadel[];
+  id_usuario:Usuario;
 
   resForm = new FormGroup({
     id_pista:new FormControl('', Validators.required),
     fecha: new FormControl('', Validators.required),
-    horario: new FormControl('', Validators.required),
+    id_horario: new FormControl('', Validators.required),
+    id_usuario: new FormControl(),
   })
 
-  constructor(private reservaService:ServicioReservasService, private horarioService:ServicioHorariosService, private pistaService:ServicioPistasService, private router:Router, private activatedRoute:ActivatedRoute) {
+  constructor(private usuarioService:ServicioUsuarioService, private reservaService:ServicioReservasService, private horarioService:ServicioHorariosService, private pistaService:ServicioPistasService, private router:Router, private activatedRoute:ActivatedRoute) {
     this.pistasTenis = [];
     this.pistasPadel = [];
     this.horariosDisp = [];
     this.deporteReserva = "";
+    this.id_usuario = new Usuario();
    }
 
   ngOnInit(): void {
     this.cargar();
     this.deporteReserva = this.activatedRoute.snapshot.queryParams['deporte'];
+
+    this.usuarioService.getById(this.activatedRoute.snapshot.queryParams['userID']).subscribe(
+      res => this.id_usuario = res
+    );
 
     forkJoin([
       this.pistaService.getAllTenis(),
@@ -73,14 +82,16 @@ export class FormReservaComponent implements OnInit {
   }
 
   create():void{  
+    this.resForm.get('id_usuario')?.setValue(this.id_usuario);
     this.reservaService.create(this.resForm.value).subscribe(
-      res=>this.router.navigate(['/reservas'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])  
     );
   }
 
   update():void{
+    this.resForm.get('id_usuario')?.setValue(this.id_usuario);
     this.reservaService.update(this.reserva).subscribe(
-      res=>this.router.navigate(['/reservas'])
+      res=>this.router.navigate(['/dashboard',this.id_usuario])  
     );
   }
 

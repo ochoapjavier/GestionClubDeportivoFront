@@ -41,10 +41,12 @@
                 <div class="form-group row card-text p-2">
                     <div>
                         <mat-checkbox [class.is-invalid] = "regForm.get('terminos')?.invalid && regForm.get('terminos')?.touched" class="example-margin" labelPosition="before" color="primary" formControlName="terminos">He leído y acepto los términos y condiciones de uso</mat-checkbox>
+                        <a class="nav-link" [routerLink]="['/terminos']">Términos y condiciones</a>
                     </div>
 
                     <div>
                         <mat-checkbox class="example-margin" labelPosition="before" color="primary" formControlName="privacidad">He leído y acepto la política de privacidad</mat-checkbox>
+                        <a class="nav-link" [routerLink]="['/privacidad']">Política de privacidad</a>
                     </div>
 
                     <div>

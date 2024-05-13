@@ -26,4 +26,8 @@ export class ServicioRelGrupoAlumnosService {
   create(grupo:RelGrupoAlumnos):Observable<RelGrupoAlumnos>{
     return this.http.post<RelGrupoAlumnos>(this.url, grupo);
   }
+
+  delete(id:number):Observable<RelGrupoAlumnos>{
+    return this.http.delete<RelGrupoAlumnos>(this.url + '/' +id);
+  }
 }

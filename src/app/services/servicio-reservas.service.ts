@@ -22,6 +22,11 @@ export class ServicioReservasService {
     return this.http.get<Reserva>(this.url + '/id/' + id);
   }
 
+  //Obtener una reserva por id de usuario
+  getByUser(id:number):Observable<Reserva[]>{
+    return this.http.get<Reserva[]>(this.url + '/idUsuario/' + id);
+  }
+
   //Obtener una reserva
   getByFecha(fecha:string):Observable<Reserva[]>{
     return this.http.get<Reserva[]>(this.url + '/fecha/' + fecha);

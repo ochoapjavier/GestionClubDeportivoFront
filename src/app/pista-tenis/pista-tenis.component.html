@@ -1,21 +1,19 @@
 <div class="container">
-    <div class="table-responsive table-height">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Superficie</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pista of pistasTenis">
-                <td>{{pista.nombre}}</td>
-                <td>{{pista.superficie}}</td>
-                <td><button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-tenis-form', pista.id_pista]">Editar</button></td>
-                <td><button mat-flat-button color="primary" style="color: white;" (click)="delete(pista)">Eliminar</button></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col" *ngFor="let pista of pistasTenis">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ pista.nombre }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Superficie: {{ pista.superficie }}</p>
+                    <div class="d-flex justify-content-end">
+                       <button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-tenis-form', pista.id_pista]">Editar</button>
+                       <button mat-flat-button color="primary" style="color: white;" (click)="delete(pista)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="d-flex justify-content-end p-2">
         <button mat-raised-button color="accent" [routerLink]="['/pistas-tenis-form']">Nueva pista</button>

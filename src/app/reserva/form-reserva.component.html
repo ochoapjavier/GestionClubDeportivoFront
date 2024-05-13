@@ -27,7 +27,7 @@
                 <div class="form-group row card-text p-2">
                     <label class="col-form-label col-sm-2">Horario</label>
                     <div class="col-sm-6">
-                        <select formControlName="horario" [class.is-invalid] = "resForm.get('horario')?.invalid">
+                        <select formControlName="id_horario" [class.is-invalid] = "resForm.get('id_horario')?.invalid">
                             <option [ngValue]="horario" *ngFor="let horario of horariosDisp">{{horario.hora_inicio}} - {{horario.hora_fin}}</option>
                         </select>
                     </div>
