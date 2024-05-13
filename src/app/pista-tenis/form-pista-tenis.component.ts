@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServicioPistasService } from '../servicio-pistas.service';
-import { ServicioSuperficiesService } from '../servicio-superficies.service';
-import { Superficie } from '../superficie/superficie';
-import { PistaTenis } from './pista-tenis';
+import { Superficie } from '../../models/superficie';
+import { PistaTenis } from '../../models/pista-tenis';
+import { ServicioPistasService } from '../services/servicio-pistas.service';
+import { ServicioSuperficiesService } from '../services/servicio-superficies.service';
 
 @Component({
   selector: 'app-form-pista',

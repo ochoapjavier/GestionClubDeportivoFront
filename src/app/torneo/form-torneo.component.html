@@ -1,28 +1,44 @@
 <div class="container">
     <div class="card">
-        <h5 class="card-header bg-dark text-white">{{titulo}}</h5>
+        <h5 class="card-header bg-dark text-white">Nuevo </h5>
         <div class="card-body">
-            <form>
+            <form [formGroup]="competicionForm">
                 <div class="form-group row card-text p-2">
-                    <label for="nombre" class="col-form-label col-sm-2">Nombre torneo</label>
+                    <label for="nombre" class="col-form-label col-sm-2">Nombre competición</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre" [(ngModel)]="torneo.nombre_torneo">
+                        <input [class.is-invalid] = "competicionForm.get('nombre_torneo')?.invalid && competicionForm.get('nombre_torneo')?.touched" formControlName="nombre_torneo" type="text" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row card-text p-2">
                     <label for="categoria" class="col-form-label col-sm-2">Categoría</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="categoria" [(ngModel)]="torneo.categoria">
+                        <input [class.is-invalid] = "competicionForm.get('categoria')?.invalid && competicionForm.get('categoria')?.touched" formControlName="categoria" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="deporte" class="col-form-label col-sm-2">Deporte</label>
+                    <div class="col-sm-6">
+                        <select [class.is-invalid] = "competicionForm.get('deporte_id')?.invalid && competicionForm.get('deporte_id')?.touched" formControlName="deporte_id">
+                            <option *ngFor="let deporte of deportes" [ngValue]="deporte">{{deporte.nombre}}</option>
+                        </select>                       
+                    </div>
+                </div>
+                <div class="form-group row card-text p-2">
+                    <label for="estado" class="col-form-label col-sm-2">Estado</label>
+                    <div class="col-sm-6">
+                        <select [class.is-invalid] = "competicionForm.get('estado_id')?.invalid && competicionForm.get('estado_id')?.touched" formControlName="estado_id">
+                            <option *ngFor="let estado of estados" [ngValue]="estado">{{estado.estado}}</option>
+                        </select>                       
                     </div>
                 </div>
                 <div class="form-group row card-text p-2">
                     <label for="max_jugadores" class="col-form-label col-sm-2">Nº jugadores max</label>
                     <div class="col-sm-6">
-                        <input type="number" class="form-control" name="max_jugadores" [(ngModel)]="torneo.max_jugadores">
+                        <input [class.is-invalid] = "competicionForm.get('max_jugadores')?.invalid && competicionForm.get('max_jugadores')?.touched" formControlName="max_jugadores" type="number" class="form-control">
                     </div>
                 </div>
                 <div class="d-flex justify-content-start p-2">
-                    <button button mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!torneo.id else elseBlock">Registrar</button>
+                    <button [disabled]="competicionForm.invalid" button mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!id_competicion else elseBlock">Registrar</button>
                 </div>
                 <ng-template #elseBlock class="d-flex justify-content-start p-2">
                     <button button mat-flat-button color="primary" style="color: white;" (click)="update()">Actualizar</button>

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { forkJoin, Observable } from 'rxjs';
-import { Horario } from '../horario';
-import { ServicioHorariosService } from '../servicio-horarios.service';
-import { ServicioReservasService } from '../servicio-reservas.service';
-import { Reserva } from './reserva';
-import { ReservaHorario } from './reserva-horario';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Reserva } from '../../models/reserva';
+import { ServicioReservasService } from '../services/servicio-reservas.service';
+import { ServicioHorariosService } from '../services/servicio-horarios.service';
+import { Usuario } from 'src/models/usuario';
+import { ServicioPistasService } from '../services/servicio-pistas.service';
+import { PistaPadel } from 'src/models/pista-padel';
+import { PistaTenis } from 'src/models/pista-tenis';
 
 @Component({
   selector: 'app-reserva',
@@ -14,42 +14,45 @@ import { ReservaHorario } from './reserva-horario';
 })
 export class ReservaComponent implements OnInit {
 
-  reservas:Reserva[];
-  horarios:Horario[];
-  reservasConHorario:ReservaHorario[];
-  reserv$: Observable<Reserva[]>;
-  horar$: Observable<Horario[]>;
+  @Input() reservas:Reserva[];
+  @Input() usuario:Usuario;
+  pistasPadel: PistaPadel[];
+  pistasTenis: PistaTenis[];
   
 
-  constructor(private reservaService:ServicioReservasService, private horarioService: ServicioHorariosService) { 
+  constructor(private reservaService:ServicioReservasService, private pistaService: ServicioPistasService) { 
     this.reservas = [];
-    this.horarios = [];
-    this.reservasConHorario = [];
-
-    this.reserv$ = this.reservaService.getAll();
-    this.horar$ = this.horarioService.getAll();
+    this.usuario = new Usuario();
+    this.pistasPadel = [];
+    this.pistasTenis = []
   }
 
   ngOnInit(): void {  
-    forkJoin([
-      this.reserv$,
-      this.horar$
-    ]).subscribe(([r, h]) => {
-      this.reservas = r;
-      this.horarios = h;
-      /*this.reservasConHorario = this.reservas.map(val => {
-        return Object.assign({}, val, this.horarios.filter(v => v.id === val.horario.id)[0]); 
-      });*/
-    }); 
-    console.log('Reservas '+this.reservas)
+    this.pistaService.getAllTenis().subscribe(
+        res=>this.pistasTenis=res 
+    );
+
+    this.pistaService.getAllPadel().subscribe(
+      res=>this.pistasPadel=res 
+    );
   }
 
   delete(reserva:Reserva):void{
     this.reservaService.delete(reserva.id).subscribe(
-      res=>this.reservaService.getAll().subscribe(
+      res=>this.reservaService.getByUser(this.usuario.id).subscribe(
         response=>this.reservas=response
       )
     );
+  }
+
+  getPistaPadelNombre(idPista: string): string {
+    const pistaPadel = this.pistasPadel.find(pista => pista.id_pista === idPista);
+    return pistaPadel ? pistaPadel.nombre : '';
+  }
+  
+  getPistaTenisNombre(idPista: string): string {
+    const pistaPadel = this.pistasTenis.find(pista => pista.id_pista === idPista);
+    return pistaPadel ? pistaPadel.nombre : '';
   }
 
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Superficie } from './superficie/superficie';
+import { Superficie } from 'src/models/superficie';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicioPistasService } from '../servicio-pistas.service';
-import { PistaTenis } from './pista-tenis';
+import { PistaTenis } from '../../models/pista-tenis';
+import { ServicioPistasService } from '../services/servicio-pistas.service';
 
 @Component({
   selector: 'app-pista-tenis',
