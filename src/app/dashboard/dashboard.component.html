@@ -25,9 +25,9 @@
 
       <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión Personas</button>
       <mat-menu #personas="matMenu">
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Coordinador'}">Crear coordinador</button>
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Monitor'}">Crear monitor</button>
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario'}">Crear usuario</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Coordinador', userID: id}">Crear coordinador</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Monitor', userID: id}">Crear monitor</button>
+        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario', userID: id}">Crear usuario</button>
       </mat-menu>
 
       <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
@@ -88,7 +88,7 @@
                     Gestión de usuarios
                 </div>
                 <div class="card-body">
-                    <app-usuario [usuarios]= "usuarios"></app-usuario>
+                    <app-usuario [usuarios]= "usuarios" [userID]=usuario.id ></app-usuario>
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
                             Visor de monitores de la escuela
                         </div>
                         <div class="card-body">
-                            <app-usuario [usuarios]= "monitores"></app-usuario>
+                            <app-usuario [usuarios]= "monitores" [userID]=usuario.id></app-usuario>
                         </div>
                     </div>
                 </div>

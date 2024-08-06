@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
@@ -15,6 +15,8 @@ export class FormUsuarioComponent implements OnInit {
   id:number;
   titulo:string = "Usuario";
   rol:string = '';
+  userID:number;
+
 
   regForm = new FormGroup({
     id: new FormControl(''),
@@ -31,11 +33,14 @@ export class FormUsuarioComponent implements OnInit {
 
   constructor(private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
     this.id = 0;
+    this.userID = 0;
   }
 
   ngOnInit(): void {
     this.cargar();
     this.rol = this.activatedRoute.snapshot.queryParams['rol'];
+    this.userID = this.activatedRoute.snapshot.queryParams['userID'];
+
   }
 
   cargar():void{
@@ -69,8 +74,12 @@ export class FormUsuarioComponent implements OnInit {
     this.regForm.get('privacidad')?.setValue(Number(this.regForm.get('privacidad')?.value));
     this.regForm.get('comercial')?.setValue(Number(this.regForm.get('comercial')?.value));
     this.usuarioService.update(this.regForm.value).subscribe(
-      res=>this.router.navigate(['/dashboard', res.id])
+      res=>this.router.navigate(['/dashboard', this.userID])
     );
+  }
+
+  regresarDashboard() {
+    this.router.navigate(['/dashboard',this.userID]); // Ajusta la ruta según la configuración de tu aplicación
   }
 
 

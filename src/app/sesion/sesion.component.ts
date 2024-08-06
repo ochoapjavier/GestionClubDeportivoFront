@@ -16,7 +16,7 @@ export class SesionComponent implements OnInit {
   @Input() sesiones:Sesion[];
   @Input() usuario:Usuario ;
   @Input() inscripcionEnabled:boolean = false;
-  expanded: boolean = false;
+  expanded: {[key: number]: boolean} = {};
   
 
   constructor(private sesionService:ServicioSesionesService, private router:Router, private rcuService:ServicioRelCompeticionesUsuarioService, private ficheroService:ServicioFicherosService) {
@@ -34,8 +34,8 @@ export class SesionComponent implements OnInit {
     );
   }
 
-  toggleDescription() {
-    this.expanded = !this.expanded;
+  toggleDescription(id: number) {
+    this.expanded[id] = !this.expanded[id];
   }
 
 }

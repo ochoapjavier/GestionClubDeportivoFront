@@ -16,7 +16,7 @@
                     <p class="card-text">Email: {{usuario.email}}</p>
                     <p class="card-text">Rol: {{usuario.rol}}</p>
                     <div class="d-flex justify-content-end">
-                       <button mat-stroked-button color="accent" style="color: #ef5350;"  [routerLink]="['/usuarios-form', usuario.id]">Editar</button>
+                       <button mat-stroked-button color="accent" style="color: #ef5350;"  [routerLink]="['/usuarios-form', usuario.id]" [queryParams]="{userID: userID}">Editar</button>
                        <button mat-flat-button color="primary" style="color: white;" (click)="delete(usuario)">Eliminar</button>
                     </div>
                 </div>

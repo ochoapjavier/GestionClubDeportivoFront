@@ -11492,7 +11492,7 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 .sb-topnav.navbar-light #sidebarToggle {
-  color: #212529;
+  color: #23272f;
 }
 
 .sb-sidenav {
@@ -11542,7 +11542,7 @@ body {
 }
 
 .sb-sidenav-dark {
-  background-color: #212529;
+  background-color: #23272f;
   color: rgba(255, 255, 255, 0.5);
 }
 .sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
@@ -11572,13 +11572,13 @@ body {
 
 .sb-sidenav-light {
   background-color: #f8f9fa;
-  color: #212529;
+  color: #23272f;
 }
 .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: #adb5bd;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link {
-  color: #212529;
+  color: #23272f;
 }
 .sb-sidenav-light .sb-sidenav-menu .nav-link .sb-nav-link-icon {
   color: #adb5bd;
@@ -11944,7 +11944,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .bg-dark {
-  background: #242424;
+  background: #23272f;
 }
 
 .bg-gradient {
@@ -12151,7 +12151,7 @@ a:focus {
 }
 
 #navbar {
-  background: #212529;
+  background: #23272f;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 

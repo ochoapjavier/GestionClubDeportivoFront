@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "app-club-deportivo"
+  "defaultProject": "app-club-deportivo",
+  "cli": {
+    "analytics": "41bf9d5e-3f34-4399-b07b-2f871c7871c8"
+  }
 }

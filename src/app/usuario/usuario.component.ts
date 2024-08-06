@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Usuario } from '../../models/usuario';
 import { ServicioUsuarioService } from '../services/servicio-usuario.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -11,14 +12,17 @@ export class UsuarioComponent implements OnInit {
 
   @Input() usuarios:Usuario[];
   busquedaNombre: string = '';
+  @Input() userID:number;
 
-  constructor(private usuarioService:ServicioUsuarioService) { 
+  constructor(private usuarioService:ServicioUsuarioService, private activatedRoute:ActivatedRoute) { 
     this.usuarios =[];
+    this.userID = 0;
     
   }
 
   ngOnInit(): void {
-
+    console.log('Usuarios')
+    console.log(this.userID)
   }
 
   delete(usuario:Usuario):void{

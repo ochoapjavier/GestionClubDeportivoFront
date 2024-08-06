@@ -9,9 +9,7 @@
                         </div>                     
                         <form [formGroup]="loginForm">
                             <div class="card">
-                                <div class="card-header">
-                                    <h3 class="text-center">Bienvenid@ a MadSet Sports</h3>
-                                </div>
+                                <h3 class="card-header bg-dark text-white"> Bienvenid@ a Madset Sports</h3>
                                 <div class="card-body">
                                     <div class="text-center">
                                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +50,7 @@
                                             <button mat-flat-button color="primary" style="color: white;" (click)="login()">Acceder</button>
                                         </div>
                                         <div class="col-sm-6 text-right">
-                                            <button mat-flat-button color="accent" style="color: white;" [routerLink]="['/usuarios-form']"  [queryParams]="{rol: 'Usuario'}">Registro</button>
+                                            <button mat-flat-button color="accent" style="color: white;" [routerLink]="['/usuarios-form']"  [queryParams]="{rol: 'Usuario', userID: 0}">Registro</button>
                                         </div>    
                                     </div>            				
                                 </div>

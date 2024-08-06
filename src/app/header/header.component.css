@@ -1,56 +1,151 @@
-.header-top {
-    background: #212529;
-    color: #919194;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-  
-.header-top .header-top-socials {
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 12px 0px;
-}
-  
-.header-top .header-top-socials a {
-    color: #919194;
-    margin-right: 15px;
-    font-size: 16px;
-}
-  
-.header-top .header-top-info {
-    color: #919194;
-    font-size: 16px;
-}
-  
-.header-top .header-top-info a span {
-    color: #fff;
-}
-  
-.header-top .header-top-info a {
-    margin-left: 35px;
-    color: #919194;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-.justify-content-between {
-    justify-content: space-between !important;
-}
-
-.align-items-center {
-    align-items: center !important;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.navbar-nav.navbar-center {
-    position: absolute;
-    left: 50%;
-    transform: translatex(-50%);
-}
-
-.navbar-collapse {
-    flex-basis: 100%;
-    flex-grow: 1;
+/* Estilos para el header */
+.navigation {
+    background-color: #23272f;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .navigation a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .navigation a:hover {
+    color: #f75757; /* Color de hover para los enlaces */
+  }
+  
+  .header-top {
+    background-color: #23272f;
+    padding: 10px 0;
+  }
+  
+  .header-top-socials {
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
+  }
+  
+  .header-top-socials a {
+    color: white;
+    margin: 0 10px;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .header-top-socials a:hover {
+    color: #f75757; /* Color de hover para los iconos sociales */
+  }
+  
+  .header-top-info {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .header-top-info a {
+    color: white;
+    margin: 0 15px;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  
+  .header-top-info a:hover {
+    color: #f75757; /* Color de hover para la información de contacto */
+  }
+  
+  .navbar {
+    padding: 0 20px;
+  }
+  
+  .navbar-brand svg {
+    fill: #f75757;
+  }
+  
+  .navbar-nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    color: #f75757;
+  }
+  
+  .navbar-nav .nav-item .dropdown-menu {
+    background-color: #23272f;
+    border: none;
+  }
+  
+  .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+    color: #f75757;
+    background-color: transparent;
+  }
+  
+  .form-lg-inline a {
+    background-color: #f75757;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-lg-inline a:hover {
+    background-color: #d04646;
+    color: white;
+  }
+  
+  /* General alignment and spacing adjustments */
+  .header-top .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar .collapse {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .modern-button {
+    background-color: #f75757;
+    border: none;
+    color: white;
+    padding: 5px 30px; /* Adjusted padding for lower height and elongated shape */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px; /* Slightly smaller font size */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
+.modern-button:hover {
+    border: 1px solid white;
+}
