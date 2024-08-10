@@ -11,6 +11,7 @@ import { ServicioUsuarioService } from '../services/servicio-usuario.service';
 import { ServicioFicherosService } from '../services/servicio-ficheros.service';
 import { Sesion } from 'src/models/sesion';
 import { ServicioSesionesService } from '../services/servicio-sesiones.service';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
   imgUser: string;
 
   constructor(private sesionesService: ServicioSesionesService, private usuarioService:ServicioUsuarioService, private grupoService:ServicioGruposService, private activatedRoute:ActivatedRoute, 
-    private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService, private ficheroService:ServicioFicherosService) { 
+    private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService, private ficheroService:ServicioFicherosService, private authService: AuthService ) { 
     this.torneos = [];
     this.rankings = [];
     this.resToday = [];
@@ -167,5 +168,8 @@ export class DashboardComponent implements OnInit {
       }  
     );
   }
-  
+
+  logout(): void{
+    this.authService.logout();
+  }
 }

@@ -50,7 +50,6 @@ export class FormUsuarioComponent implements OnInit {
         if(this.id){
           this.usuarioService.getById(this.id).subscribe(
             us=>{
-              console.log(us);
               this.regForm.setValue(us)
             }
           );

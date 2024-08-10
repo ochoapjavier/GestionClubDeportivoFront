@@ -1,8 +1,6 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,39 +48,41 @@ import { FormSesionComponent } from './sesion/form-sesion.component';
 import { PrivacidadComponent } from './privacidad/privacidad/privacidad.component';
 import { TerminosComponent } from './terminos/terminos/terminos.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { TokenInterceptor } from './auth/token.interceptor';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes:Routes=[
-  {path:'', component:IndexComponent},
-  {path:'torneos', component:TorneoComponent},
-  {path:'torneos-form', component:FormTorneoComponent},
-  {path:'torneos-form/:id', component:FormTorneoComponent},
-  {path:'usuarios', component:UsuarioComponent},
-  {path:'usuarios-form', component:FormUsuarioComponent},
-  {path:'usuarios-form/:id', component:FormUsuarioComponent},
-  {path:'quienes-somos', component:QuienesSomosComponent},
-  {path:'login', component:LoginComponent},
-  {path:'contacto', component:ContactoComponent},
-  {path:'dashboard', component:DashboardComponent},
-  {path:'dashboard/:id', component:DashboardComponent},
-  {path:'pistas-tenis', component:PistaTenisComponent},
-  {path:'pistas-tenis-form', component:FormPistaTenisComponent},
-  {path:'pistas-tenis-form/:id', component:FormPistaTenisComponent},
-  {path:'pistas-padel', component:PistaPadelComponent},
-  {path:'pistas-padel-form', component:FormPistaPadelComponent},
-  {path:'pistas-padel-form/:id', component:FormPistaPadelComponent},
-  {path:'reservas', component:ReservaComponent},
-  {path:'reservas-form', component:FormReservaComponent},
-  {path:'reservas-form/:id', component:FormReservaComponent}, 
-  {path:'grupos', component:GrupoComponent},
-  {path:'grupos-form', component:FormGrupoComponent},
-  {path:'grupos-form/:id', component:FormGrupoComponent}, 
-  {path:'grupo-detalle', component:GrupoDetalleComponent},
-  {path:'grupo-detalle/:id', component:GrupoDetalleComponent},  
-  {path:'subida', component:SubidaFicheroComponent}, 
-  {path:'sesion-form', component:FormSesionComponent},
-  {path:'sesion-form/:id', component:FormSesionComponent},
-  {path:'privacidad', component:PrivacidadComponent},
-  {path:'terminos', component:TerminosComponent}
+  { path:'', component:IndexComponent},
+  { path:'torneos', component:TorneoComponent},
+  { path:'torneos-form', component:FormTorneoComponent},
+  { path:'torneos-form/:id', component:FormTorneoComponent},
+  { path:'usuarios', component:UsuarioComponent},
+  { path:'usuarios-form', component:FormUsuarioComponent},
+  { path:'usuarios-form/:id', component:FormUsuarioComponent},
+  { path:'quienes-somos', component:QuienesSomosComponent},
+  { path:'login', component:LoginComponent},
+  { path:'contacto', component:ContactoComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path:'pistas-tenis', component:PistaTenisComponent, canActivate: [AuthGuard] },
+  { path:'pistas-tenis-form', component:FormPistaTenisComponent, canActivate: [AuthGuard] },
+  { path:'pistas-tenis-form/:id', component:FormPistaTenisComponent, canActivate: [AuthGuard] },
+  { path:'pistas-padel', component:PistaPadelComponent, canActivate: [AuthGuard] },
+  { path:'pistas-padel-form', component:FormPistaPadelComponent, canActivate: [AuthGuard] },
+  { path:'pistas-padel-form/:id', component:FormPistaPadelComponent, canActivate: [AuthGuard] },
+  { path:'reservas', component:ReservaComponent},
+  { path:'reservas-form', component:FormReservaComponent},
+  { path:'reservas-form/:id', component:FormReservaComponent}, 
+  { path:'grupos', component:GrupoComponent},
+  { path:'grupos-form', component:FormGrupoComponent},
+  { path:'grupos-form/:id', component:FormGrupoComponent}, 
+  { path:'grupo-detalle', component:GrupoDetalleComponent},
+  { path:'grupo-detalle/:id', component:GrupoDetalleComponent},  
+  { path:'subida', component:SubidaFicheroComponent}, 
+  { path:'sesion-form', component:FormSesionComponent},
+  { path:'sesion-form/:id', component:FormSesionComponent},
+  { path:'privacidad', component:PrivacidadComponent},
+  { path:'terminos', component:TerminosComponent}
 ]
 
 @NgModule({
@@ -139,7 +139,14 @@ const routes:Routes=[
     ReactiveFormsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

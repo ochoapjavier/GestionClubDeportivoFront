@@ -21,8 +21,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Usuarios')
-    console.log(this.userID)
+
   }
 
   delete(usuario:Usuario):void{

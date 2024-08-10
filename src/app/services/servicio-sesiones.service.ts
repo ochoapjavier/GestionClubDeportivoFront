@@ -1,58 +1,77 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sesion } from 'src/models/sesion';
+import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioSesionesService {
 
-  private url:string="http://localhost:9090/sesion"
+  private url: string = 'http://localhost:9090/sesion';
 
-  constructor(private http: HttpClient) { }
- 
-  //Obtener una sesión
-  get(id:number):Observable<Sesion>{
-    return this.http.get<Sesion>(this.url + '/' +id);
-  }
-  //Obtener sesiones
-  getAll():Observable<Sesion[]>{
-    return this.http.get<Sesion[]>(this.url);
-  }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  //Obtener sesiones del usuario
-  getSesionesByUserID(id_usuario:number):Observable<Sesion[]>{
-    return this.http.get<Sesion[]>(this.url +"/user/"+ id_usuario);
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
   }
 
-  //Obtener sesiones del monitor
-  getSesionesByMonitorID(id_monitor:number):Observable<Sesion[]>{
-    return this.http.get<Sesion[]>(this.url +"/monitor/"+ id_monitor);
+  // Obtener una sesión
+  get(id: number): Observable<Sesion> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion>(`${this.url}/${id}`, { headers });
   }
 
-  //Obtener sesiones futuras del usuario
-  getSesionesFuturasByUserID(id_usuario:number):Observable<Sesion[]>{
-    return this.http.get<Sesion[]>(this.url +"/user/futuras/"+ id_usuario);
+  // Obtener sesiones
+  getAll(): Observable<Sesion[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion[]>(this.url, { headers });
   }
 
-  //Obtener sesiones futuras del monitor
-  getSesionesFuturasByMonitorID(id_monitor:number):Observable<Sesion[]>{
-    return this.http.get<Sesion[]>(this.url +"/monitor/futuras/"+ id_monitor);
+  // Obtener sesiones del usuario
+  getSesionesByUserID(id_usuario: number): Observable<Sesion[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion[]>(`${this.url}/user/${id_usuario}`, { headers });
   }
 
-  //Crear una sesión
-  create(sesion:Sesion):Observable<Sesion>{
-    return this.http.post<Sesion>(this.url, sesion);
+  // Obtener sesiones del monitor
+  getSesionesByMonitorID(id_monitor: number): Observable<Sesion[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion[]>(`${this.url}/monitor/${id_monitor}`, { headers });
   }
 
-  //Actualizar una sesión
-  update(sesion:Sesion):Observable<Sesion>{
-    return this.http.put<Sesion>(this.url, sesion);
+  // Obtener sesiones futuras del usuario
+  getSesionesFuturasByUserID(id_usuario: number): Observable<Sesion[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion[]>(`${this.url}/user/futuras/${id_usuario}`, { headers });
   }
 
-  //Eliminar una sesión
-  delete(id:number):Observable<Sesion>{
-    return this.http.delete<Sesion>(this.url + '/' +id);
+  // Obtener sesiones futuras del monitor
+  getSesionesFuturasByMonitorID(id_monitor: number): Observable<Sesion[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Sesion[]>(`${this.url}/monitor/futuras/${id_monitor}`, { headers });
+  }
+
+  // Crear una sesión
+  create(sesion: Sesion): Observable<Sesion> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Sesion>(this.url, sesion, { headers });
+  }
+
+  // Actualizar una sesión
+  update(sesion: Sesion): Observable<Sesion> {
+    const headers = this.getAuthHeaders();
+    return this.http.put<Sesion>(this.url, sesion, { headers });
+  }
+
+  // Eliminar una sesión
+  delete(id: number): Observable<Sesion> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete<Sesion>(`${this.url}/${id}`, { headers });
   }
 }
