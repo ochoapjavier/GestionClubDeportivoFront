@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private apiUrl = 'http://localhost:9090'; // URL del backend
+  private url: string =  environment.apiUrl + 'authenticate';
   private tokenSubject = new BehaviorSubject<string>(localStorage.getItem('token') ?? '');
 
   constructor(private http: HttpClient) { }
@@ -20,7 +20,7 @@ export class AuthService {
         'Content-Type': 'application/json'
     });
 
-    return this.http.post<any>(`${this.apiUrl}/authenticate`, { username, password }, { headers })
+    return this.http.post<any>(this.url, { username, password }, { headers })
         .pipe(
             map(response => {
                 const token = response.jwt;

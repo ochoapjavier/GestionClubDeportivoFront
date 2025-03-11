@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Deporte } from 'src/models/deporte';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioDeportesService {
-  private url: string = 'http://localhost:9090/deportes';
+  private url: string =  environment.apiUrl + 'deportes';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

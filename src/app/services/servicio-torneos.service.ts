@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Competicion } from 'src/models/competicion';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioTorneosService {
-
-  private url: string = "http://localhost:9090/competiciones";
+  private url: string = environment.apiUrl + 'competiciones';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

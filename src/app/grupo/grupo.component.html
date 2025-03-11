@@ -6,7 +6,9 @@
             </div>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+
+    <!-- Corregimos el ngClass para incluir todas las clases en las comillas -->
+    <div [ngClass]="usuario.rol === 'Monitor' ? 'row row-cols-1 row-cols-md-3 g-4 mt-4' : 'row row-cols-1 row-cols-md-2 g-4 mt-4'">
         <div class="col" *ngFor="let grupo of gruposFiltrados">
             <div class="card">
                 <div class="card-header bg-dark text-white">

@@ -41,8 +41,15 @@ export class DashboardComponent implements OnInit {
   reservasUsuario: Reserva[];
   imgUser: string;
 
-  constructor(private sesionesService: ServicioSesionesService, private usuarioService:ServicioUsuarioService, private grupoService:ServicioGruposService, private activatedRoute:ActivatedRoute, 
-    private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService, private ficheroService:ServicioFicherosService, private authService: AuthService ) { 
+  constructor(
+    private sesionesService: ServicioSesionesService, 
+    private usuarioService:ServicioUsuarioService, 
+    private grupoService:ServicioGruposService, 
+    private activatedRoute:ActivatedRoute, 
+    private torneoService:ServicioTorneosService, 
+    private reservaService:ServicioReservasService, 
+    private ficheroService:ServicioFicherosService, 
+    private authService: AuthService ) { 
     this.torneos = [];
     this.rankings = [];
     this.resToday = [];
@@ -171,5 +178,24 @@ export class DashboardComponent implements OnInit {
 
   logout(): void{
     this.authService.logout();
+  }
+
+  uploadFile(event: Event, usuario:Usuario) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+
+      this.ficheroService.upload(fileList[0]).subscribe(
+        res=> {
+          const updatedUsuario = { ...usuario, id_fichero: res.fileID };
+          this.usuarioService.update(updatedUsuario).subscribe(
+            resp=> {
+              alert('Imagen '+ res.fileName +' subido correctamente para el usuario ' + resp.nombre);
+              window.location.reload();
+            }  
+          );    
+        }      
+      );
+    }
   }
 }

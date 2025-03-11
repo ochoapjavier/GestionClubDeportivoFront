@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reserva } from 'src/models/reserva';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioReservasService {
-
-  private url: string = 'http://localhost:9090/reservas';
+  private url: string = environment.apiUrl + 'reservas';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

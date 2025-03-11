@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EstadoCompeticiones } from 'src/models/estado-competiciones';
 import { AuthService } from '../auth/auth.service'; // Importación ajustada
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioEstadosService {
-
-  private url: string = 'http://localhost:9090/estados';
+  private url: string = environment.apiUrl + 'estados';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

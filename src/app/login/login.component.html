@@ -3,13 +3,13 @@
         <div class="row mb-3">
             <div class="col">
                 <div class="card-body p-md-5 mx-md-4">    
-                    <div class="text-center">
-                        <div *ngIf="loginResp == false" class="bg-danger mb-2 rounded-pill">
-                            <h4 class="mt-3 text-white">Credenciales incorrectas</h4>     
-                        </div>                     
+                    <div class="text-center"> 
+                        <div *ngIf="loginResp == false" class="alert alert-danger" role="alert">
+                            Credenciales incorrectas
+                        </div>                   
                         <form [formGroup]="loginForm">
                             <div class="card">
-                                <h3 class="card-header bg-dark text-white"> Bienvenid@ a Madset Sports</h3>
+                                <h3 class="card-header bg-dark text-white"> Bienvenido/a a Madset Sports</h3>
                                 <div class="card-body">
                                     <div class="text-center">
                                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"

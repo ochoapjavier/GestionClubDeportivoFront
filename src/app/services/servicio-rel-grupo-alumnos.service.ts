@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RelGrupoAlumnos } from 'src/models/rel-grupo-alumnos';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioRelGrupoAlumnosService {
-
-  private url: string = 'http://localhost:9090/rel-grupo-alumnos';
+  private url: string = environment.apiUrl + 'rel-grupo-alumnos';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Superficie } from 'src/models/superficie';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioSuperficiesService {
-  
-  private url: string = 'http://localhost:9090/superficies';
+  private url: string = environment.apiUrl + 'superficies';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

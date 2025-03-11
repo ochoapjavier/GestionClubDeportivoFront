@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
 import { Grupo } from 'src/models/grupo';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioGruposService {
-  private url: string = 'http://localhost:9090/grupos';
+  private url: string = environment.apiUrl + 'grupos';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/models/usuario';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioUsuarioService {
-
-  private url: string = 'http://localhost:9090/usuarios';
+  private url: string = environment.apiUrl + 'usuarios';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

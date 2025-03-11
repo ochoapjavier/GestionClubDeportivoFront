@@ -5,12 +5,12 @@ import { Deporte } from 'src/models/deporte';
 import { DiasGrupo } from 'src/models/dias-grupo';
 import { Grupo } from 'src/models/grupo';
 import { Usuario } from 'src/models/usuario';
-import { Horario } from '../horario';
 import { ServicioDeportesService } from '../services/servicio-deportes.service';
 import { ServicioDiasGruposService } from '../services/servicio-dias-grupos.service';
 import { ServicioGruposService } from '../services/servicio-grupos.service';
 import { ServicioHorariosService } from '../services/servicio-horarios.service';
 import { ServicioUsuarioService } from '../services/servicio-usuario.service';
+import { Horario } from 'src/models/horario';
 
 @Component({
   selector: 'app-form-grupo',
@@ -84,6 +84,10 @@ export class FormGrupoComponent implements OnInit {
     this.grupoService.update(this.grupo).subscribe(
       res=>this.router.navigate(['/dashboard',this.id_usuario])
     );
+  }
+
+  regresarDashboard() {
+    this.router.navigate(['/dashboard',this.id_usuario]);
   }
 
 }

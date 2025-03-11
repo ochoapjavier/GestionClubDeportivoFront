@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sesion } from 'src/models/sesion';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioSesionesService {
-
-  private url: string = 'http://localhost:9090/sesion';
+  private url: string = environment.apiUrl + 'sesion';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

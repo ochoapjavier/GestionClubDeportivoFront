@@ -1,14 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Horario } from '../horario';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
+import { Horario } from 'src/models/horario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioHorariosService {
-  private url: string = 'http://localhost:9090/horarios';
+  private url: string = environment.apiUrl + 'horarios';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

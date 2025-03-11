@@ -134,18 +134,26 @@
     background-color: #f75757;
     border: none;
     color: white;
-    padding: 5px 30px; /* Adjusted padding for lower height and elongated shape */
+    padding: 5px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px; /* Slightly smaller font size */
+    font-size: 14px;
     margin: 4px 2px;
-    transition-duration: 0.4s;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
 }
 
 .modern-button:hover {
+    background-color: #ff4949; /* Cambia ligeramente el color al pasar el cursor */
+    transform: scale(1.05); /* Aumenta un poco el tamaño */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.22); /* Incrementa la sombra */
     border: 1px solid white;
+}
+
+.modern-button:active {
+    transform: scale(0.95); /* Reduce el tamaño para simular que se presiona */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.19); /* Reduce la sombra al presionar */
 }

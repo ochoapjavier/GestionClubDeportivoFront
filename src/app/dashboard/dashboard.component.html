@@ -13,74 +13,82 @@
   
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-      <img
-        class="avatar mat-elevation-z8"
-        src={{imgUser}}
-      />
+        <img
+            class="avatar mat-elevation-z8"
+            [src]="imgUser"
+            (click)="fileInput.click()"
+        />
+        <!-- Input para seleccionar el archivo, oculto por estilo -->
+        <input
+            type="file"
+            #fileInput
+            style="display: none"
+            (change)="uploadFile($event, usuario)"
+        />  
   
-      <h4 class="name text-white">{{usuario.nombre}} {{usuario.apellido1}}</h4>
-      <h5 class="name text-white">{{usuario.rol}}</h5>
-  
-      <mat-divider></mat-divider>
+        <h4 class="name text-white">{{usuario.nombre}} {{usuario.apellido1}}</h4>
+        <h5 class="name text-white">{{usuario.rol}}</h5>
+    
+        <mat-divider></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión Personas</button>
-      <mat-menu #personas="matMenu">
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Coordinador', userID: id}">Crear coordinador</button>
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Monitor', userID: id}">Crear monitor</button>
-        <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario', userID: id}">Crear usuario</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="personas">Gestión Personas</button>
+        <mat-menu #personas="matMenu">
+            <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Coordinador', userID: id}">Crear coordinador</button>
+            <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Monitor', userID: id}">Crear monitor</button>
+            <button mat-menu-item [routerLink]="['/usuarios-form']" [queryParams]="{rol: 'Usuario', userID: id}">Crear usuario</button>
+        </mat-menu>
 
-      <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
+        <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="group">Gestión Grupos</button>
-      <mat-menu #group="matMenu">
-        <button mat-menu-item [routerLink]="['/grupos-form']" [queryParams]="{userID: id}">Crear grupo</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="group">Gestión Grupos</button>
+        <mat-menu #group="matMenu">
+            <button mat-menu-item [routerLink]="['/grupos-form']" [queryParams]="{userID: id}">Crear grupo</button>
+        </mat-menu>
 
-      <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
+        <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="competiciones">Gestión Competiciones</button>
-      <mat-menu #competiciones="matMenu">
-        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Torneo', userID: id}">Crear Torneo</button>
-        <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Ranking', userID: id}">Crear Ranking</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="competiciones">Gestión Competiciones</button>
+        <mat-menu #competiciones="matMenu">
+            <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Torneo', userID: id}">Crear Torneo</button>
+            <button mat-menu-item [routerLink]="['/torneos-form']" [queryParams]="{tipo: 'Ranking', userID: id}">Crear Ranking</button>
+        </mat-menu>
 
-      <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
+        <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
-      <mat-menu #espacios="matMenu">
-        <button mat-menu-item [routerLink]="['/pistas-tenis']">Tenis</button>
-        <button mat-menu-item [routerLink]="['/pistas-padel']">Pádel</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="espacios">Gestión Espacios</button>
+        <mat-menu #espacios="matMenu">
+            <button mat-menu-item [routerLink]="['/pistas-tenis']" [queryParams]="{userID: id}">Tenis</button>
+            <button mat-menu-item [routerLink]="['/pistas-padel']" [queryParams]="{userID: id}">Pádel</button>
+        </mat-menu>
 
-      <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
+        <mat-divider *ngIf="usuario.rol == 'Coordinador'"></mat-divider>
 
-      <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="reservas">Reserva de pistas</button>
-      <mat-menu #reservas="matMenu">
-        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis', userID: id}">Nueva reserva de Tenis</button>
-        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel', userID: id}">Nueva reserva de Pádel</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Coordinador'" mat-button [matMenuTriggerFor]="reservas">Reserva de pistas</button>
+        <mat-menu #reservas="matMenu">
+            <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis', userID: id}">Nueva reserva de Tenis</button>
+            <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel', userID: id}">Nueva reserva de Pádel</button>
+        </mat-menu>
 
-      <button *ngIf="usuario.rol == 'Monitor'" mat-button [matMenuTriggerFor]="sesiones">Mis sesiones</button>
-      <mat-menu #sesiones="matMenu">
-        <button mat-menu-item [routerLink]="['/sesion-form']" [queryParams]="{userID: id}">Programar una sesión</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Monitor'" mat-button [matMenuTriggerFor]="sesiones">Mis sesiones</button>
+        <mat-menu #sesiones="matMenu">
+            <button mat-menu-item [routerLink]="['/sesion-form']" [queryParams]="{userID: id}">Programar una sesión</button>
+        </mat-menu>
 
-      <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="alquileres">Alquileres</button>
-      <mat-menu #alquileres="matMenu">
-        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis', userID: id}">Nueva reserva de Tenis</button>
-        <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel', userID: id}">Nueva reserva de Pádel</button>
-      </mat-menu>
+        <button *ngIf="usuario.rol == 'Usuario'" mat-button [matMenuTriggerFor]="alquileres">Alquileres</button>
+        <mat-menu #alquileres="matMenu">
+            <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Tenis', userID: id}">Nueva reserva de Tenis</button>
+            <button mat-menu-item [routerLink]="['/reservas-form']" [queryParams]="{deporte: 'Padel', userID: id}">Nueva reserva de Pádel</button>
+        </mat-menu>
 
-      <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
-      <button mat-button [routerLink]="['/login']" (click)="logout()">Cerrar sesión</button>
+        <button mat-button [routerLink]="['/login']" (click)="logout()">Cerrar sesión</button>
 
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content mat-elevation-z8">
         <div class="container-fluid px-4">
-            <h1 class="mt-4" >Panel de {{usuario.rol}}</h1>
+            <h1 class="mt-4" >Panel de {{usuario.rol}}: {{usuario.nombre}} {{usuario.apellido1}} {{usuario.apellido2}}</h1>
 
             <div *ngIf="usuario.rol == 'Coordinador'" class="card mb-4">
                 <div class="card-header bg-madset text-white">
@@ -102,7 +110,7 @@
                 </div>
             </div>
             <div *ngIf="usuario.rol == 'Coordinador'" class="row">
-                <div class="col-xl-6">
+                <div class="col-12 col-md-6">
                     <div class="card mb-4">
                         <div class="card-header bg-madset text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-120v-80h160v-124q-49-11-87.5-41.5T296-442q-75-9-125.5-65.5T120-640v-40q0-33 23.5-56.5T200-760h80v-80h400v80h80q33 0 56.5 23.5T840-680v40q0 76-50.5 132.5T664-442q-18 46-56.5 76.5T520-324v124h160v80H280Zm0-408v-152h-80v40q0 38 22 68.5t58 43.5Zm200 128q50 0 85-35t35-85v-240H360v240q0 50 35 85t85 35Zm200-128q36-13 58-43.5t22-68.5v-40h-80v152Zm-200-52Z"/></svg>

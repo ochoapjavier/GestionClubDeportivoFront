@@ -12,7 +12,7 @@
                     <p class="card-text">Fecha:{{ reserva.fecha }}</p>
                     <p class="card-text">Horario: {{ reserva.id_horario.hora_inicio }} - {{ reserva.id_horario.hora_fin }}</p>
                     <div class="d-flex justify-content-end">
-                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/reservas-form', reserva.id]">Editar</button>
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/reservas-form', reserva.id]" [queryParams]="{userID: usuario.id}">Editar</button>
                         <button *ngIf = "usuario.rol === 'Coordinador'" mat-flat-button color="primary" style="color: white;" (click)="delete(reserva)">Eliminar</button>
                     </div>
                 </div>

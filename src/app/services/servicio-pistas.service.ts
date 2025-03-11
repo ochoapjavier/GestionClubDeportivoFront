@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { PistaPadel } from 'src/models/pista-padel';
 import { PistaTenis } from 'src/models/pista-tenis';
 import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioPistasService {
-  private url: string = 'http://localhost:9090/pistas';
+  private url: string = environment.apiUrl + 'pistas';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

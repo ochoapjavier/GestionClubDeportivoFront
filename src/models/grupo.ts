@@ -1,5 +1,5 @@
 
-import { Horario } from "src/app/horario";
+import { Horario } from "./horario";
 import { Deporte } from "./deporte";
 import { DiasGrupo } from "./dias-grupo";
 import { Usuario } from "./usuario";

@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DiasGrupo } from 'src/models/dias-grupo';
 import { AuthService } from '../auth/auth.service'; // Importación ajustada
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioDiasGruposService {
-  private url: string = 'http://localhost:9090/dias-grupos';
+  private url: string = environment.apiUrl + 'dias-grupos';
+
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
