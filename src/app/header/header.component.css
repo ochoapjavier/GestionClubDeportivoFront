@@ -1,159 +1,154 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* Estilos para el header */
+/* Estilos para el header moderno */
 .navigation {
     background-color: #23272f;
     color: white;
     font-family: 'Roboto', sans-serif;
-  }
-  
-  .navigation a {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navigation a {
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .navigation a:hover {
-    color: #f75757; /* Color de hover para los enlaces */
-  }
-  
-  .header-top {
-    background-color: #23272f;
-    padding: 10px 0;
-  }
-  
-  .header-top-socials {
+    transition: all 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #f75757;
+    transform: translateY(-2px);
+}
+
+.header-top {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-top-socials {
     display: flex;
-    justify-content: flex-end;
+    gap: 1.2rem;
     align-items: center;
-  }
-  
-  .header-top-socials a {
-    color: white;
-    margin: 0 10px;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  
-  .header-top-socials a:hover {
-    color: #f75757; /* Color de hover para los iconos sociales */
-  }
-  
-  .header-top-info {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .header-top-info a {
-    color: white;
-    margin: 0 15px;
-    display: inline-block;
-    transition: color 0.3s ease;
-  }
-  
-  .header-top-info a:hover {
-    color: #f75757; /* Color de hover para la información de contacto */
-  }
-  
-  .navbar {
-    padding: 0 20px;
-  }
-  
-  .navbar-brand svg {
-    fill: #f75757;
-  }
-  
-  .navbar-nav {
+    padding-right: 1rem;
+}
+
+.header-top-socials a {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.header-top-socials a:hover {
+    transform: scale(1.1);
+    color: #f75757;
+}
+
+.navbar {
+    padding: 0.5rem 2rem;
+}
+
+.navbar-brand img {
+    max-height: 100px;
+    height: auto;
+    width: auto;
+    margin-top: -25px;
+    margin-bottom: -25px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+.navbar-nav {
     margin-left: auto;
     display: flex;
     align-items: center;
-  }
-  
-  .navbar-nav .nav-item .nav-link {
+    gap: 2rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
     color: white;
-    font-size: 16px;
-    padding: 10px 15px;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-nav .nav-item .nav-link:hover {
-    color: #f75757;
-  }
-  
-  .navbar-nav .nav-item .dropdown-menu {
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f75757;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.dropdown-menu {
     background-color: #23272f;
     border: none;
-  }
-  
-  .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
     color: white;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(247, 87, 87, 0.1);
     color: #f75757;
-    background-color: transparent;
-  }
-  
-  .form-lg-inline a {
-    background-color: #f75757;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .form-lg-inline a:hover {
-    background-color: #d04646;
-    color: white;
-  }
-  
-  /* General alignment and spacing adjustments */
-  .header-top .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .navbar .collapse {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  
-  .modern-button {
-    background-color: #f75757;
-    border: none;
-    color: white;
-    padding: 5px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+}
+
+.modern-button {
+    color: #f75757;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid #f75757;
     border-radius: 25px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background: transparent;
 }
 
 .modern-button:hover {
-    background-color: #ff4949; /* Cambia ligeramente el color al pasar el cursor */
-    transform: scale(1.05); /* Aumenta un poco el tamaño */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 12px 24px rgba(0, 0, 0, 0.22); /* Incrementa la sombra */
-    border: 1px solid white;
+    background-color: #f75757;
+    transform: translateY(-2px);
+    color: white;
 }
 
-.modern-button:active {
-    transform: scale(0.95); /* Reduce el tamaño para simular que se presiona */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.19); /* Reduce la sombra al presionar */
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-brand img {
+        max-height: 80px;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+    }
+    
+    .modern-button {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header-top-socials {
+        display: none;
+    }
+    
+    .navbar-brand img {
+        max-height: 60px;
+    }
 }

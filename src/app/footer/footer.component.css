@@ -1,44 +1,119 @@
 .footer {
-    background-color: #23272f; /* Cambia el color de fondo al corporativo */
-    color: white; /* Asegúrate de que el texto sea visible sobre el fondo oscuro */
-    padding: 10px 0; /* Reduce el padding vertical para hacer el footer más bajo */
-}
-
-.footer .logo h3 {
+    background-color: #23272f;
     color: white;
-    font-weight: bold;
+    padding: 2rem 0 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.footer p, .footer a {
-    color: white;
-    text-decoration: none;
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.footer a:hover {
-    color: #f75757; /* Color de hover para los enlaces */
+.logo {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.logo img {
+    max-height: 120px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+.widget h4 {
+    color: #f75757;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
 }
 
 .footer-menu li {
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .footer-menu li a {
-    color: white;
-    transition: color 0.3s ease;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f75757;
+    transition: width 0.3s ease;
 }
 
 .footer-menu li a:hover {
+    color: white;
+}
+
+.footer-menu li a:hover::after {
+    width: 100%;
+}
+
+.footer .fa {
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.footer .fa:hover {
+    color: #f75757;
+    transform: translateY(-2px);
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.footer p a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.footer p a:hover {
     color: #f75757;
 }
 
-.footer-socials li a {
-    color: white; /* Cambia el color de los enlaces sociales */
-    margin-left: 15px;
-    transition: color 0.3s ease;
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .footer {
+        padding: 3rem 0 1rem;
+    }
+    
+    .logo img {
+        max-height: 60px;
+    }
+    
+    .footer-menu li a {
+        font-size: 0.9rem;
+    }
 }
 
-.footer-socials li a:hover {
-    color: #f75757; /* Color de hover para los enlaces sociales */
+@media (max-width: 767.98px) {
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+    
+    .widget h4 {
+        font-size: 1.1rem;
+    }
+    
+    .footer-menu li {
+        margin-bottom: 0.8rem;
+    }
 }
-
-/* Puedes agregar más estilos según sea necesario */
