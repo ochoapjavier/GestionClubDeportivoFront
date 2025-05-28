@@ -1,0 +1,44 @@
+.footer {
+    background-color: #23272f; /* Cambia el color de fondo al corporativo */
+    color: white; /* Asegúrate de que el texto sea visible sobre el fondo oscuro */
+    padding: 10px 0; /* Reduce el padding vertical para hacer el footer más bajo */
+}
+
+.footer .logo h3 {
+    color: white;
+    font-weight: bold;
+}
+
+.footer p, .footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #f75757; /* Color de hover para los enlaces */
+}
+
+.footer-menu li {
+    margin-bottom: 10px;
+}
+
+.footer-menu li a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.footer-menu li a:hover {
+    color: #f75757;
+}
+
+.footer-socials li a {
+    color: white; /* Cambia el color de los enlaces sociales */
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-socials li a:hover {
+    color: #f75757; /* Color de hover para los enlaces sociales */
+}
+
+/* Puedes agregar más estilos según sea necesario */

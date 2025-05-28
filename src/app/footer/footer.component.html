@@ -1,67 +1,49 @@
 <footer class="footer section">
     <div class="container bg">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="widget">
-                    <h4 class="text-capitalize mb-4">Empresa</h4>
-
-                    <ul class="list-unstyled footer-menu lh-35">
-                        <li><a href="#">Reservas</a></li>
-                        <li><a href="#">Aviso legal</a></li>
-                        <li><a href="#">Politica de privacidad</a></li>
-                        <li><a href="#">Politica de cookies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-6 col-sm-6">
-                <div class="widget">
-                    <h4 class="text-capitalize mb-4">Quick Links</h4>
-
-                    <ul class="list-unstyled footer-menu lh-35">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="widget">
-                    <h4 class="text-capitalize mb-4">Suscríbete!</h4>
-                    <p>Entérate de las últimas novedades</p>
-
-                    <form action="#" class="sub-form">
-                        <input type="text" class="form-control mb-3" placeholder="Subscribe Now ...">
-                        <a href="#" class="btn btn-main btn-small">subscribe</a>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-3 ml-auto col-sm-6">
+            <div class="col-lg-4 col-md-6 col-sm-6">
                 <div class="widget">
                     <div class="logo mb-4">
-                        <h3>Madset Sports</h3>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="50" height="50" viewBox="0 0 579.000000 549.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0.000000,549.000000) scale(0.100000,-0.100000)" fill="#f75757" stroke="none">
+                                <path d="M120 5373 c0 -54 -23 -1229 -51 -2611 -28 -1383 -48 -2516 -46 -2518
+                                2 -3 170 91 373 209 l369 213 8 790 c4 434 10 1131 15 1550 l7 761 510 -485
+                                510 -484 21 -87 c28 -114 73 -219 132 -311 121 -188 281 -316 642 -513 357
+                                -195 424 -239 514 -339 100 -110 153 -239 162 -393 19 -308 -128 -518 -403
+                                -579 -347 -77 -703 30 -1014 305 -37 33 -70 59 -73 59 -3 0 -5 -159 -4 -352
+                                l3 -353 50 -33 c111 -73 266 -137 425 -174 110 -25 410 -36 531 -19 410 58
+                                711 270 874 614 87 183 122 380 112 632 -15 361 -128 604 -387 830 l-44 39
+                                256 250 c141 138 517 509 836 823 l579 573 8 -1088 c4 -598 11 -1296 14 -1552
+                                l6 -465 354 -213 c194 -117 356 -211 358 -208 7 6 -96 5218 -103 5225 -3 3 -8
+                                0 -12 -6 -37 -58 -2377 -3273 -2383 -3273 -4 0 -45 23 -90 51 -45 28 -177 103
+                                -293 166 -272 149 -337 191 -416 272 -110 112 -157 226 -167 401 -12 247 86
+                                440 275 538 92 48 131 59 237 72 234 29 532 -60 748 -223 l87 -66 -2 337 -3
+                                337 -70 37 c-158 83 -343 128 -566 135 -364 13 -645 -90 -881 -323 -164 -163
+                                -263 -358 -315 -623 l-8 -43 -834 1106 c-459 608 -838 1106 -842 1106 -5 0 -9
+                                -44 -9 -97z"/>
+                            </g>
+                        </svg>
                     </div>
-                    <h6><a href="tel:+666 66 66 66" >{{telefono}}</a></h6>
-                    <a href="mailto:madsetsports@gmail.com"><span class="text-color h4">{{email}}</span></a>
                 </div>
             </div>
-        </div>
-        
-        <div class="footer-btm pt-4">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="copyright">
-                        &copy; Página creada por <span class="text-color">Javier Ochoa Pérez.</span> 
-                    </div>
-                </div>
-                <div class="col-lg-6 text-left text-lg-right">
-                    <ul class="list-inline footer-socials">
-                        <li class="list-inline-item"><a href="https://www.facebook.com"><i class="ti-facebook mr-2"></i>Facebook</a></li>
-                        <li class="list-inline-item"><a href="https://twitter.com"><i class="ti-twitter mr-2"></i>Twitter</a></li>
-                        <li class="list-inline-item"><a href="https://www.instagram.com"><i class="ti-instagram mr-2 "></i>Instagram</a></li>
-                        <li class="list-inline-item"><a href="https://www.youtube.com"><i class="ti-youtube mr-2 "></i>Youtube</a></li>
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="widget">
+                    <h4 class="text-capitalize mb-4">Conócenos</h4>
+                    <ul class="list-unstyled footer-menu lh-35">
+                        <li><a [routerLink]="['/quienes-somos']">QUIENES SOMOS</a></li>
+                        <li><a [routerLink]="['/escuela-tenis']">ESCUELA DE TENIS</a></li>
+                        <li><a [routerLink]="['/escuela-padel']">ESCUELA DE PÁDEL</a></li>
+                        <li><a [routerLink]="['/contacto']">CONTACTO</a></li>
                     </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 ml-auto col-sm-6">
+                <div class="widget">
+                    <h4 class="text-capitalize mb-4">Contacta</h4>
+                    <p><i class="fas fa-phone"></i> 666 66 66 66</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:madsetsporst@gmail.com"> madsetsporst@gmail.com</a></p>
                 </div>
             </div>
         </div>

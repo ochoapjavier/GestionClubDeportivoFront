@@ -8,7 +8,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-6 offset-lg-3">
-            <div class="btn-group" role="group" aria-label="Filtrar por estado">
+            <div class="btn-group d-flex flex-wrap" role="group" aria-label="Filtrar por estado">
                 <button mat-stroked-button color="primary" (click)="filtrarPorEstado('Inscripción')" class="mat-inscripcion-button">Inscripción</button>
                 <button mat-stroked-button color="warn" (click)="filtrarPorEstado('En juego')" class="mat-curso-button">En juego</button>
                 <button mat-stroked-button color="accent" (click)="filtrarPorEstado('Finalizado')" class="mat-finalizado-button">Finalizado</button>
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
         <div class="col" *ngFor="let torneo of torneosFiltrados">
             <div class="card" [ngClass]="{
                 'bg-green-border': torneo.estado_id.estado === 'Inscripción',

@@ -1,4 +1,4 @@
-import { Horario } from "../app/horario";
+import { Horario } from "./horario";
 import { Usuario } from "./usuario";
 
 export class Reserva {

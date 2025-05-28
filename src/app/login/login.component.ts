@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { ServicioLoginService } from '../services/servicio-login.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   })
 
-  constructor(private loginService:ServicioLoginService, private router:Router) { 
+  constructor(private loginService:ServicioLoginService, private router:Router, private authService: AuthService) { 
     this.respuesta = new Usuario;
     this.loginResp = true;
   }
@@ -29,19 +30,24 @@ export class LoginComponent implements OnInit {
     
   }
 
-  login():void{
-    this.usuario.email = this.loginForm.get('email')?.value;
-    this.usuario.password = this.loginForm.get('password')?.value;
-    this.loginService.login(this.usuario).subscribe(
-      res=> {
-        if(res.id == 0) {
-          this.loginResp = false
-          this.router.navigate(['/login']);
+  login() {
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
+  
+    this.authService.login(email, password).subscribe({
+      next: (userId) => {
+        if (userId) {
+          this.router.navigate(['/dashboard', userId]);
         } else {
-          this.router.navigate(['/dashboard',res.id]);
+          this.loginResp = false;
+          this.router.navigate(['/login']);
         }
-      }  
-      
-    );
+      },
+      error: (error) => {
+        console.error('Login failed', error);
+        this.loginResp = false;
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

@@ -1,54 +1,71 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reserva } from 'src/models/reserva';
+import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioReservasService {
+  private url: string = environment.apiUrl + 'reservas';
 
-  private url:string="http://localhost:9090/reservas"
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
-  constructor(private http: HttpClient) { }
-    
-  //Obtener reservas
-  getAll():Observable<Reserva[]>{
-    return this.http.get<Reserva[]>(this.url);
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
   }
 
-  //Obtener una reserva por id
-  getById(id:number):Observable<Reserva>{
-    return this.http.get<Reserva>(this.url + '/id/' + id);
+  // Obtener reservas
+  getAll(): Observable<Reserva[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Reserva[]>(this.url, { headers });
   }
 
-  //Obtener una reserva por id de usuario
-  getByUser(id:number):Observable<Reserva[]>{
-    return this.http.get<Reserva[]>(this.url + '/idUsuario/' + id);
+  // Obtener una reserva por id
+  getById(id: number): Observable<Reserva> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Reserva>(`${this.url}/id/${id}`, { headers });
   }
 
-  //Obtener una reserva
-  getByFecha(fecha:string):Observable<Reserva[]>{
-    return this.http.get<Reserva[]>(this.url + '/fecha/' + fecha);
+  // Obtener una reserva por id de usuario
+  getByUser(id: number): Observable<Reserva[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Reserva[]>(`${this.url}/idUsuario/${id}`, { headers });
   }
 
-  //Obtener reservas por pista y fecha
-  getByDayDate(id:number, fecha:string):Observable<Reserva>{
-    return this.http.get<Reserva>(this.url + '/' + id + '/' + fecha);
+  // Obtener una reserva por fecha
+  getByFecha(fecha: string): Observable<Reserva[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Reserva[]>(`${this.url}/fecha/${fecha}`, { headers });
   }
 
-  //Crear una reserva
-  create(reserva:Reserva):Observable<Reserva>{
-    return this.http.post<Reserva>(this.url, reserva);
+  // Obtener reservas por pista y fecha
+  getByDayDate(id: number, fecha: string): Observable<Reserva> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Reserva>(`${this.url}/${id}/${fecha}`, { headers });
   }
 
-  //Actualizar una reserva
-  update(reserva:Reserva):Observable<Reserva>{
-    return this.http.put<Reserva>(this.url, reserva);
+  // Crear una reserva
+  create(reserva: Reserva): Observable<Reserva> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Reserva>(this.url, reserva, { headers });
   }
 
-  //Eliminar una reserva
-  delete(id:number):Observable<Reserva>{
-    return this.http.delete<Reserva>(this.url + '/' + id);
+  // Actualizar una reserva
+  update(reserva: Reserva): Observable<Reserva> {
+    const headers = this.getAuthHeaders();
+    return this.http.put<Reserva>(this.url, reserva, { headers });
+  }
+
+  // Eliminar una reserva
+  delete(id: number): Observable<Reserva> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete<Reserva>(`${this.url}/${id}`, { headers });
   }
 }

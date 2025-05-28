@@ -1,0 +1,51 @@
+.banner-header {
+    background-image: url('../../assets/images/padel-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.banner-header h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: white; /* Mueve el estilo aquí */
+}
+
+.banner-header p {
+    font-size: 1.5em;
+}
+
+.intro-header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.intro-header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.intro-header p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.session-group {
+    background-color: #23272f; /* Cambiado a #23272f */
+    color: white;
+}
+
+.private-class {
+    background-color: #f75757; /* Cambiado a #f75757 */
+    color: white;
+}
+
+.sign-up {
+    background-color: #f75757;
+    color: white;
+}

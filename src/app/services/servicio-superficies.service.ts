@@ -1,44 +1,59 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Superficie } from 'src/models/superficie';
+import { AuthService } from '../auth/auth.service'; // Asegúrate de que la ruta sea correcta
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioSuperficiesService {
-  
-  private url:string="http://localhost:9090/superficies"
+  private url: string = environment.apiUrl + 'superficies';
 
-  constructor(private http: HttpClient) { }
-    
-  //Obtener pistas
-  getAllTenis():Observable<Superficie[]>{
-    return this.http.get<Superficie[]>(this.url+'/tenis');
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token ? `Bearer ${token}` : ''
+    });
   }
 
-  //Obtener pistas
-  getAllPadel():Observable<Superficie[]>{
-    return this.http.get<Superficie[]>(this.url+'/padel');
+  // Obtener superficies de tenis
+  getAllTenis(): Observable<Superficie[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Superficie[]>(`${this.url}/tenis`, { headers });
   }
 
-  //Obtener un torneo
-  get(id:number):Observable<Superficie>{
-    return this.http.get<Superficie>(this.url + '/tenis' + '/' +id);
+  // Obtener superficies de pádel
+  getAllPadel(): Observable<Superficie[]> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Superficie[]>(`${this.url}/padel`, { headers });
   }
 
-  //Crear un torneo
-  create(pista:Superficie):Observable<Superficie>{
-    return this.http.post<Superficie>(this.url +'/tenis', pista);
+  // Obtener una superficie por ID
+  get(id: number): Observable<Superficie> {
+    const headers = this.getAuthHeaders();
+    return this.http.get<Superficie>(`${this.url}/tenis/${id}`, { headers });
   }
 
-  //Actualizar un torneo
-  update(pista:Superficie):Observable<Superficie>{
-    return this.http.put<Superficie>(this.url +'/tenis', pista);
+  // Crear una superficie
+  create(pista: Superficie): Observable<Superficie> {
+    const headers = this.getAuthHeaders();
+    return this.http.post<Superficie>(`${this.url}/tenis`, pista, { headers });
   }
 
-  //Eliminar un torneo
-  delete(id:number):Observable<Superficie>{
-    return this.http.delete<Superficie>(this.url +'/tenis' + '/' +id);
+  // Actualizar una superficie
+  update(pista: Superficie): Observable<Superficie> {
+    const headers = this.getAuthHeaders();
+    return this.http.put<Superficie>(`${this.url}/tenis`, pista, { headers });
+  }
+
+  // Eliminar una superficie
+  delete(id: number): Observable<Superficie> {
+    const headers = this.getAuthHeaders();
+    return this.http.delete<Superficie>(`${this.url}/tenis/${id}`, { headers });
   }
 }

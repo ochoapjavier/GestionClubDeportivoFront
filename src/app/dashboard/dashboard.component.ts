@@ -11,6 +11,7 @@ import { ServicioUsuarioService } from '../services/servicio-usuario.service';
 import { ServicioFicherosService } from '../services/servicio-ficheros.service';
 import { Sesion } from 'src/models/sesion';
 import { ServicioSesionesService } from '../services/servicio-sesiones.service';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -40,8 +41,15 @@ export class DashboardComponent implements OnInit {
   reservasUsuario: Reserva[];
   imgUser: string;
 
-  constructor(private sesionesService: ServicioSesionesService, private usuarioService:ServicioUsuarioService, private grupoService:ServicioGruposService, private activatedRoute:ActivatedRoute, 
-    private torneoService:ServicioTorneosService, private reservaService:ServicioReservasService, private ficheroService:ServicioFicherosService) { 
+  constructor(
+    private sesionesService: ServicioSesionesService, 
+    private usuarioService:ServicioUsuarioService, 
+    private grupoService:ServicioGruposService, 
+    private activatedRoute:ActivatedRoute, 
+    private torneoService:ServicioTorneosService, 
+    private reservaService:ServicioReservasService, 
+    private ficheroService:ServicioFicherosService, 
+    private authService: AuthService ) { 
     this.torneos = [];
     this.rankings = [];
     this.resToday = [];
@@ -167,5 +175,27 @@ export class DashboardComponent implements OnInit {
       }  
     );
   }
-  
+
+  logout(): void{
+    this.authService.logout();
+  }
+
+  uploadFile(event: Event, usuario:Usuario) {
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = element.files;
+    if (fileList) {
+
+      this.ficheroService.upload(fileList[0]).subscribe(
+        res=> {
+          const updatedUsuario = { ...usuario, id_fichero: res.fileID };
+          this.usuarioService.update(updatedUsuario).subscribe(
+            resp=> {
+              alert('Imagen '+ res.fileName +' subido correctamente para el usuario ' + resp.nombre);
+              window.location.reload();
+            }  
+          );    
+        }      
+      );
+    }
+  }
 }

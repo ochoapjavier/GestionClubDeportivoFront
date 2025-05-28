@@ -16,6 +16,7 @@ export class FormUsuarioComponent implements OnInit {
   titulo:string = "Usuario";
   rol:string = '';
   userID:number;
+  errorMessage: string;
 
 
   regForm = new FormGroup({
@@ -34,13 +35,13 @@ export class FormUsuarioComponent implements OnInit {
   constructor(private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
     this.id = 0;
     this.userID = 0;
+    this.errorMessage = "";
   }
 
   ngOnInit(): void {
     this.cargar();
     this.rol = this.activatedRoute.snapshot.queryParams['rol'];
     this.userID = this.activatedRoute.snapshot.queryParams['userID'];
-
   }
 
   cargar():void{
@@ -50,7 +51,6 @@ export class FormUsuarioComponent implements OnInit {
         if(this.id){
           this.usuarioService.getById(this.id).subscribe(
             us=>{
-              console.log(us);
               this.regForm.setValue(us)
             }
           );
@@ -58,15 +58,36 @@ export class FormUsuarioComponent implements OnInit {
       }
     );
   }
-  create():void{
+  
+  create(): void {
+    // Actualiza los valores del formulario antes de enviarlo
     this.regForm.get('rol')?.setValue(this.rol);
     this.regForm.get('terminos')?.setValue(Number(this.regForm.get('terminos')?.value));
     this.regForm.get('privacidad')?.setValue(Number(this.regForm.get('privacidad')?.value));
     this.regForm.get('comercial')?.setValue(Number(this.regForm.get('comercial')?.value));
-    
-    this.usuarioService.create(this.regForm.value).subscribe(
-      res=>this.router.navigate(['/dashboard',res.id])
-    );
+  
+    // Llama al servicio para crear el usuario
+    this.usuarioService.create(this.regForm.value).subscribe({
+      next: res => {
+        if (this.userID == 0){
+          this.router.navigate(['/dashboard', res.id]); // Redirigir a la página del dashboard del nuevo usuario
+        }
+        else{
+          this.router.navigate(['/dashboard', this.userID]); // Redirigir a la página del dashboard del coordinador
+        }
+        
+      },
+      error: err => {
+        if (err.status === 409) {
+          // Si es un conflicto de email duplicado
+          this.errorMessage = 'El correo ya está en uso. Por favor, elige otro.';
+        } else {
+          // Para otros errores
+          this.errorMessage = 'Ocurrió un error al crear el usuario. Inténtalo de nuevo más tarde.';
+        }
+        this.regForm.reset();
+      }
+    });
   }
 
   update():void{
@@ -79,8 +100,7 @@ export class FormUsuarioComponent implements OnInit {
   }
 
   regresarDashboard() {
-    this.router.navigate(['/dashboard',this.userID]); // Ajusta la ruta según la configuración de tu aplicación
+    this.router.navigate(['/dashboard',this.userID]);
   }
-
 
 }

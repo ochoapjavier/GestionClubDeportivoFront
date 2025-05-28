@@ -1,11 +1,13 @@
+import { Superficie } from "./superficie";
+
 export class PistaTenis {
     id_pista:string;
     nombre:string;
-    superficie:string;
+    id_superficie:Superficie;
 
     constructor(){
         this.id_pista="";
         this.nombre="";
-        this.superficie="";
+        this.id_superficie = new Superficie();
     }
 }

@@ -24,7 +24,6 @@ export class SubidaFicheroComponent implements OnInit {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      console.log("FileUpload -> files", fileList);
       this.ficheroService.upload(fileList[0]).subscribe(
         res=> {
           alert('Se ha subido el fichero con id ' + res.fileID);      

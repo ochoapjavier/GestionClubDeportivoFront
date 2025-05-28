@@ -1,4 +1,4 @@
-import { Horario } from "src/app/horario";
+import { Horario } from "./horario";
 import { Grupo } from "./grupo";
 import { Reserva } from "./reserva";
 
