@@ -15,7 +15,7 @@ export class PistaPadelComponent implements OnInit {
 
   pistasPadel:PistaPadel[]= [];
   superficiesPista: Superficie[] = [];
-  id_usuario: number;
+  userID: number;
 
   constructor(
     private pistaService:ServicioPistasService, 
@@ -23,7 +23,7 @@ export class PistaPadelComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router:Router
   ) { 
-    this.id_usuario = this.activatedRoute.snapshot.queryParams['userID'];
+    this.userID = this.activatedRoute.snapshot.queryParams['userID'];
   }
 
   ngOnInit(): void {
@@ -45,7 +45,10 @@ export class PistaPadelComponent implements OnInit {
   }
 
   regresarDashboard() {
-    this.router.navigate(['/dashboard',this.id_usuario]); // Ajusta la ruta según la configuración de tu aplicación
+    this.router.navigate(['/dashboard', this.userID]);
   }
 
+  navigateToForm() {
+    this.router.navigate(['/pistas-padel-form'], { queryParams: { userID: this.userID } });
+  }
 }

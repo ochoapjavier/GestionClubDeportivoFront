@@ -24,7 +24,6 @@ export class PistaTenisComponent implements OnInit {
     private router:Router
   ) {
     this.id_usuario = this.activatedRoute.snapshot.queryParams['userID'];
-    
   }
 
   ngOnInit(): void {

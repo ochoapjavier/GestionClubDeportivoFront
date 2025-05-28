@@ -1,49 +1,70 @@
-<div class="container">
-    <div class="card">
-        <h5 class="card-header bg-dark text-white">{{titulo}}</h5>
-        <div class="card-body">
-            <form>
-                <div class="form-group row card-text p-2">
-                    <label for="nombre" class="col-form-label col-sm-2">Nombre pista</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="nombre" [(ngModel)]="pista.nombre" maxlength="50">
-                    </div>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    {{titulo}}
                 </div>
-                <div class="form-group row card-text p-2">
-                    <label for="superficie" class="col-form-label col-sm-2">Superficie</label>
-                    <div class="col-sm-6">
-                        <select name="superficie" [(ngModel)]="selectedSuperficieId" (change)="onSuperficieChange($event)">
-                            <option [value]="sup.id" *ngFor="let sup of superficiesPista">{{sup.nombre}}</option>
-                        </select>
-                    </div>                   
+                <div class="card-body">
+                    <form>
+                        <!-- Nombre de la pista -->
+                        <div class="form-group row mb-3">
+                            <label for="nombre" class="col-form-label col-sm-2">Nombre pista</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="nombre" [(ngModel)]="pista.nombre" maxlength="50">
+                            </div>
+                        </div>
+
+                        <!-- Superficie de la pista -->
+                        <div class="form-group row mb-3">
+                            <label for="superficie" class="col-form-label col-sm-2">Superficie</label>
+                            <div class="col-sm-10">
+                                <select name="superficie" [(ngModel)]="selectedSuperficieId" class="form-control" (change)="onSuperficieChange($event)">
+                                    <option [value]="sup.id" *ngFor="let sup of superficiesPista">{{sup.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Tipo de pared -->
+                        <div class="form-group row mb-3">
+                            <label for="tipoPared" class="col-form-label col-sm-2">Tipo de pared</label>
+                            <div class="col-sm-10">
+                                <select name="tipoPared" [(ngModel)]="pista.tipoPared" class="form-control">
+                                    <option value="Panorámica">Panorámica</option>
+                                    <option value="Cristal">Cristal</option>
+                                    <option value="Muro">Muro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Cobertura -->
+                        <div class="form-group row mb-3">
+                            <label for="cobertura" class="col-form-label col-sm-2">Cobertura</label>
+                            <div class="col-sm-10">
+                                <select name="cobertura" [(ngModel)]="pista.cobertura" class="form-control">
+                                    <option value="Indoor">Indoor</option>
+                                    <option value="Cubierta">Cubierta</option>
+                                    <option value="Exterior">Exterior</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Botón de acción (Registrar/Actualizar) -->
+                        <div class="d-flex justify-content-start mb-3">
+                            <button mat-flat-button color="primary" class="text-white" (click)="create()" *ngIf="!pista.id_pista else elseBlock">Registrar</button>
+                        </div>
+
+                        <ng-template #elseBlock>
+                            <div class="d-flex justify-content-start mb-3">
+                                <button mat-flat-button color="primary" class="text-white" (click)="update()">Actualizar</button>
+                            </div>
+                        </ng-template>
+                    </form>
                 </div>
-                <div class="form-group row card-text p-2">
-                    <label for="tipoPared" class="col-form-label col-sm-2">Tipo de pared</label>
-                    <div class="col-sm-6">
-                        <select name="tipoPared" [(ngModel)]="pista.tipoPared">
-                            <option value="Panorámica">Panorámica</option>
-                            <option value="Cristal">Cristal</option>
-                            <option value="Muro">Muro</option>                     
-                        </select>
-                    </div>                  
-                </div>
-                <div class="form-group row card-text p-2">
-                    <label for="cobertura" class="col-form-label col-sm-2">Cobertura</label>
-                    <div class="col-sm-6">
-                        <select name="cobertura" [(ngModel)]="pista.cobertura">
-                            <option value="Indoor">Indoor</option>
-                            <option value="Cubierta">Cubierta</option>
-                            <option value="Exterior">Exterior</option>                     
-                        </select>
-                    </div>                  
-                </div>
-                <div class="d-flex justify-content-start p-2">
-                    <button button button mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!pista.id_pista else elseBlock">Registrar</button>
-                </div>
-                <ng-template #elseBlock class="d-flex justify-content-start p-2">
-                    <button button button mat-flat-button color="primary" style="color: white;" (click)="update()">Actualizar</button>
-                </ng-template>
-            </form>
+            </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <button mat-raised-button color="primary" style="color: white;" (click)="regresarDashboard()">Volver al Dashboard</button>
     </div>
 </div>

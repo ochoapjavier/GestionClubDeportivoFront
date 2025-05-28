@@ -16,13 +16,16 @@ export class FormPistaTenisComponent implements OnInit {
   titulo: string = "Pista";
   superficiesPista: Superficie[] = [];
   selectedSuperficieId: number = 0;
+  id_usuario: number;
 
   constructor(
     private pistaService: ServicioPistasService,
     private superficieService: ServicioSuperficiesService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.id_usuario = this.activatedRoute.snapshot.queryParams['userID'];
+  }
 
   ngOnInit(): void {
     this.superficieService.getAllTenis().subscribe(
@@ -67,13 +70,17 @@ export class FormPistaTenisComponent implements OnInit {
 
   create(): void {
     this.pistaService.createTenis(this.pista).subscribe(
-      res => this.router.navigate(['/pistas-tenis'])
+      res => this.router.navigate(['/pistas-tenis'], { queryParams: { userID: this.id_usuario } })
     );
   }
 
   update(): void {
     this.pistaService.updateTenis(this.pista).subscribe(
-      res => this.router.navigate(['/pistas-tenis'])
+      res => this.router.navigate(['/pistas-tenis'], { queryParams: { userID: this.id_usuario } })
     );
+  }
+
+  regresarDashboard(): void {
+    this.router.navigate(['/dashboard', this.id_usuario]);
   }
 }

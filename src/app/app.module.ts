@@ -50,6 +50,8 @@ import { SesionComponent } from './sesion/sesion.component';
 import { FormSesionComponent } from './sesion/form-sesion.component';
 import { PrivacidadComponent } from './privacidad/privacidad/privacidad.component';
 import { TerminosComponent } from './terminos/terminos/terminos.component';
+import { EscuelaPadelComponent } from './escuela-padel/escuela-padel.component';
+import { EscuelaTenisComponent } from './escuela-tenis/escuela-tenis.component';
 
 // Guards and Interceptors
 import { TokenInterceptor } from './auth/token.interceptor';
@@ -68,6 +70,8 @@ const routes: Routes = [
   { path: 'quienes-somos', component: QuienesSomosComponent },
   { path: 'login', component: LoginComponent },
   { path: 'contacto', component: ContactoComponent },
+  { path: 'escuela-padel', component: EscuelaPadelComponent },
+  { path: 'escuela-tenis', component: EscuelaTenisComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/:id', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'pistas-tenis', component: PistaTenisComponent, canActivate: [AuthGuard] },
@@ -117,7 +121,9 @@ const routes: Routes = [
     GrupoDetalleComponent,
     SubidaFicheroComponent,
     SesionComponent,
-    FormSesionComponent
+    FormSesionComponent,
+    EscuelaPadelComponent,
+    EscuelaTenisComponent
   ],
   imports: [
     BrowserModule,

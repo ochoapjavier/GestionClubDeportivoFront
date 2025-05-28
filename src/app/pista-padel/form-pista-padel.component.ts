@@ -16,6 +16,7 @@ export class FormPistaPadelComponent implements OnInit {
   titulo:string = "Pista"
   superficiesPista:Superficie[]= [];
   selectedSuperficieId: number = 0;
+  userID: number;
 
   constructor(
     private pistaService:ServicioPistasService, 
@@ -23,6 +24,7 @@ export class FormPistaPadelComponent implements OnInit {
     private router:Router, 
     private activatedRoute:ActivatedRoute) {
     this.superficiesPista = [];
+    this.userID = this.activatedRoute.snapshot.queryParams['userID'];
    }
 
    ngOnInit(): void {
@@ -53,29 +55,31 @@ export class FormPistaPadelComponent implements OnInit {
   }
 
   onSuperficieChange(event: any): void {
-    const id = +event.target.value; // Convertir el valor a número
-
-    // Busca la superficie por el ID y asigna la superficie seleccionada a la pista
+    const id = +event.target.value;
     if (!isNaN(id) && id !== 0) {
         const superficieSeleccionada = this.superficiesPista.find(s => s.id === id);
         if (superficieSeleccionada) {
             this.pista.id_superficie = superficieSeleccionada;
         }
     } else {
-        this.pista.id_superficie = new Superficie(); // Valor por defecto si el ID no es válido
+        this.pista.id_superficie = new Superficie();
     }
   }
 
   create():void{
     this.pistaService.createPadel(this.pista).subscribe(
-      res=>this.router.navigate(['/pistas-padel'])
+      res=>this.router.navigate(['/pistas-padel'], { queryParams: { userID: this.userID } })
     );
   }
 
   update():void{
     this.pistaService.updatePadel(this.pista).subscribe(
-      res=>this.router.navigate(['/pistas-padel'])
+      res=>this.router.navigate(['/pistas-padel'], { queryParams: { userID: this.userID } })
     );
+  }
+
+  regresarDashboard() {
+    this.router.navigate(['/dashboard', this.userID]);
   }
 
 }

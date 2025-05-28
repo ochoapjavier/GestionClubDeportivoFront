@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <p class="card-text">Superficie: {{ pista.id_superficie.nombre }}
                     <div class="d-flex justify-content-end">
-                       <button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-tenis-form', pista.id_pista]">Editar</button>
+                       <button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/pistas-tenis-form', pista.id_pista]" [queryParams]="{userID: id_usuario}">Editar</button>
                        <button mat-flat-button color="primary" style="color: white;" (click)="delete(pista)">Eliminar</button>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-end p-2">
-        <button mat-raised-button color="accent" [routerLink]="['/pistas-tenis-form']">Nueva pista</button>
+        <button mat-raised-button color="accent" [routerLink]="['/pistas-tenis-form']" [queryParams]="{userID: id_usuario}">Nueva pista</button>
     </div>
 </div>
 
