@@ -43,13 +43,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private sesionesService: ServicioSesionesService, 
-    private usuarioService:ServicioUsuarioService, 
-    private grupoService:ServicioGruposService, 
-    private activatedRoute:ActivatedRoute, 
-    private torneoService:ServicioTorneosService, 
-    private reservaService:ServicioReservasService, 
-    private ficheroService:ServicioFicherosService, 
-    private authService: AuthService ) { 
+    private usuarioService: ServicioUsuarioService, 
+    private grupoService: ServicioGruposService, 
+    private activatedRoute: ActivatedRoute, 
+    private torneoService: ServicioTorneosService, 
+    private reservaService: ServicioReservasService, 
+    private ficheroService: ServicioFicherosService, 
+    private authService: AuthService,
+    private router: Router ) { 
     this.torneos = [];
     this.rankings = [];
     this.resToday = [];
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
     this.sesionesMonitor = [];
     this.sesionesFuturasUsuario = [];
     this.sesionesFuturasMonitor = [];
-    this.reservasUsuario =[];
+    this.reservasUsuario = [];
     this.imgUser = "";
   }
 
@@ -176,26 +177,31 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  logout(): void{
+  logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
-  uploadFile(event: Event, usuario:Usuario) {
-    const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
-    if (fileList) {
+  reloadPage(): void {
+    window.location.reload();
+  }
 
-      this.ficheroService.upload(fileList[0]).subscribe(
-        res=> {
-          const updatedUsuario = { ...usuario, id_fichero: res.fileID };
-          this.usuarioService.update(updatedUsuario).subscribe(
-            resp=> {
-              alert('Imagen '+ res.fileName +' subido correctamente para el usuario ' + resp.nombre);
-              window.location.reload();
-            }  
-          );    
-        }      
-      );
-    }
+  uploadFile(event: Event, usuario: Usuario): void {
+    const input = event.currentTarget as HTMLInputElement;
+    if (!input.files || input.files.length === 0) return;
+  
+    const file = input.files[0];
+    this.ficheroService.upload(file).subscribe({
+      next: (response) => {
+        usuario.id_fichero = response.fileID;
+        this.usuarioService.update(usuario).subscribe(() => {
+          alert(`Imagen ${file.name} subido correctamente para el usuario ${usuario.nombre}`);
+          this.reloadPage();
+        });
+      },
+      error: (err) => {
+        alert(`Error subiendo la imagen: ${err.message || err}`);
+      }
+    });
   }
 }

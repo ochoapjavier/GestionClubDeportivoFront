@@ -1,16 +1,30 @@
-/* tslint:disable:no-unused-variable */
+import { TestBed } from '@angular/core/testing';
+import { SnackbarService } from './servicio-snackbar.service.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { TestBed, async, inject } from '@angular/core/testing';
-import { ServicioSnackbar.serviceService } from './servicio-snackbar.service.service';
+describe('SnackbarService', () => {
+  let service: SnackbarService;
 
-describe('Service: ServicioSnackbar.service', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ServicioSnackbar.serviceService]
+      imports: [MatSnackBarModule],
+      providers: [SnackbarService]
     });
+    service = TestBed.inject(SnackbarService);
   });
 
-  it('should ...', inject([ServicioSnackbar.serviceService], (service: ServicioSnackbar.serviceService) => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
-  }));
+  });
+
+  it('should call snackbar open method', () => {
+    const message = 'Test message';
+    const action = 'Test action';
+    const duration = 5000;
+    
+    const spy = spyOn(service['snackBar'], 'open');
+    service.showSnackbar(message, action, duration);
+    
+    expect(spy).toHaveBeenCalledWith(message, action, { duration });
+  });
 });
