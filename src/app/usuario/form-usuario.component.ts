@@ -51,7 +51,7 @@ export class FormUsuarioComponent implements OnInit {
         if(this.id){
           this.usuarioService.getById(this.id).subscribe(
             us=>{
-              this.regForm.setValue(us)
+              this.regForm.patchValue(us)
             }
           );
         }
