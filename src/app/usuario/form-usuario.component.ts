@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { ServicioUsuarioService } from '../services/servicio-usuario.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-form-usuario',
@@ -18,7 +19,6 @@ export class FormUsuarioComponent implements OnInit {
   userID:number;
   errorMessage: string;
 
-
   regForm = new FormGroup({
     id: new FormControl(''),
     nombre:new FormControl('', Validators.required),
@@ -32,7 +32,7 @@ export class FormUsuarioComponent implements OnInit {
     comercial: new FormControl(''),
   })
 
-  constructor(private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute) { 
+  constructor(private usuarioService:ServicioUsuarioService, private router:Router, private activatedRoute:ActivatedRoute, private authService:AuthService) { 
     this.id = 0;
     this.userID = 0;
     this.errorMessage = "";
@@ -69,13 +69,27 @@ export class FormUsuarioComponent implements OnInit {
     // Llama al servicio para crear el usuario
     this.usuarioService.create(this.regForm.value).subscribe({
       next: res => {
-        if (this.userID == 0){
-          this.router.navigate(['/dashboard', res.id]); // Redirigir a la página del dashboard del nuevo usuario
-        }
-        else{
-          this.router.navigate(['/dashboard', this.userID]); // Redirigir a la página del dashboard del coordinador
-        }
-        
+        // Usuario creado con éxito. Se autentica.
+        const email = this.regForm.get('email')?.value;
+        const password = this.regForm.get('password')?.value;
+
+        // Se llama al método de login en AuthService
+        this.authService.login(email, password)
+          .subscribe({
+            next: loginRes => {
+              // El login fue exitoso, el token ya está guardado en el servicio.
+              // Se redirige al dashboard.
+              if (this.userID == 0) {
+                this.router.navigate(['/dashboard', res.id]); // Redirige usando el ID del usuario creado
+              } else {
+                this.router.navigate(['/dashboard', this.userID]);
+              }
+            },
+            error: loginErr => {
+              this.errorMessage = 'Usuario creado, pero no se pudo iniciar sesión automáticamente.';
+              this.router.navigate(['/login']); // En caso de fallo en el login, redirige al login
+            }
+          });
       },
       error: err => {
         if (err.status === 409) {
@@ -102,5 +116,4 @@ export class FormUsuarioComponent implements OnInit {
   regresarDashboard() {
     this.router.navigate(['/dashboard',this.userID]);
   }
-
 }
