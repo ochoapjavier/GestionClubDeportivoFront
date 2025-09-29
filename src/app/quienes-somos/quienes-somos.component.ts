@@ -7,23 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuienesSomosComponent implements OnInit {
 
-  equipo = [
-    {
-      nombre: 'ÁLVARO LÓPEZ ROMERO',
-      puesto: 'Director Deportivo - Área Pádel',
-      desc: 'TAFAD y Graduado en Ciencias de la Actividad Física y del Deporte (INEF). Máster de experto en Gestión de Instalaciones Deportivas',
-      imagen: '../../assets/images/Alvaro-1.jpg',
-      linkedin: 'https://www.linkedin.com/in/%C3%A1lvaro-l%C3%B3pez-romero-6b3a7212a/'
-    },
-    {
-      nombre: 'JAVIER OCHOA PÉREZ',
-      puesto: 'Director Deportivo - Área Tenis ',
-      desc: 'Licenciado en Ciencias de la Actividad Física y del Deporte (INEF). Ingeniero Informático',
-      imagen: '../../assets/images/Javi-1.jpg',
-      linkedin: 'https://www.linkedin.com/in/javierochoap%C3%A9rez/'
-    }
-  ];
-
   testimonials = [
     {
       text: 'Excelente equipo de profesionales. Han mejorado significativamente mi técnica y rendimiento.',
