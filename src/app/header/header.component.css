@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Estilos para el header moderno */
+.navigation {
+    background-color: #23272f;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #f75757;
+    transform: translateY(-2px);
+}
+
+.header-top {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-top-socials {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    padding-right: 1rem;
+}
+
+.header-top-socials a {
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.header-top-socials a:hover {
+    transform: scale(1.1);
+    color: #f75757;
+}
+
+.navbar {
+    padding: 0.5rem 2rem;
+}
+
+.navbar-brand img {
+    max-height: 100px;
+    height: auto;
+    width: auto;
+    margin-top: -25px;
+    margin-bottom: -25px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+.navbar-nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f75757;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.dropdown-menu {
+    background-color: #23272f;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
+    color: white;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(247, 87, 87, 0.1);
+    color: #f75757;
+}
+
+.modern-button {
+    color: #f75757;
+    padding: 0.5rem 1.2rem;
+    border: 2px solid #f75757;
+    border-radius: 25px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.modern-button:hover {
+    background-color: #f75757;
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .navbar-brand img {
+        max-height: 80px;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+    }
+    
+    .modern-button {
+        padding: 0.6rem 1.2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header-top-socials {
+        display: none;
+    }
+    
+    .navbar-brand img {
+        max-height: 60px;
+    }
+}

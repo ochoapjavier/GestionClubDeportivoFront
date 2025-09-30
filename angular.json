@@ -27,9 +27,15 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -102,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "app-club-deportivo"
+  "defaultProject": "app-club-deportivo",
+  "cli": {
+    "analytics": "41bf9d5e-3f34-4399-b07b-2f871c7871c8"
+  }
 }

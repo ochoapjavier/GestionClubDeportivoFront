@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col" *ngFor="let reserva of reservas">
+            <div class="card">
+                <div *ngIf="reserva.id_pista && reserva.id_pista.indexOf('TEN') !== -1" class="card-header bg-dark text-white">
+                    {{ getPistaTenisNombre(reserva.id_pista) }}
+                </div>
+                <div *ngIf="reserva.id_pista && reserva.id_pista.indexOf('PAD') !== -1" class="card-header bg-dark text-white">
+                    {{ getPistaPadelNombre(reserva.id_pista) }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Fecha:{{ reserva.fecha }}</p>
+                    <p class="card-text">Horario: {{ reserva.id_horario.hora_inicio }} - {{ reserva.id_horario.hora_fin }}</p>
+                    <div class="d-flex justify-content-end">
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/reservas-form', reserva.id]" [queryParams]="{userID: usuario.id}">Editar</button>
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-flat-button color="primary" style="color: white;" (click)="delete(reserva)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

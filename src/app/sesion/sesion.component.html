@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col" *ngFor="let sesion of sesiones">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ sesion.id_grupo.nombre }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Deporte: {{ sesion.id_grupo.id_deporte.nombre }}</p>
+                    <p class="card-text">Fecha: {{ sesion.fecha }}</p>
+                    <p class="card-text">Horario: {{ sesion.id_grupo.id_horario.hora_inicio }} - {{ sesion.id_grupo.id_horario.hora_fin }}</p>
+                    <p class="card-text">Título sesión: {{ sesion.titulo }}</p>
+                    <p class="card-text" *ngIf="expanded[sesion.id] && usuario.rol === 'Monitor'">Descripción: {{ sesion.descripcion }}</p>
+                    <div class="card-text" *ngIf = "usuario.rol === 'Monitor'">
+                        <button  mat-button="primary" color="warn" (click)="toggleDescription(sesion.id)">
+                            {{ expanded[sesion.id] ? 'Ocultar Descripción' : 'Ver Descripción' }}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf = "usuario.rol === 'Monitor'" class="card-footer d-flex justify-content-end">
+                    <button mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/sesion-form', sesion.id]" [queryParams]="{userID: usuario.id}">Editar</button>
+                    <button mat-flat-button color="primary" style="color: white;" (click)="delete(sesion)">Eliminar</button>
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>

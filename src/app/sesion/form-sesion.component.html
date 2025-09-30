@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-dark text-white" *ngIf="!id_sesion">Nueva sesión</div>
+        <div class="card-header bg-dark text-white" *ngIf="id_sesion">Modificar sesión</div>
+        <div class="card-body">
+            <form [formGroup]="sesionForm">
+                <div class="form-group row card-text p-2">
+                    <div class="col-sm-6">
+                        <mat-form-field>
+                            <mat-label>Grupo</mat-label>
+                            <mat-select  [class.is-invalid] = "sesionForm.get('id_grupo')?.invalid && sesionForm.get('id_grupo')?.touched" formControlName="id_grupo" (selectionChange)="refreshFields()">
+                              <mat-option *ngFor="let grupo of grupos" [value]="grupo">
+                                {{grupo.nombre}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                </div>   
+                <div class="form-group row card-text p-2">
+                    <label class="col-form-label col-sm-2">Fecha</label>
+                    <div class="col-sm-6">
+                        <mat-form-field class="example-full-width">
+                            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="fecha">
+                            <mat-hint>DD/MM/AAAA</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>    
+                </div> 
+     
+                <div class="form-group row card-text p-2">
+                    <label for="horario" class="col-form-label col-sm-2">Horario</label>
+                    <div class="col-sm-6">
+                        <p>{{horario.hora_inicio + " - " + horario.hora_fin}}</p>               
+                    </div>
+                </div>    
+                <div class="form-group row card-text p-2">
+                    <label for="titulo" class="col-form-label col-sm-2">Título</label>
+                    <div class="col-sm-6">
+                        <input [class.is-invalid] = "sesionForm.get('titulo')?.invalid && sesionForm.get('titulo')?.touched" formControlName="titulo" type="text" class="form-control">
+                    </div>
+                </div>   
+                <div class="form-group row card-text p-2">
+                    <label for="descripcion" class="col-form-label col-sm-2">Descripción</label>
+                    <div class="col-sm-6">
+                        <textarea [class.is-invalid] = "sesionForm.get('descripcion')?.invalid && sesionForm.get('descripcion')?.touched" formControlName="descripcion" type="text" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>  
+                <div class="d-flex justify-content-start p-2">
+                    <button [disabled]="sesionForm.invalid" button mat-flat-button color="primary" style="color: white;" (click)="create()" *ngIf="!id_sesion else elseBlock">Registrar</button>
+                </div>
+                <ng-template #elseBlock class="d-flex justify-content-start p-2">
+                    <button button mat-flat-button color="primary" style="color: white;" (click)="update()">Actualizar</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>

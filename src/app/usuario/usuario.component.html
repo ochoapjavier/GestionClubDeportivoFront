@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre o apellidos" [(ngModel)]="busquedaNombre">
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+        <div class="col" *ngFor="let usuario of usuariosFiltrados">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ usuario.nombre }} {{ usuario.apellido1 }} {{ usuario.apellido2 }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Email: {{usuario.email}}</p>
+                    <p class="card-text">Rol: {{usuario.rol}}</p>
+                    <div class="d-flex justify-content-end">
+                       <button mat-stroked-button color="accent" style="color: #ef5350;"  [routerLink]="['/usuarios-form', usuario.id]" [queryParams]="{userID: userID}">Editar</button>
+                       <button mat-flat-button color="primary" style="color: white;" (click)="delete(usuario)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

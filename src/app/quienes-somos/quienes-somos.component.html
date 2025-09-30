@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
+
+<div class="main-wrapper">
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <i class="material-icons">hourglass_full</i>
+                        <div class="stat-content">
+                            <h3><span class="counter-stat">9</span>+</h3>
+                            <p>Años de experiencia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="stat-card">
+                        <i class="material-icons">groups</i>
+                        <div class="stat-content">
+                            <h3><span class="counter-stat">500</span>+</h3>
+                            <p>Alumnos satisfechos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-section text-center">
+                        <span class="text-color">Nuestra Filosofía</span>
+                        <h2 class="title">Formación, Comunidad y Diversión</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="bi bi-award-fill" style="font-size: 2rem; color: #f75757;"></i>
+                        <h4>Enseñanza para Todos</h4>
+                        <p>Ofrecemos clases y programas para todos los niveles, desde iniciación para niños y adultos hasta entrenamiento de alta competición. Nuestra metodología se adapta a cada jugador.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="bi bi-people-fill" style="font-size: 2rem; color: #f75757;"></i>
+                        <h4>Un Club, una Familia</h4>
+                        <p>Más allá de las pistas, fomentamos un ambiente social y familiar. Organizamos torneos, eventos y actividades para que nuestros socios se sientan como en casa.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-item">
+                        <i class="bi bi-building" style="font-size: 2rem; color: #f75757;"></i>
+                        <h4>Instalaciones de Calidad</h4>
+                        <p>Nuestras pistas de tenis y pádel están mantenidas a la perfección para garantizar la mejor experiencia de juego. Contamos con todo lo necesario para que solo te preocupes de disfrutar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials-section py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Lo que dicen nuestros alumnos</h2>
+                </div>
+            </div>
+            <div class="row testimonial-slider">
+                <div class="col-md-4" *ngFor="let testimonial of testimonials">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="material-icons quote">format_quote</i>
+                            <p>{{testimonial.text}}</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <h5>{{testimonial.name}}</h5>
+                            <p>{{testimonial.role}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

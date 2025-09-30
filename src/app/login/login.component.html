@@ -1,0 +1,41 @@
+<body>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card-body p-md-5 mx-md-4">    
+                    <div class="text-center"> 
+                        <div *ngIf="loginResp == false" class="alert alert-danger" role="alert">
+                            Credenciales incorrectas
+                        </div>                   
+                        <form [formGroup]="loginForm">
+                            <div class="card">
+                                <h3 class="card-header bg-dark text-white"> Bienvenido/a a Madset Sports</h3>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img src="assets/images/logo.png" alt="Logo" width="400" height="400" style="object-fit: contain;">
+                                    </div>
+                                    <div class="form-outline mb-4 text-left">
+                                        <input formControlName="email" type="email" class="form-control" placeholder="Email"/>      
+                                    </div>
+                                    <div class="form-outline mb-4 text-left">
+                                        <input formControlName="password" type="password" class="form-control" placeholder="Contraseña"/>
+                                    </div>			
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row ">
+                                        <div class="col-sm-6 text-left">
+                                            <button mat-flat-button color="primary" style="color: white;" (click)="login()">Acceder</button>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <button mat-flat-button color="accent" style="color: white;" [routerLink]="['/usuarios-form']"  [queryParams]="{rol: 'Usuario', userID: 0}">Registro</button>
+                                        </div>    
+                                    </div>            				
+                                </div>
+                            </div>
+                        </form >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

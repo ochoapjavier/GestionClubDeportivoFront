@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row mb-3">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar por nombre, deporte o día del grupo" [(ngModel)]="busquedaNombre">
+            </div>
+        </div>
+    </div>
+
+    <!-- Corregimos el ngClass para incluir todas las clases en las comillas -->
+    <div [ngClass]="usuario.rol === 'Monitor' ? 'row row-cols-1 row-cols-md-3 g-4 mt-4' : 'row row-cols-1 row-cols-md-2 g-4 mt-4'">
+        <div class="col" *ngFor="let grupo of gruposFiltrados">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    {{ grupo.nombre }}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Deporte: {{ grupo.id_deporte.nombre }}</p>
+                    <p class="card-text">Capacidad: {{ grupo.capacidad }}</p>
+                    <p class="card-text">Días grupo: {{ grupo.id_dias_grupo.dia }}</p>
+                    <p class="card-text">Horario: {{ grupo.id_horario.hora_inicio }} - {{ grupo.id_horario.hora_fin }}</p>
+                    <p *ngIf = "usuario.rol !== 'Monitor'" class="card-text">Monitor: {{ grupo.id_monitor.nombre }} {{ grupo.id_monitor.apellido1 }}</p>
+                    <div class="d-flex justify-content-end">
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-stroked-button color="accent" style="color: #ef5350;" [routerLink]="['/grupo-detalle', grupo.id]" [queryParams]="{userID: usuario.id}">Ir a grupo</button>
+                        <button *ngIf = "usuario.rol === 'Coordinador'" mat-flat-button color="primary" style="color: white;" (click)="delete(grupo)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+        <div class="col-md-6" *ngFor="let detalle of grupoDetalle">
+            <div class="card mb-3">
+                <div class="card-header bg-dark text-white">
+                    {{ detalle.id_alumno.nombre }} {{ detalle.id_alumno.apellido1 }} {{ detalle.id_alumno.apellido2 }}
+                </div>
+                <div class="card-body">
+                    <p *ngIf="expanded[detalle.id]" class="card-text">Primer Apellido: {{ detalle.id_alumno.apellido1 }}</p>
+                    <p *ngIf="expanded[detalle.id]" class="card-text">Segundo Apellido: {{ detalle.id_alumno.apellido2 }}</p>
+                    <p *ngIf="expanded[detalle.id]" class="card-text">Email: {{ detalle.id_alumno.email }}</p>
+                    <div class="card-text">
+                        <button mat-button="primary" color="warn" (click)="toggleDescription(detalle.id)">
+                            {{ expanded[detalle.id] ? 'Ocultar Descripción' : 'Ver Descripción' }}
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button mat-flat-button color="primary" style="color: white;" (click)="eliminar(detalle.id)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <form [formGroup]="inscripcionForm">
+                <div *ngIf="grupoDetalle.length < grupo.capacidad" class="form-group row card-text p-2">
+                    <label for="superficie" class="col-form-label col-sm-2">Alumno</label>
+                    <div class="col-sm-6">
+                        <select formControlName="alumno" class="form-control">
+                            <option [ngValue]="alumno" *ngFor="let alumno of alumnosParaInscribir">{{alumno.nombre}} {{alumno.apellido1}} {{alumno.apellido2}}</option>
+                        </select>
+                    </div> 
+                    <div class="col-sm-2">
+                        <button mat-raised-button color="primary" style="color: white;" (click)="inscribir()">Añadir alumno</button>                  
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+    <button mat-raised-button color="primary" style="color: white;" (click)="regresarDashboard()">Volver al Dashboard</button>
+</div>
